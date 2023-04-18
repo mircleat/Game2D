@@ -56,7 +56,7 @@ Our game simulates different aspects of memorable moments from EC327, with an ad
 
 ## Members
 
-Ankita, Ethan, Pippi, Elena
+Ankita, Ethan, Pippi, Elena, Pranav
 
 ## Contributions and Responsibilities
 
