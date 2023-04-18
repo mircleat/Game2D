@@ -1,7 +1,5 @@
 # Group7Project
 
-
-
 ## Getting started
 
 To make it easy for you to get started with GitLab, here's a list of recommended next steps.
@@ -42,24 +40,28 @@ Use the built-in continuous integration in GitLab.
 - [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
 - [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
 
-***
+---
 
 # Editing this README
 
 When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
+
 ## Name
+
 Project APEEP
 
 ## Description
-Our game simulates different aspects of memorable moments from EC327, with an added twist of course! 
+
+Our game simulates different aspects of memorable moments from EC327, with an added twist of course!
 
 ## Members
-Ankita
+
+Ankita, Ethan
 
 ## Contributions and Responsibilities
+
 A - Ankita 100%
 P - Pippi 100%
 E - Elena 100%
 E - Ethan 100%
 P - Pranav 100%
-
