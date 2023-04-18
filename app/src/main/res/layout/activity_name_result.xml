@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/scoretext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/score"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/ewert"
+        android:text="Your Scored"
+        android:textColor="#000000"
+        android:textSize="34sp"
+        tools:layout_editor_absoluteX="176dp"
+        tools:layout_editor_absoluteY="218dp" />
+
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/comment"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/ewert"
+        android:text="2"
+        android:textColor="#000000"
+        android:textSize="80dp"
+        tools:layout_editor_absoluteX="175dp"
+        tools:layout_editor_absoluteY="284dp" />
+
+    <TextView
+        android:id="@+id/comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+
+
+        android:fontFamily="@font/press_start_2p"
+        android:text="Not bad!"
+        tools:layout_editor_absoluteX="175dp"
+        tools:layout_editor_absoluteY="369dp" />
+
+    <TextView
+        android:id="@+id/highestscoretext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/comment"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/press_start_2p"
+        android:padding="4dp"
+        android:text="Highest Score"
+        tools:layout_editor_absoluteX="175dp"
+        tools:layout_editor_absoluteY="369dp" />
+
+    <TextView
+        android:id="@+id/highestscore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/highestscoretext"
+
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/press_start_2p"
+        android:padding="6dp"
+        android:text="100"
+        android:textSize="20dp"
+        tools:layout_editor_absoluteX="175dp"
+        tools:layout_editor_absoluteY="369dp" />
+
+    <FrameLayout
+        android:id="@+id/choices_layout"
+        android:layout_width="600dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80sp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/again_button"
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/press_start_2p"
+                android:paddingHorizontal="30dp"
+                android:text="Try Again"
+                android:backgroundTint="@color/black"
+                android:textSize="20sp"
+                app:strokeColor="#FF0303" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+
+            <Button
+                android:id="@+id/back_button"
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:layout_gravity="center_vertical"
+
+                android:fontFamily="@font/press_start_2p"
+                android:paddingHorizontal="30dp"
+                android:text="Continue"
+                android:backgroundTint="@color/black"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+    </FrameLayout>
+
+</RelativeLayout>
