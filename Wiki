@@ -1,0 +1,36 @@
+## Name: Project APEEP
+
+## Icon: ![Untitled_Artwork_7](uploads/fe1ba339875c5c8277b48c300e2b14ce/Untitled_Artwork_7.jpeg)
+
+## Project specifications
+**Minimum requirements (50%)**
+Your app should have the following components:
+- Moving graphical pieces.
+- The ability of the user to control some of the moving pieces through input.
+- Include a score that is changed based on the user satisfying requirements.
+- A menu item that allows the user to pause the game that the user can access at any point in the game**
+- Mini-game within the game
+
+It should also:
+1. Have a simple-to-use, graphical user interface.
+2. Provide clear documentation of the rules of the game.
+3. Not require any Internet or network connectivity.
+4. [Not violate](https://arstechnica.com/gaming/2012/06/defining-tetris-how-courts-judge-gaming-clones/) the copyright of Tetris or any other game.
+
+**Possible features (50%)**
+Mix and match these features, as you wish. The maximum total score for this section will be 50% of the grade, but no credit will be given unless ***all*** the minimum requirements are met.
+- Implement a health system that is calculated/decreased based on time and player performance [5%]
+- Provide a hints system that the user can access to get a text prompt on how to proceed. [5%]
+- Allow the user to customize some aspects of their character’s appearance. [5%]
+- Provide a high-score list that persists when the app is closed and then reopened. [10%]
+- Incorporate audio components and sound effects in the game [10%]
+- Gameplay mechanics that involve randomized events and calculations. [10%]
+- Allow the user to choose between light mode and dark mode and customize the placement of controls. [15%]
+- Comprehensive graphical design and fine-grain animation for game components. [15%]
+- Incorporate online leaderboard where user can see their placement against other users. [20%]
+
+## List of features currently planning to complete:
+- Allow the user to customize some aspects of their character’s appearance.
+- Incorporate audio components and sound effects in the game.
+- Allow the user to choose between light mode and dark mode and customize the placement of controls.
+- A menu item that allows the user to pause the game that the user can access at any point in the game.
