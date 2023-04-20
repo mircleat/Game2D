@@ -1,5 +1,8 @@
 package com.example.game2d.object;
 
+import static com.example.game2d.Game.getScreenHeight;
+import static com.example.game2d.Game.getScreenWidth;
+
 import android.content.Context;
 
 import androidx.core.content.ContextCompat;
@@ -32,8 +35,25 @@ public class Player extends Circle {
         // update velocity based on joystick actuator
         velocityX = joystick.getActuatorX()*MAX_SPEED;
         velocityY = joystick.getActuatorY()*MAX_SPEED;
-        // update position
+
         // later can abstract out position updates
+        // Don't allow to go off screen
+        int height = getScreenHeight();
+        int width = getScreenWidth();
+        if (positionX >= width) {
+            positionX = width;
+        }
+        if (positionX <= 0) {
+            positionX = 0;
+        }
+        if (positionY >= height) {
+            positionY = height;
+        }
+        if (positionY <= 0) {
+            positionY = 0;
+        }
+
+        // update position
         positionX += velocityX;
         positionY += velocityY;
     }
