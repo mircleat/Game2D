@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -16,13 +15,7 @@ import androidx.core.content.ContextCompat;
 
 import com.example.game2d.object.Circle;
 import com.example.game2d.object.Detector;
-import com.example.game2d.object.Enemy;
 import com.example.game2d.object.Player;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.jar.Attributes;
 
 /*
 Game manages all objects in the game and is responsible for updating all states
@@ -33,8 +26,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     private final Player player;
     private final Detector detector1;
     private final Detector detector2;
-    //private final Enemy enemy;
-    private List<Enemy> enemyList = new ArrayList<Enemy>();
+
     private GameLoop gameLoop;
     private Context gameContext;
 
@@ -129,12 +121,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         // draw single detectors
         detector1.draw(canvas);
         detector2.draw(canvas);
-        // draw single enemy
-        //enemy.draw(canvas);
-        // draw all enemies in list
-        for (Enemy enemy : enemyList) {
-            enemy.draw(canvas);
-        }
     }
     // method to display how many updates per second (UPS)
     public void drawUPS(Canvas canvas) {
@@ -167,15 +153,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         player.update();
         detector1.update();
         detector2.update();
-        //enemy.update();
-        // Spawn enemy if it is time for a new one
-        if (Enemy.readyToSpawn()) {
-            enemyList.add(new Enemy(getContext(), player));
-        }
-        // Update state of each enemy
-        for (Enemy enemy : enemyList) {
-            enemy.update();
-        }
         // Check for collision with detectors
         if (Circle.isColliding(player, detector1)) {
             // call method to start quiz activity
@@ -186,16 +163,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
             // call method to start chalk activity
             startChalkActivity();
             Log.d("COLLISION", "DETECTOR");
-        }
-
-        // Check for collisions with each enemy
-        Iterator<Enemy> iteratorEnemy = enemyList.iterator();
-        while (iteratorEnemy.hasNext()) {
-            if (Circle.isColliding(iteratorEnemy.next(), player)) {
-                // Remove enemy if it collides with the player
-                iteratorEnemy.remove();
-                Log.d("COLLISION", "ENEMY");
-            }
         }
     }
 
