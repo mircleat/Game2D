@@ -63,7 +63,7 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
     //for pop up intro
     private void CreatepopUpwindow() {
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-        View popUpView=inflater.inflate(R.layout.mainpopup,null);
+        View popUpView=inflater.inflate(R.layout.popupforchalk,null);
 
         int width = ViewGroup.LayoutParams.MATCH_PARENT;
         int height= ViewGroup.LayoutParams.MATCH_PARENT;
