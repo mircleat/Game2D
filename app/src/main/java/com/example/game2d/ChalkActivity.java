@@ -5,8 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class ChalkActivity extends AppCompatActivity implements View.OnClickListener{
@@ -22,10 +27,16 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
     int currentQuestionIndex = 0;
     String selectedAnswer = "";
 
+    //for pop up intro
+    RelativeLayout layout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chalk);
+
+        //for pop up intro
+        layout = findViewById(R.id.chalkActivity); // relative is the id of the layout of the page
+        CreatepopUpwindow();
 
         /*totalQuestionsTextView = findViewById(R.id.total_question);*/
         questionTextView = findViewById(R.id.question);
@@ -49,6 +60,31 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
+    //for pop up intro
+    private void CreatepopUpwindow() {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popUpView=inflater.inflate(R.layout.mainpopup,null);
+
+        int width = ViewGroup.LayoutParams.MATCH_PARENT;
+        int height= ViewGroup.LayoutParams.MATCH_PARENT;
+        boolean focusable = true;
+        PopupWindow popupWindow = new PopupWindow(popUpView, width,height,focusable);
+        layout.post(new Runnable() {
+            @Override
+            public void run() {
+                popupWindow.showAtLocation(layout, Gravity.BOTTOM,0,0);
+            }
+        });
+        TextView Continue;
+        Continue = popUpView.findViewById(R.id.Continue);
+        Continue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popupWindow.dismiss();
+            }
+        });
+
+    }
     @Override
     public void onClick(View view) {
 

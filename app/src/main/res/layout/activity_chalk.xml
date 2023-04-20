@@ -8,6 +8,7 @@
     android:orientation="horizontal"
     android:padding="24dp"
     android:screenOrientation="landscape"
+    android:id="@+id/chalkActivity"
 
     tools:context=".MainActivity">
 
