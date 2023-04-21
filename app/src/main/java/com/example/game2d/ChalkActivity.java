@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -99,8 +100,9 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
                 score++;
             } else {
                 totalWrong++;
-                Intent spawnGame = new Intent(getApplicationContext(), ChalkActivity.class);
+                Intent spawnGame = new Intent(getApplicationContext(), ChalkGameActivity.class);
                 spawnGame.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                Log.d("QUESTION", "Starting activity...");
                 getApplicationContext().startActivity(spawnGame);
             }
             currentQuestionIndex++;
@@ -115,7 +117,11 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
     }
 
     void loadNewQuestion(){
+        // log question numbers
+        Log.d("QUESTION", "current: " + String.valueOf(currentQuestionIndex));
+        //Log.d("QUESTION", String.valueOf(currentQuestionIndex));
         if(currentQuestionIndex == totalQuestion ){
+            Log.d("QUESTION", "finishing...");
             finishQuiz();
             return;
         }
@@ -134,6 +140,9 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
         }else{
             passStatus = "Failed";
         }
+
+        Intent intent = new Intent(ChalkActivity.this, MainActivity.class);
+        startActivity(intent);
 
         /*new AlertDialog.Builder(this)
                 .setTitle(passStatus)

@@ -26,7 +26,7 @@ public class ChalkGameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Intent mainIntent  = new Intent(ChalkGameActivity.this, MainActivity.class);
+                Intent mainIntent  = new Intent(ChalkGameActivity.this, ChalkActivity.class);
                 mainIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(mainIntent);
             }
