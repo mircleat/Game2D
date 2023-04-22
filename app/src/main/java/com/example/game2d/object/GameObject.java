@@ -11,13 +11,19 @@ import android.graphics.Canvas;
 // public modifer allows class to be accessed outside of package (default is private)
 public abstract class GameObject {
     // protected so that player etc can inherit them
+    /*
     protected double positionX;
     protected double positionY;
+
+     */
+    protected float positionX;
+    protected float positionY;
     protected double velocityX;
     protected double velocityY;
 
     // constructor
-    public GameObject(double positionX, double positionY) {
+    public GameObject(float positionX, float positionY) {
+
         this.positionX = positionX;
         this.positionY = positionY;
     }
