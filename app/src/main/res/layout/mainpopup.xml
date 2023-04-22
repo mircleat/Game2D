@@ -31,7 +31,7 @@ android:background="#D6D6D6">
         android:text="In order to be a good engineer in the workspace, it is crucial to practice basic respect of your colleagues, and rememberbing their names is the first step. Otherwise you would be deemed as a racist, sexist, or just straight up ignorant.
             \n\nLet's put it to the test! Here are a list of names from our EC327 class + TAs. Some are real people,
 others are just random combinations of first and last names in our class... Are you a respectful person?"
-        android:textSize="18dp" />
+        android:textSize="18sp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
