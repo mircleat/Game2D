@@ -8,7 +8,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_200"
+    android:background="@drawable/name_list_zoomed"
     android:padding="24dp"
     android:id="@+id/nameActivity"
     tools:context=".MainActivity">
@@ -28,6 +28,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/title_question"
         android:text="Is this a classmate?"
+        android:textStyle="bold"
         android:layout_centerHorizontal="true"
         android:textSize="30dp"
         android:textColor="@color/white"
@@ -41,11 +42,11 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="18dp"
         android:text="Pippi Pi"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="45dp"
+        android:textSize="60dp"
         android:textStyle="bold" />
 
     <FrameLayout
@@ -53,6 +54,7 @@
         android:layout_width="600dp"
         android:layout_height="80dp"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
         android:layout_centerHorizontal="true">
 
         <LinearLayout
@@ -61,13 +63,14 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/yes"
                 android:layout_width="wrap_content"
+                android:layout_marginRight="10dp"
                 android:layout_height="70dp"
                 android:layout_weight="1"
-                android:id="@+id/yes"
+                android:fontFamily="@font/press_start_2p"
                 android:text="Actual Classmate"
-
-                android:textSize="20sp" />
+                android:textSize="16sp" />
 
 
             <View
@@ -76,19 +79,16 @@
                 android:layout_weight="1" />
 
             <Button
+                android:id="@+id/no"
                 android:layout_width="wrap_content"
                 android:layout_height="70dp"
                 android:layout_weight="1"
-                android:id="@+id/no"
+                android:fontFamily="@font/press_start_2p"
                 android:text="Not a classmate"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
 
         </LinearLayout>
 
     </FrameLayout>
-
-
-
-
 
 </RelativeLayout>

@@ -24,7 +24,7 @@ public class NameActivity extends AppCompatActivity implements View.OnClickListe
 
     TextView totalQuestionsTextView;
     TextView nameTextView;
-    Button yes, no;
+    Button yes, no, exit;
 
     int score=0;
     int totalQuestion = QuestionAnswer.names.length;
@@ -130,6 +130,7 @@ public class NameActivity extends AppCompatActivity implements View.OnClickListe
         nameTextView.setText(QuestionAnswer.names[currentQuestionIndex]);
         yes.setBackgroundColor(Color.BLACK);
         no.setBackgroundColor(Color.BLACK);
+
 
     }
 

@@ -29,9 +29,9 @@ android:background="#D6D6D6">
         android:layout_marginEnd="20dp"
         android:fontFamily="@font/abeezee"
         android:text="In order to be a good engineer in the workspace, it is crucial to practice basic respect of your colleagues, and rememberbing their names is the first step. Otherwise you would be deemed as a racist, sexist, or just straight up ignorant.
-            \n \nLet's put it to the test! Here are a list of names from our EC327 class + TAs. Some are real people,
+            \n\nLet's put it to the test! Here are a list of names from our EC327 class + TAs. Some are real people,
 others are just random combinations of first and last names in our class... Are you a respectful person?"
-        android:textSize="20dp" />
+        android:textSize="18dp" />
 
     <RelativeLayout
         android:layout_width="match_parent"

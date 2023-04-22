@@ -3,6 +3,7 @@ package com.example.game2d;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,7 +23,7 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
     Button ansA, ansB, ansC, ansD;
     Button submitBtn/*, helpBtn*/;
 
-    int score = 0;
+    int chalkscore = 0;
     int totalWrong = 0;
     int totalQuestion = ChalkQuestionAnswer.question.length;
     int currentQuestionIndex = 0;
@@ -97,7 +98,7 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
         Button clickedButton = (Button) view;
         if(clickedButton.getId()==R.id.submit_btn){
             if(selectedAnswer.equals(ChalkQuestionAnswer.correctAnswers[currentQuestionIndex])){
-                score++;
+                chalkscore++;
             } else {
                 totalWrong++;
                 Intent spawnGame = new Intent(getApplicationContext(), ChalkGameActivity.class);
@@ -135,14 +136,23 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
 
     void finishQuiz(){
         String passStatus = "";
-        if(score > totalQuestion*0.65){
+        if(chalkscore > totalQuestion*0.65){
             passStatus = "Passed";
         }else{
             passStatus = "Failed";
         }
 
-        Intent intent = new Intent(ChalkActivity.this, MainActivity.class);
+//        Intent intent = new Intent(ChalkActivity.this, MainActivity.class);
+//        startActivity(intent);
+
+        SharedPreferences preferences = getSharedPreferences("MY_PREFS", 0);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt("lastChalkScore",chalkscore);
+        editor.apply();
+
+        Intent intent = new Intent(getApplicationContext(),ChalkResultActivity.class);//
         startActivity(intent);
+        finish();
 
         /*new AlertDialog.Builder(this)
                 .setTitle(passStatus)
@@ -154,7 +164,7 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
 
 
     void restartQuiz(){
-        score = 0;
+        chalkscore = 0;
         currentQuestionIndex = 0;
         loadNewQuestion();
     }
