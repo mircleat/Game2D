@@ -35,6 +35,9 @@
             android:exported="false"
             android:screenOrientation="landscape"/>
         <activity
+            android:name=".ChalkResultActivity"
+            android:screenOrientation="landscape" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:screenOrientation="landscape">

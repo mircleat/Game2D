@@ -1,4 +1,5 @@
 package com.example.game2d;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,7 +10,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class NameResultActivity extends AppCompatActivity { //
+public class ChalkResultActivity extends AppCompatActivity { //
 
     TextView newscore;
 
@@ -17,8 +18,8 @@ public class NameResultActivity extends AppCompatActivity { //
 
     TextView comment;
 
-    int lastScore;
-    int best;
+    int lastChalkScore;
+    int bestChalk;
 
     Button submitBtn;
 
@@ -37,7 +38,7 @@ public class NameResultActivity extends AppCompatActivity { //
             @Override
             public void onClick(View view) {
                 // switch back to main activity
-                Intent intent = new Intent(NameResultActivity.this, MainActivity.class);
+                Intent intent = new Intent(ChalkResultActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -47,37 +48,37 @@ public class NameResultActivity extends AppCompatActivity { //
             @Override
             public void onClick(View view) {
                 // switch back to main activity
-                Intent intent = new Intent(NameResultActivity.this, NameActivity.class);
+                Intent intent = new Intent(ChalkResultActivity.this, ChalkActivity.class);
                 startActivity(intent);
             }
         });
 
 
         SharedPreferences preferences = getSharedPreferences("MY_PREFS", 0);
-        lastScore = preferences.getInt("lastScore", 0);
-        best = preferences.getInt("best", 0);
+        lastChalkScore = preferences.getInt("lastChalkScore", 0);
+        bestChalk = preferences.getInt("bestChalk", 0);
 
-        if (lastScore > best) {
-            best = lastScore;
+        if (lastChalkScore > bestChalk) {
+            bestChalk = lastChalkScore;
             SharedPreferences.Editor editor = preferences.edit();
-            editor.putInt("best", best);
+            editor.putInt("bestChalk", bestChalk);
             editor.apply();
         }
-        newscore.setText(lastScore + " out of 5");
-        bestscore.setText(best + " out of 5");
+        newscore.setText(lastChalkScore + " out of 4");
+        bestscore.setText(bestChalk + " out of 4");
 
-        if (lastScore < 3) {
-            comment.setText("You must be a terrible person.");
-        } else if (lastScore == 3) {
-            comment.setText("Not bad, not good either");
-        } else if (lastScore == 4) {
-            comment.setText("Okay... don't be cocky.");
-        } else if (lastScore == 5) {
-            comment.setText("You cheated.");
-        }
+//        if (lastScore < 3) {
+//            comment.setText("You must be a terrible person.");
+//        } else if (lastScore == 3) {
+//            comment.setText("Not bad, not good either");
+//        } else if (lastScore == 4) {
+//            comment.setText("Okay... don't be cocky.");
+//        } else if (lastScore == 5) {
+//            comment.setText("You cheated.");
+//        }
     }
 
-    //This part does not work it is supposed to go back to the main Activity
+
     public void onClick(View view) {
         Button clickedButton = (Button) view;
         if (clickedButton.getId() == R.id.back_button) {
@@ -85,8 +86,5 @@ public class NameResultActivity extends AppCompatActivity { //
             startActivity(intent);
             finish();
         }
-
     }
-
-
 }
