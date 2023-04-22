@@ -12,7 +12,7 @@ public abstract class Circle extends GameObject{
     protected double radius;
     protected Paint paint;
 
-    public Circle(Context context, int color, double positionX, double positionY, double radius) {
+    public Circle(Context context, int color, float positionX, float positionY, double radius) {
         super(positionX, positionY);
         this.radius = radius;
 
@@ -41,9 +41,12 @@ public abstract class Circle extends GameObject{
         return radius;
     }
 
+    public abstract void draw(Canvas canvas);
+    /*
     public void draw(Canvas canvas) {
         // draw player circle (cast doubles to floats as required)
         canvas.drawCircle((float) positionX, (float) positionY, (float) radius, paint);
     }
+     */
 
 }
