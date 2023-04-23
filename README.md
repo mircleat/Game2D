@@ -65,3 +65,5 @@ P - Pippi 100%
 E - Elena 100%
 E - Ethan 100%
 P - Pranav 100%
+
+Issue #7 - Personalize Gitlab has been completed
