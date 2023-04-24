@@ -48,16 +48,17 @@
         android:textSize="24dp"
         android:textStyle="bold" />
 
+
     <TextView
         android:id="@+id/question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/questionHeader"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="0dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:text="This will be the question"
+        android:layout_marginBottom="0dp"
+        android:text="fjakfjsakl\nsdf\nsdf"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="35dp"
@@ -70,51 +71,54 @@
         android:layout_above="@+id/submit_btn"
         android:columnCount="2"
         android:rowCount="2"
-
         >
 
         <Button
             android:id="@+id/ans_B"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_gravity="fill"
             android:layout_marginRight="5dp"
             android:layout_marginBottom="0dp"
             android:backgroundTint="@color/white"
-            android:text="Ans A"
+            android:text="501B507970010000"
             android:textColor="@color/black" />
 
         <Button
             android:id="@+id/ans_A"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_gravity="fill"
             android:layout_marginLeft="5dp"
             android:layout_marginBottom="0dp"
             android:backgroundTint="@color/white"
-            android:text="Ans A"
+            android:text="50170010000"
             android:textColor="@color/black" />
 
         <Button
             android:id="@+id/ans_C"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
-            android:layout_marginRight="5dp"
+            android:layout_gravity="fill"
             android:layout_marginTop="0dp"
+            android:layout_marginRight="5dp"
             android:backgroundTint="@color/white"
             android:text="Ans A"
             android:textColor="@color/black" />
 
         <Button
             android:id="@+id/ans_D"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_gravity="fill"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="0dp"
             android:backgroundTint="@color/white"

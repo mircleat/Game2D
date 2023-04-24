@@ -16,6 +16,7 @@ android:background="#D6D6D6">
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:fontFamily="@font/alfa_slab_one"
+        style="@android:style/TextAppearance.DeviceDefault.Medium"
         android:padding="10dp"
         android:text="Objective"
         android:textColor="@color/black"
