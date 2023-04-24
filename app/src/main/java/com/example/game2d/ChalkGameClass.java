@@ -199,7 +199,7 @@ public class ChalkGameClass extends View {
         if (pauseTouch == true)
         {
             pauseTouch = false;
-            Intent pauseIntent = new Intent(getContext(), ChalkGamePauseWindow.class);
+            Intent pauseIntent = new Intent(getContext(), PauseWindow.class);
             pauseIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             getContext().startActivity(pauseIntent);
 

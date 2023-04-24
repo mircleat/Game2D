@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class ChalkGamePauseWindow extends AppCompatActivity {
+public class PauseWindow extends AppCompatActivity {
     private Button resumeButton;
 
     @Override
@@ -21,7 +21,7 @@ public class ChalkGamePauseWindow extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-                Intent resumeIntent = new Intent(ChalkGamePauseWindow.this, ChalkGameActivity.class);
+                Intent resumeIntent = new Intent(PauseWindow.this, ChalkGameActivity.class);
                 resumeIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(resumeIntent);
             }
