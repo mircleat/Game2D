@@ -187,13 +187,13 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
     // method to start name activity
     public void startSecondActivity() {
-        Intent intent = new Intent(gameContext, NameActivity.class);
+        Intent intent = new Intent(gameContext, NameIntroActivity.class);
         gameContext.startActivity(intent);
         Log.d("COLLISION", "Starting name activity");
     }
     // method to start chalk activity
     public void startChalkActivity() {
-        Intent intent = new Intent(gameContext, ChalkActivity.class);
+        Intent intent = new Intent(gameContext, ChalkIntroActivity.class);
         gameContext.startActivity(intent);
         Log.d("COLLISION", "Starting chalk activity");
     }
