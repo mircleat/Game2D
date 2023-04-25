@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/character_selection_remodled">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="500sp"
+        android:layout_marginTop="120sp"
+        android:fontFamily="@font/press_start_2p"
+        android:text="Select\n\nyour\n\nAvatar:" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="200sp">
+
+
+
+        <Button
+            android:id="@+id/boy_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="110sp"
+            android:layout_marginRight="10sp"
+            android:background="@drawable/buttonbg"
+            android:fontFamily="@font/press_start_2p"
+            android:text="Select"
+             />
+
+        <Button
+            android:id="@+id/girl_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/press_start_2p"
+            android:text="Select"
+            android:background="@drawable/buttonbg"
+             />
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="100sp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="80sp"
+                android:layout_height="80sp"
+                android:layout_marginLeft="120sp"
+                android:background="@drawable/boy_idle" />
+
+            <ImageView
+                android:layout_width="80sp"
+                android:layout_height="80sp"
+                android:layout_marginLeft="50sp"
+                android:background="@drawable/girl_idle" />
+        </LinearLayout>
+
+
+    <Button
+        android:id="@+id/confirm_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="110sp"
+        android:background="@drawable/buttonbg"
+        android:layout_marginBottom="60sp"
+        android:fontFamily="@font/press_start_2p"
+        android:paddingHorizontal="75sp"
+        android:text="Confirm"
+         />
+
+</RelativeLayout>
