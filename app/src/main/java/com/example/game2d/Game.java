@@ -61,7 +61,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         //joystick = new Joystick(275, 700, 70, 40);
         joystick = new Joystick(joystickX, joystickY, 70, 40);
         // initialize new instance of player class
-        player = new Player(context, joystick, 500, 250, 30);
+        player = new Player(context, joystick, (float) (width / 2 - 100), (float) (height * 0.65), 30);
         // initialize new enemy
         //enemy = new Enemy(context, player, 500, 500, 30);
         // initialize new detectors
