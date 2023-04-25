@@ -65,8 +65,8 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         // initialize new enemy
         //enemy = new Enemy(context, player, 500, 500, 30);
         // initialize new detectors
-        detector1 = new Detector(getContext(), player, width - 100, height - 100, 25);
-        detector2 = new Detector(getContext(), player, width - 100, 100, 25);
+        detector1 = new Detector(getContext(), player, (float) (width / 3.25), (float) (height / 2.75), 25);
+        detector2 = new Detector(getContext(), player, (float) (width * 0.55), (float) (height / 2.75), 25);
 
         // copy other developers lol
         setFocusable(true);
