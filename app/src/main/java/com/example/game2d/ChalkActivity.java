@@ -104,10 +104,12 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
                         .show();
             }
             else if(selectedAnswer.equals(ChalkQuestionAnswer.correctAnswers[currentQuestionIndex])){
+                selectedAnswer = "";
                 chalkscore++;
                 currentQuestionIndex++;
                 loadNewQuestion();
             } else {
+                selectedAnswer = "";
                 totalWrong++;
                 Intent spawnGame = new Intent(getApplicationContext(), ChalkGameActivity.class);
                 spawnGame.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
