@@ -3,6 +3,8 @@ package com.example.game2d;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.Log;
@@ -22,6 +24,7 @@ Game manages all objects in the game and is responsible for updating all states
 and rendering all objects to the screen.
  */
 public class Game extends SurfaceView implements SurfaceHolder.Callback {
+    Bitmap background;
     private final Joystick joystick;
     private final Player player;
     private final Detector detector1;
@@ -40,11 +43,16 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         // new gameloop object
         gameLoop = new GameLoop(this, surfaceHolder);
 
+
         // check screen height and width
         int height = getScreenHeight();
         int width = getScreenWidth();
         Log.d("DIMENSION", String.valueOf(height));
         Log.d("DIMENSION", String.valueOf(width));
+
+        // Set background
+        Bitmap original = BitmapFactory.decodeResource(context.getResources(), R.drawable.classroom_menu);
+        background = Bitmap.createScaledBitmap(original, width, height, false);
 
         // Initialize game objects
         // initialize joystick
@@ -114,6 +122,9 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         super.draw(canvas);
         drawUPS(canvas);
         drawFPS(canvas);
+        // draw background
+        Paint paint = new Paint();
+        canvas.drawBitmap(background, 0, 0, paint);
         // draw joystick
         joystick.draw(canvas);
         // draw player
