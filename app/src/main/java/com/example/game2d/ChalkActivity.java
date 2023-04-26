@@ -8,7 +8,9 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -49,6 +51,11 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
         );
+
+        // BGM
+        MediaPlayer backgroundMusic = MediaPlayer.create( this, R.raw.tanpopo );
+        backgroundMusic.setLooping(true);
+        backgroundMusic.start();
 
         //for pop up intro
         layout = findViewById(R.id.chalkActivity); // relative is the id of the layout of the page
@@ -129,11 +136,16 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
                         .show();
             }
             else if(selectedAnswer.equals(ChalkQuestionAnswer.correctAnswers[currentQuestionIndex])){
+                //SFX
+                MediaPlayer correctSound = MediaPlayer.create(this, R.raw.correct);
+                correctSound.start();
                 selectedAnswer = "";
                 chalkscore++;
                 currentQuestionIndex++;
                 loadNewQuestion();
             } else {
+                MediaPlayer wrongSound = MediaPlayer.create(this, R.raw.wrong);
+                wrongSound.start();
                 selectedAnswer = "";
                 totalWrong++;
                 Intent spawnGame = new Intent(getApplicationContext(), QuizToChalkActivity.class);
