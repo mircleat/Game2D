@@ -8,12 +8,15 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
 public class ChalkGameClass extends View {
     //PLAYER
     private Bitmap player[] = new Bitmap[2];
+    private int ranGravity;
+    private boolean normGravity;
     private int playerX = 10;
     private int playerY;
     private int playerSpeed;
@@ -53,10 +56,26 @@ public class ChalkGameClass extends View {
     {
         super(context);
         player[0] = BitmapFactory.decodeResource(getResources(), R.drawable.girl);
-        player[1] = BitmapFactory.decodeResource(getResources(), R.drawable.girl_jump);
-        playerY = 650;
-        jumpcount = 0;
+        player[1] = BitmapFactory.decodeResource(getResources(), R.drawable.girl_jump_big);
 
+        ranGravity = (int) Math.floor(Math.random() * 5) + 1;
+        Log.d("gravVal", Integer.toString(ranGravity));
+
+        if(ranGravity%2 ==1) {
+            normGravity = true;
+        }
+        else
+            normGravity = false;
+
+        if(normGravity)
+        {
+            playerY = 650;
+        }
+        else
+        {
+            playerY = 0;
+        }
+        jumpcount = 0;
         backgroundImage = BitmapFactory.decodeResource(getResources(), R.drawable.background);
 
         //Initializing the chalk array
@@ -107,17 +126,27 @@ public class ChalkGameClass extends View {
         int maxplayerY = canvasHeight - player[0].getHeight() - floorHeight;
 
         //PLAYER MECHANICS
-        playerY = playerY + playerSpeed;
+        if(normGravity)
+            playerY= playerY + playerSpeed;
+        else
+            playerY = playerY - playerSpeed;
 
         if (playerY < minplayerY) {
             playerY = minplayerY;
             touch = false;
-            playerSpeed = 125;
+            if(normGravity)
+            {
+                playerSpeed = 125;
+            }
         }       //limiting the player's y to the top of the screen
 
         if (playerY > maxplayerY) {
             playerY = maxplayerY;
             touch = false;
+            if(!normGravity)
+            {
+                playerSpeed = 125;
+            }
         }       //limiting the player's y tot he bottom of the screen
         playerSpeed = playerSpeed + 2; //gravity
 
