@@ -44,7 +44,7 @@ public class Player extends Circle {
         // Sprites
         Bitmap originalIdleRight = BitmapFactory.decodeResource(context.getResources(), R.drawable.boy_idle_right);
         spriteIdleRight = Bitmap.createScaledBitmap(originalIdleRight, 200, 200, false);
-        Bitmap originalIdleLeft = BitmapFactory.decodeResource(context.getResources(), R.drawable.boy_idle_left);
+        Bitmap originalIdleLeft = BitmapFactory.decodeResource(context.getResources(), R.drawable.boy_idle_fliped);
         spriteIdleLeft = Bitmap.createScaledBitmap(originalIdleLeft, 200, 200, false);
         Bitmap originalWalkRight = BitmapFactory.decodeResource(context.getResources(), R.drawable.boy_walk_right);
         spriteWalkRight = Bitmap.createScaledBitmap(originalWalkRight, 200, 200, false);
