@@ -74,8 +74,8 @@ public class ChalkGameClass extends View {
         lostLifePaint.setColor(Color.WHITE);
         lostLifePaint.setAntiAlias(false);
 
-        pauseButton = BitmapFactory.decodeResource(getResources(), R.drawable.pause);
-        hintButton = BitmapFactory.decodeResource(getResources(), R.drawable.question);
+        pauseButton = BitmapFactory.decodeResource(getResources(), R.drawable.pause_new);
+        hintButton = BitmapFactory.decodeResource(getResources(), R.drawable.question_new);
 
     }
 
