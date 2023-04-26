@@ -26,7 +26,7 @@ import android.widget.TextView;
 
 public class ChalkActivity extends AppCompatActivity implements View.OnClickListener{
 
-    MediaPlayer backgroundMusic = MediaPlayer.create( this, R.raw.tanpopo );
+    MediaPlayer backgroundMusic;
 
     TextView totalQuestionsTextView;
     TextView questionTextView;
@@ -55,6 +55,7 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
         );
 
         // BGM
+        backgroundMusic = MediaPlayer.create(this,R.raw.tanpopo);
         backgroundMusic.setLooping(true);
         backgroundMusic.start();
 
