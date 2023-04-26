@@ -13,7 +13,13 @@
     android:id="@+id/nameActivity"
     tools:context=".MainActivity">
 
-
+    <ImageButton
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_centerVertical="true"
+        android:onClick="pauseGame"
+        android:background="@drawable/pause"
+        android:id="@+id/pause_lb"/>
 
     <TextView
         android:layout_width="wrap_content"

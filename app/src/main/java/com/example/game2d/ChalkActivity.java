@@ -1,5 +1,7 @@
 package com.example.game2d;
 
+import static java.security.AccessController.getContext;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -13,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -23,6 +26,8 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
     TextView questionTextView;
     Button ansA, ansB, ansC, ansD;
     Button submitBtn/*, helpBtn*/;
+    
+    ImageButton pauseBtn;
 
     int chalkscore = 0;
     int totalWrong = 0;
@@ -48,7 +53,8 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
         ansC = findViewById(R.id.ans_C);
         ansD = findViewById(R.id.ans_D);
         submitBtn = findViewById(R.id.submit_btn);
-        /*helpBtn = findViewById(R.id.help_btn);*/
+        
+        pauseBtn = (ImageButton) findViewById(R.id.pause_lb);
 
         ansA.setOnClickListener(this);
         ansB.setOnClickListener(this);
@@ -58,6 +64,17 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
         /*helpBtn.setOnClickListener(this);*/
 
         /*totalQuestionsTextView.setText("Total questions : "+totalQuestion);*/
+
+        //Pause menu implementation
+        pauseBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent pauseIntent = new Intent(ChalkActivity.this, ChalkQuizPause.class);
+                pauseIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(pauseIntent);
+            }
+        });
 
         loadNewQuestion();
 

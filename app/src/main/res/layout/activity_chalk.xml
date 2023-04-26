@@ -32,6 +32,13 @@
         android:textSize="24dp"
         android:textStyle="bold" />-->
 
+    <ImageButton
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_centerVertical="true"
+        android:onClick="pauseGame"
+        android:background="@drawable/pause"
+        android:id="@+id/pause_lb"/>
 
     <TextView
         android:id="@+id/questionHeader"

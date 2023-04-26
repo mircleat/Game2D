@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -25,6 +26,8 @@ public class NameActivity extends AppCompatActivity implements View.OnClickListe
     TextView totalQuestionsTextView;
     TextView nameTextView;
     Button yes, no, exit;
+
+    ImageButton pauseBtn;
 
     int score=0;
     int totalQuestion = QuestionAnswer.names.length;
@@ -49,6 +52,8 @@ public class NameActivity extends AppCompatActivity implements View.OnClickListe
         yes = findViewById(R.id.yes);
         no = findViewById(R.id.no);
 
+        pauseBtn = (ImageButton) findViewById(R.id.pause_lb);
+
 
         //Context context = getContext(); // Get a Context object from somewhere
         QuestionAnswer QA = new QuestionAnswer(); // Create an instance of MyClass
@@ -60,6 +65,17 @@ public class NameActivity extends AppCompatActivity implements View.OnClickListe
         no.setOnClickListener(this);
 
         totalQuestionsTextView.setText("Total questions: " + totalQuestion);
+
+        //Pause menu implementation
+        pauseBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent pauseIntent = new Intent(NameActivity.this, NamePause.class);
+                pauseIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(pauseIntent);
+            }
+        });
 
         loadNewQuestion();
 

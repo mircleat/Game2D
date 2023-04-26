@@ -59,6 +59,16 @@
             android:screenOrientation="landscape">
         </activity>
         <activity
+            android:name=".ChalkQuizPause"
+            android:exported="false"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity
+            android:name=".NamePause"
+            android:exported="false"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity
             android:name=".NameActivity"
             android:exported="true"
             android:screenOrientation="landscape" />
