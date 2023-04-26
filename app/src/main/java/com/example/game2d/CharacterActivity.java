@@ -11,11 +11,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class CharacterActivity extends AppCompatActivity { //
+public class CharacterActivity extends AppCompatActivity {
 
-
-    Button boy_btn, girl_btn, confirm_btn;
-
+    public boolean selectedShortHair;
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +27,28 @@ public class CharacterActivity extends AppCompatActivity { //
         );
 
         overridePendingTransition(0, 0);
-        // Continue button
-        Button back_button = (Button) findViewById(R.id.confirm_btn);
-        back_button.setOnClickListener(new View.OnClickListener() {
+
+        // select short hair button
+        Button shortHairButton = (Button) findViewById(R.id.boy_btn);
+        shortHairButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectedShortHair = true;
+            }
+        });
+
+        // select long hair button
+        Button longHairButton = (Button) findViewById(R.id.girl_btn);
+        longHairButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectedShortHair = false;
+            }
+        });
+
+        // Confirm button
+        Button confirm_button = (Button) findViewById(R.id.confirm_btn);
+        confirm_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // switch back to main activity
@@ -40,17 +57,5 @@ public class CharacterActivity extends AppCompatActivity { //
             }
         });
     }
-
-    //This part does not work it is supposed to go back to the main Activity
-    public void onClick(View view) {
-        Button clickedButton = (Button) view;
-        if (clickedButton.getId() == R.id.confirm_btn) {
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
-
-    }
-
 
 }

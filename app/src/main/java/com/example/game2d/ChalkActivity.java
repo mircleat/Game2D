@@ -136,7 +136,7 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
             } else {
                 selectedAnswer = "";
                 totalWrong++;
-                Intent spawnGame = new Intent(getApplicationContext(), ChalkGameActivity.class);
+                Intent spawnGame = new Intent(getApplicationContext(), QuizToChalkActivity.class);
                 spawnGame.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 Log.d("QUESTION", "Starting activity...");
                 getApplicationContext().startActivity(spawnGame);
