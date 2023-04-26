@@ -27,6 +27,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     Bitmap background;
     private final Joystick joystick;
     private final Player player;
+    public static boolean canMove;
     private final Detector detector1;
     private final Detector detector2;
 
@@ -42,7 +43,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         surfaceHolder.addCallback(this);
         // new gameloop object
         gameLoop = new GameLoop(this, surfaceHolder);
-
+        canMove = true;
 
         // check screen height and width
         int height = getScreenHeight();
@@ -65,8 +66,8 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         // initialize new enemy
         //enemy = new Enemy(context, player, 500, 500, 30);
         // initialize new detectors
-        detector1 = new Detector(getContext(), player, (float) (width / 3.25), (float) (height / 2.75), 25);
-        detector2 = new Detector(getContext(), player, (float) (width * 0.55), (float) (height / 2.75), 25);
+        detector1 = new Detector(getContext(), player, (float) (width * 0.25), (float) (height * 0.17), 100);
+        detector2 = new Detector(getContext(), player, (float) (width * 0.47), (float) (height * 0.17), 100);
 
         // copy other developers lol
         setFocusable(true);
@@ -166,14 +167,20 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         detector2.update();
         // Check for collision with detectors
         if (Circle.isColliding(player, detector1)) {
-            // call method to start quiz activity
-            startSecondActivity();
+            if (canMove) {
+                // call method to start quiz activity
+                startSecondActivity();
+            }
             Log.d("COLLISION", "DETECTOR");
+            canMove = false;
         }
         if (Circle.isColliding(player, detector2)) {
-            // call method to start chalk activity
-            startChalkActivity();
+            if (canMove) {
+                // call method to start chalk activity
+                startChalkActivity();
+            }
             Log.d("COLLISION", "DETECTOR");
+            canMove = false;
         }
     }
 
