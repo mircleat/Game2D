@@ -12,6 +12,7 @@ import android.util.Log;
 
 import androidx.core.content.ContextCompat;
 
+import com.example.game2d.Game;
 import com.example.game2d.GameLoop;
 import com.example.game2d.Joystick;
 import com.example.game2d.R;
@@ -97,6 +98,10 @@ public class Player extends Circle {
             positionY = (int) (height * 0.3);
         }
 
+        if (!Game.canMove) {
+            velocityX = 0;
+            velocityY = 0;
+        }
         // update position
         positionX += velocityX;
         positionY += velocityY;

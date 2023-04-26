@@ -27,6 +27,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     Bitmap background;
     private final Joystick joystick;
     private final Player player;
+    public static boolean canMove;
     private final Detector detector1;
     private final Detector detector2;
 
@@ -42,7 +43,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         surfaceHolder.addCallback(this);
         // new gameloop object
         gameLoop = new GameLoop(this, surfaceHolder);
-
+        canMove = true;
 
         // check screen height and width
         int height = getScreenHeight();
@@ -166,11 +167,13 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         detector2.update();
         // Check for collision with detectors
         if (Circle.isColliding(player, detector1)) {
+            canMove = false;
             // call method to start quiz activity
             startSecondActivity();
             Log.d("COLLISION", "DETECTOR");
         }
         if (Circle.isColliding(player, detector2)) {
+            canMove = false;
             // call method to start chalk activity
             startChalkActivity();
             Log.d("COLLISION", "DETECTOR");
