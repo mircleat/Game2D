@@ -54,7 +54,7 @@
                 android:layout_width="80sp"
                 android:layout_height="80sp"
                 android:layout_marginLeft="120sp"
-                android:background="@drawable/boy_idle" />
+                android:background="@drawable/boy_idle_right" />
 
             <ImageView
                 android:layout_width="80sp"

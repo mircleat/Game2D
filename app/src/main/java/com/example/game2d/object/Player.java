@@ -20,7 +20,12 @@ import com.example.game2d.R;
  * Player is an extension of a Circle, which is an extension of a GameObject
  */
 public class Player extends Circle {
-    Bitmap sprite;
+    Bitmap spriteIdleRight;
+    Bitmap spriteIdleLeft;
+    Bitmap spriteWalkRight;
+    Bitmap spriteWalkLeft;
+    Bitmap currentSprite;
+    Bitmap previousDirection;
     // max speed
     public static final double SPEED_PIXELS_PER_SECOND = 300.0;
     // dimensional analysis lol gives you pixels per update
@@ -35,9 +40,18 @@ public class Player extends Circle {
         // player color defined in colors xml
         super(context, ContextCompat.getColor(context, R.color.player), positionX, positionY, radius);
         this.joystick = joystick;
-        Bitmap original = BitmapFactory.decodeResource(context.getResources(), R.drawable.spinable);
-        sprite = Bitmap.createScaledBitmap(original, 50, 50, false);
         this.context = context;
+        // Sprites
+        Bitmap originalIdleRight = BitmapFactory.decodeResource(context.getResources(), R.drawable.boy_idle_right);
+        spriteIdleRight = Bitmap.createScaledBitmap(originalIdleRight, 200, 200, false);
+        Bitmap originalIdleLeft = BitmapFactory.decodeResource(context.getResources(), R.drawable.boy_idle_left);
+        spriteIdleLeft = Bitmap.createScaledBitmap(originalIdleLeft, 200, 200, false);
+        Bitmap originalWalkRight = BitmapFactory.decodeResource(context.getResources(), R.drawable.boy_walk_right);
+        spriteWalkRight = Bitmap.createScaledBitmap(originalWalkRight, 200, 200, false);
+        Bitmap originalWalkLeft = BitmapFactory.decodeResource(context.getResources(), R.drawable.boy_walk_left);
+        spriteWalkLeft = Bitmap.createScaledBitmap(originalWalkLeft, 200, 200, false);
+        currentSprite = spriteIdleRight;
+        previousDirection = currentSprite;
     }
 
     public void update() {
@@ -75,11 +89,23 @@ public class Player extends Circle {
     }
 
     public void draw(Canvas canvas) {
-        /*
-        // draw player circle (cast doubles to floats as required)
-        canvas.drawCircle((float) positionX, (float) positionY, (float) radius, paint);
-         */
+        if (velocityX > 0) {
+            currentSprite = spriteWalkRight;
+        } else if (velocityX < 0) {
+            currentSprite = spriteWalkLeft;
+        } else {
+            // idle
+            // check previous direction
+            if (previousDirection == spriteWalkRight) {
+                currentSprite = spriteIdleRight;
+            } else if (previousDirection == spriteWalkLeft) {
+                currentSprite = spriteIdleLeft;
+            }
+        }
+
         Paint paint = new Paint();
-        canvas.drawBitmap(sprite, positionX, positionY, paint);
+        canvas.drawBitmap(currentSprite, positionX, positionY, paint);
+
+        previousDirection = currentSprite;
     }
 }

@@ -3,6 +3,8 @@ package com.example.game2d;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.Log;
@@ -22,6 +24,7 @@ Game manages all objects in the game and is responsible for updating all states
 and rendering all objects to the screen.
  */
 public class Game extends SurfaceView implements SurfaceHolder.Callback {
+    Bitmap background;
     private final Joystick joystick;
     private final Player player;
     private final Detector detector1;
@@ -40,11 +43,16 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         // new gameloop object
         gameLoop = new GameLoop(this, surfaceHolder);
 
+
         // check screen height and width
         int height = getScreenHeight();
         int width = getScreenWidth();
         Log.d("DIMENSION", String.valueOf(height));
         Log.d("DIMENSION", String.valueOf(width));
+
+        // Set background
+        Bitmap original = BitmapFactory.decodeResource(context.getResources(), R.drawable.classroom_menu);
+        background = Bitmap.createScaledBitmap(original, width, height, false);
 
         // Initialize game objects
         // initialize joystick
@@ -53,12 +61,12 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         //joystick = new Joystick(275, 700, 70, 40);
         joystick = new Joystick(joystickX, joystickY, 70, 40);
         // initialize new instance of player class
-        player = new Player(context, joystick, 500, 250, 30);
+        player = new Player(context, joystick, (float) (width / 2 - 100), (float) (height * 0.65), 30);
         // initialize new enemy
         //enemy = new Enemy(context, player, 500, 500, 30);
         // initialize new detectors
-        detector1 = new Detector(getContext(), player, width - 100, height - 100, 25);
-        detector2 = new Detector(getContext(), player, width - 100, 100, 25);
+        detector1 = new Detector(getContext(), player, (float) (width / 3.25), (float) (height / 2.75), 25);
+        detector2 = new Detector(getContext(), player, (float) (width * 0.55), (float) (height / 2.75), 25);
 
         // copy other developers lol
         setFocusable(true);
@@ -114,6 +122,9 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         super.draw(canvas);
         drawUPS(canvas);
         drawFPS(canvas);
+        // draw background
+        Paint paint = new Paint();
+        canvas.drawBitmap(background, 0, 0, paint);
         // draw joystick
         joystick.draw(canvas);
         // draw player
@@ -176,13 +187,13 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
     // method to start name activity
     public void startSecondActivity() {
-        Intent intent = new Intent(gameContext, NameActivity.class);
+        Intent intent = new Intent(gameContext, NameIntroActivity.class);
         gameContext.startActivity(intent);
         Log.d("COLLISION", "Starting name activity");
     }
     // method to start chalk activity
     public void startChalkActivity() {
-        Intent intent = new Intent(gameContext, ChalkActivity.class);
+        Intent intent = new Intent(gameContext, ChalkIntroActivity.class);
         gameContext.startActivity(intent);
         Log.d("COLLISION", "Starting chalk activity");
     }
