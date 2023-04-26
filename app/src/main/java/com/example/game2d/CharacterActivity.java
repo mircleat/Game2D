@@ -20,6 +20,7 @@ public class CharacterActivity extends AppCompatActivity { //
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_selection); //
 
+        overridePendingTransition(0, 0);
         // Continue button
         Button back_button = (Button) findViewById(R.id.confirm_btn);
         back_button.setOnClickListener(new View.OnClickListener() {
@@ -30,11 +31,6 @@ public class CharacterActivity extends AppCompatActivity { //
                 startActivity(intent);
             }
         });
-
-
-
-
-
     }
 
     //This part does not work it is supposed to go back to the main Activity

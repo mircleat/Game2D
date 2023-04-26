@@ -5,20 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/title_page_enlarged">
+    android:background="@drawable/title_page_optimized">
 
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="55sp"
-        android:layout_marginLeft="340sp"
-        android:text="Simulator"
-        android:fontFamily="@font/press_start_2p"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        />
+
 
     <Button
         android:id="@+id/imageButton"
@@ -27,12 +17,20 @@
         android:background="@android:color/transparent"
         android:layout_marginTop="210sp"
         android:layout_marginLeft="105sp"
-        android:text="Start"
         android:textColor="@color/black"
         android:fontFamily="@font/press_start_2p"
         android:textSize="24sp"/>
 
-
+    <Button
+        android:id="@+id/credit"
+        android:layout_width="170sp"
+        android:layout_height="70sp"
+        android:layout_marginLeft="280sp"
+        android:layout_marginTop="170sp"
+        android:background="@android:color/transparent"
+        android:fontFamily="@font/press_start_2p"
+        android:textColor="@color/black"
+        android:textSize="24sp" />
 
 
 </RelativeLayout>
