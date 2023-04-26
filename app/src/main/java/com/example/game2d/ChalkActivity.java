@@ -26,6 +26,8 @@ import android.widget.TextView;
 
 public class ChalkActivity extends AppCompatActivity implements View.OnClickListener{
 
+    MediaPlayer backgroundMusic = MediaPlayer.create( this, R.raw.tanpopo );
+
     TextView totalQuestionsTextView;
     TextView questionTextView;
     Button ansA, ansB, ansC, ansD;
@@ -53,7 +55,6 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
         );
 
         // BGM
-        MediaPlayer backgroundMusic = MediaPlayer.create( this, R.raw.tanpopo );
         backgroundMusic.setLooping(true);
         backgroundMusic.start();
 
@@ -205,6 +206,11 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
                 .setPositiveButton("Restart",(dialogInterface, i) -> restartQuiz() )
                 .setCancelable(false)
                 .show();*/
+    }
+
+    protected void onPause() {
+        super.onPause();
+        backgroundMusic.stop();
     }
 
     /*void restartQuiz(){
