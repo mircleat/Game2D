@@ -207,10 +207,9 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
                 .show();*/
     }
 
-
-    void restartQuiz(){
+    /*void restartQuiz(){
         chalkscore = 0;
         currentQuestionIndex = 0;
         loadNewQuestion();
-    }
+    }*/
 }

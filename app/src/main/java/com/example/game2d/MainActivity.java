@@ -4,6 +4,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
@@ -26,6 +27,10 @@ public class MainActivity extends AppCompatActivity {
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         );
+
+        MediaPlayer backgroundMusic = MediaPlayer.create( this, R.raw.moog_city_two );
+        backgroundMusic.setLooping(true);
+        backgroundMusic.start();
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
