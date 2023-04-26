@@ -1,0 +1,18 @@
+Sound Asset
+
+- correct sound DONE
+- wrong sound DONE
+- boing sound (head hitting the ceiling) crash/thump low pitched BONK DONE
+- angry professor
+- hit by chalk (pain)sound DONE
+- win
+- lose
+- dead sound GTA WASTED DONE
+- complete DONE
+
+Music Assets
+
+- calm elevator music/ Minecraft music for main menu (Moog City 2, Mutation)(C418) DONE
+- questioning music for chalk quiz KAHOOT MUSIC DONE
+- chalk dodging bowser’s theme song - [https://www.youtube.com/watch?v=mKkLjJHwRec&ab_channel=Abrade](https://www.youtube.com/watch?v=mKkLjJHwRec&ab_channel=Abrade)
+- focus music for the quiz (loofi??)
