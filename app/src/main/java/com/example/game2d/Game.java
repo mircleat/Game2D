@@ -167,16 +167,20 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         detector2.update();
         // Check for collision with detectors
         if (Circle.isColliding(player, detector1)) {
-            canMove = false;
-            // call method to start quiz activity
-            startSecondActivity();
+            if (canMove) {
+                // call method to start quiz activity
+                startSecondActivity();
+            }
             Log.d("COLLISION", "DETECTOR");
+            canMove = false;
         }
         if (Circle.isColliding(player, detector2)) {
-            canMove = false;
-            // call method to start chalk activity
-            startChalkActivity();
+            if (canMove) {
+                // call method to start chalk activity
+                startChalkActivity();
+            }
             Log.d("COLLISION", "DETECTOR");
+            canMove = false;
         }
     }
 
