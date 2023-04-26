@@ -23,7 +23,6 @@ public class Detector extends Circle {
     }
 
     public void draw(Canvas canvas) {
-        // draw player circle (cast doubles to floats as required)
-        canvas.drawCircle((float) positionX, (float) positionY, (float) radius, paint);
+        //canvas.drawCircle((float) positionX, (float) positionY, (float) radius, paint);
     }
 }

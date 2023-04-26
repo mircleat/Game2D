@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.util.Log;
 
 import androidx.core.content.ContextCompat;
 
@@ -75,17 +76,37 @@ public class Player extends Circle {
         if (positionY <= 0) {
             positionY = 0;
         }
+        // Don't allow to go outside room
+        int maxPositionY = (int) (height * 0.65);
+        int minPositionY = (int) (height * 0.27);
+        int maxPositionX = (int) (width * 0.82);
+        int minPositionX = (int) (width * 0.04);
+        if (positionY / height > 0.65) {
+            positionY = maxPositionY;
+        }
+        if (positionY / height < 0.27) {
+            positionY = minPositionY;
+        }
+        if (positionX / width > 0.82) {
+            positionX = maxPositionX;
+        }
+        if (positionX / width < .04) {
+            positionX = minPositionX;
+        }
+        if ((positionX / width < 0.06) && (positionY / height < 0.3)) {
+            positionY = (int) (height * 0.3);
+        }
 
         // update position
         positionX += velocityX;
         positionY += velocityY;
+        Log.d("PLAYER", String.valueOf(positionY));
+        Log.d("PLAYER", String.valueOf(width));
     }
 
     public void setPosition(float positionX, float positionY) {
         this.positionX = positionX;
         this.positionY = positionY;
-        // to log stuff, can use Log.d like so
-        // Log.d("Player", "moved");
     }
 
     public void draw(Canvas canvas) {
