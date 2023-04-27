@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "551014678657",
+    "project_id": "ec327-sim",
+    "storage_bucket": "ec327-sim.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:551014678657:android:109b6d60426393a27fcd80",
+        "android_client_info": {
+          "package_name": "com.example.game2d"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "551014678657-8bt1a5b2sq41b9p84mqjfg2i5km4c95s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAua6mz_2clTtzz44hfAzUHW7-S8C0r8Ow"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "551014678657-8bt1a5b2sq41b9p84mqjfg2i5km4c95s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

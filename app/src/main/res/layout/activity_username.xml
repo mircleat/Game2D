@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/title"
+        android:padding="20dp"
+        android:textSize="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Score Summary"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name Guesser Score"
+        android:layout_below="@+id/title"
+        android:id="@+id/name_text"
+        android:layout_margin="10dp"
+        android:layout_centerHorizontal="true"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/name_score"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/name_text"
+        android:text="0"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name Guesser Score"
+        android:layout_below="@+id/name_score"
+        android:id="@+id/chalk_text"
+        android:layout_margin="10dp"
+        android:layout_centerHorizontal="true"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/chalk_score"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/chalk_text"
+        android:text="0"
+        />
+
+
+
+    <EditText
+        android:id="@+id/editUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:text="Name"
+        android:layout_centerInParent="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editUsername"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/save_btn"
+        android:text="save"
+        />
+
+    <Button
+        android:id="@+id/leaderboard_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go to Leaderboard" />
+
+
+</RelativeLayout>
