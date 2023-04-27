@@ -41,7 +41,7 @@ public class FirebaseActivity extends AppCompatActivity {
 
     TextView nameScore, chalkScore;
 
-    public Map<String, Object> userScoreMap;
+    //public Map<String, Object> userScoreMap;
     public Map<String, Long> big_userScoreMap = new HashMap<>();
 
 
