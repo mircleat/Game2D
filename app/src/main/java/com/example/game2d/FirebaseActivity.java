@@ -3,7 +3,9 @@ package com.example.game2d;
 
 import static android.service.controls.ControlsProviderService.TAG;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.util.Log;
@@ -26,23 +28,35 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
 
 import java.security.KeyStore;
 import java.security.MessageDigest;
+import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class FirebaseActivity extends AppCompatActivity {
-    private static final String USERNAME_KEY = "username";
-    private static final String SCORE_KEY = "score";
+//    private static final String USERNAME_KEY = "username";
+//    private static final String SCORE_KEY = "score";
 
     private Button SaveButton;
-
     TextView nameScore, chalkScore;
 
     //public Map<String, Object> userScoreMap;
     public Map<String, Long> big_userScoreMap = new HashMap<>();
+
+    int bestChalk;
+    float percent;
+
+    String username = "temp userame";
+
+
+    //access the average accuracy data from nameResultActivity (does not work)
+    //    NameResultActivity Name_Result_Class = new NameResultActivity();
+    //    float name_average_percent = Name_Result_Class.percent;
 
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -53,40 +67,22 @@ public class FirebaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_username);
 
-//        EditText quoteView = (EditText) findViewById(R.id.editUsername);
-//        SaveButton = findViewById(R.id.save_btn);
-//        SaveButton.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                String quoteText = quoteView.getText().toString();
-//            }
-//        });
+        //-----------DISPLAY-----------------------------------------------------------------
+        //fetching game data from shared Preference
+        SharedPreferences preferences = getSharedPreferences("MY_PREFS", 0);
+        bestChalk = preferences.getInt("bestChalk",0); //get the chalk score (0-4)
+        percent = preferences.getFloat("percent",0);
+        Log.d(TAG,"best chalk: " + bestChalk + "  percent: " + percent);
 
 
-        // Create a new user with a first and last name
-//        Map<String, Object> user = new HashMap<>();
-//        user.put("username", "test2");
-//        user.put("score", 10000);
-//
-//
-//        // Add a new document with a generated ID
-//        db.collection("users")
-//                .add(user)
-//                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-//                    @Override
-//                    public void onSuccess(DocumentReference documentReference) {
-//                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Log.w(TAG, "Error adding document", e);
-//                    }
-//                });
+        //display personal score on screen
+        nameScore = (TextView) findViewById(R.id.name_score);
+        nameScore.setText( percent+"%");
 
+        chalkScore = (TextView) findViewById(R.id.chalk_score);
+        chalkScore.setText(bestChalk+" out of 4");
 
-
-
+        //-----------BUTTON-----------------------------------------------------------------
         //setting data button
         Button set_button = (Button) findViewById(R.id.set_btn);
         set_button.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +101,6 @@ public class FirebaseActivity extends AppCompatActivity {
             }
         });
 
-
         //button that leads to the leaderboard
         Button lead_button = (Button) findViewById(R.id.leaderboard_btn);
         lead_button.setOnClickListener(new View.OnClickListener() {
@@ -116,6 +111,7 @@ public class FirebaseActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        //---------------------------------------------------------------------------------
     }
 
 
@@ -125,8 +121,16 @@ public class FirebaseActivity extends AppCompatActivity {
 
     private void UploadData() {
         Map<String, Object> user2 = new HashMap<>();
-        user2.put("score", 555);
-        db.collection("users").document("new33").set(user2);
+        user2.put("username",username);
+        user2.put("score", percent/2 + bestChalk/4.0*50);//right now it's just the chalk average accuracy
+        //db.collection("users").document("new33").set(user2);
+
+
+        String userId = "e9kSCVavuhpXiIGNMkAh";
+        DocumentReference userRef = db.collection("leaderboard").document(userId);
+        userRef.set(user2, SetOptions.merge());
+
+
     }
 
 
@@ -134,7 +138,7 @@ public class FirebaseActivity extends AppCompatActivity {
 
     private void RetrieveData() {
         //retrieve data from the database
-        db.collection("users")
+        db.collection("leaderboard")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -144,14 +148,19 @@ public class FirebaseActivity extends AppCompatActivity {
                                 Map<String, Object> userScoreMap = document.getData();
                                 Log.d(TAG, "ID: "+document.getId());
                                 for (Map.Entry<String, Object> entry : userScoreMap.entrySet()) {
-                                    String user = entry.getKey();
-                                    Object scoreObj = entry.getValue();
-                                    if (scoreObj instanceof Long) {
-                                        Long score = (Long) scoreObj;
-                                        big_userScoreMap.put(document.getId(),score);
+                                    //String user = entry.getKey();
+                                    Object scoreObj = entry.getValue(); //this is the score value
+                                    Long score = null;
+                                    if (scoreObj instanceof Long) { //if it's the score_value
+                                        score = (Long) scoreObj;
+                                        //big_userScoreMap.put(document.getId(),score);
                                         Log.d(TAG,"BIG size : "+ big_userScoreMap.size());
                                         //Log.d(TAG, "User: " + user + ", Score: " + score);
                                     }
+                                    else { //else it's the username
+                                        Log.d(TAG,"the username: "+scoreObj.toString());
+                                    }
+                                    big_userScoreMap.put(scoreObj.toString(),score); // add <username,score> into the big
                                 }
                             }
                         } else {
@@ -208,3 +217,35 @@ public class FirebaseActivity extends AppCompatActivity {
 //    //button that goes to leaderboard
 //
 //}
+
+
+//        EditText quoteView = (EditText) findViewById(R.id.editUsername);
+//        SaveButton = findViewById(R.id.save_btn);
+//        SaveButton.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                String quoteText = quoteView.getText().toString();
+//            }
+//        });
+
+
+// Create a new user with a first and last name
+//        Map<String, Object> user = new HashMap<>();
+//        user.put("username", "test2");
+//        user.put("score", 10000);
+//
+//
+//        // Add a new document with a generated ID
+//        db.collection("users")
+//                .add(user)
+//                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+//                    @Override
+//                    public void onSuccess(DocumentReference documentReference) {
+//                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+//                    }
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Log.w(TAG, "Error adding document", e);
+//                    }
+//                });

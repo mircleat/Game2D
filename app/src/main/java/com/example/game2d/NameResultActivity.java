@@ -33,6 +33,8 @@ public class NameResultActivity extends AppCompatActivity { //
 
     TextView averagescore;
 
+    public float percent = 0; //this is the numerical average accuracy of nameGame (in percentage)
+
     //
     private static final String FLOAT_VECTOR_KEY = "float_vector_key";
     //
@@ -78,14 +80,13 @@ public class NameResultActivity extends AppCompatActivity { //
             }
         });
 
-
+        //-------------- save data to sharedPreference ----------------------
         SharedPreferences preferences = getSharedPreferences("MY_PREFS", 0);
         lastScore = preferences.getInt("lastScore", 0);
+        newscore.setText((lastScore/5.0*100)+"%");
 
-
-        // ----- this was used to store best score which is no longer in use
+        // ----- this was used to store best score
         best = preferences.getInt("best", 0);
-
         if (lastScore > best) {
             best = lastScore;
             SharedPreferences.Editor editor = preferences.edit();
@@ -93,11 +94,8 @@ public class NameResultActivity extends AppCompatActivity { //
             editor.apply();
         }
         bestscore.setText((best/5.0*100) + "%");
-        //
-
-        newscore.setText((lastScore/5.0*100)+"%");
-
-        //comment
+        //----------------------------------------------------------------------
+        //comments based on scores
         if (lastScore < 3) {
             comment.setText("You must be a terrible person.");
         } else if (lastScore == 3) {
@@ -132,15 +130,21 @@ public class NameResultActivity extends AppCompatActivity { //
         for (Float floatValue : floatList) {
             sum += floatValue;
         }
-        float average = sum / floatList.size();
 
-        float percent = average/5*100;
+        //calculate average, convert to percentage, then display, then store back in shared preference
+        float average = sum / floatList.size();
+        float raw_percent = average/5*100;
         DecimalFormat df = new DecimalFormat("##.##");
         df.setRoundingMode(RoundingMode.CEILING);
 
-        averagescore.setText(df.format(percent) + "%");
+        percent = Float.parseFloat(df.format(raw_percent));
 
-        //
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putFloat("percent", percent);
+        editor.apply();
+
+
+        averagescore.setText(percent + "%");
 
     }
 
