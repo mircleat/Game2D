@@ -40,6 +40,8 @@ public class ChalkResultActivity extends AppCompatActivity { //
         newscore = (TextView) findViewById(R.id.score);
         bestscore = (TextView) findViewById(R.id.highestscore);
         comment = (TextView) findViewById(R.id.comment);
+
+
         // Continue button
         Button back_button = (Button) findViewById(R.id.back_button);
         back_button.setOnClickListener(new View.OnClickListener() {
@@ -50,6 +52,8 @@ public class ChalkResultActivity extends AppCompatActivity { //
                 startActivity(intent);
             }
         });
+
+
         // Try again button
         Button again_button = (Button) findViewById(R.id.again_button);
         again_button.setOnClickListener(new View.OnClickListener() {

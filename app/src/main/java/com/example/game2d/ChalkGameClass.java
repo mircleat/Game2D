@@ -8,6 +8,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.media.MediaPlayer;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -26,6 +27,9 @@ public class ChalkGameClass extends View {
     //CANVAS
     private int canvasWidth, canvasHeight;
     private Bitmap backgroundImage ;
+
+    //MEDIA
+    MediaPlayer bonk;
 
     //CHALK
     private Bitmap chalk[] = new Bitmap[5];
@@ -97,6 +101,8 @@ public class ChalkGameClass extends View {
         canvasWidth = canvas.getWidth();
         canvasHeight = canvas.getHeight();
 
+        bonk = MediaPlayer.create(getContext(), R.raw.bonk);
+
         if (backgroundImage == null) return;
         // Use the same Matrix over and over again to minimize
         // allocation in onDraw.
@@ -122,6 +128,7 @@ public class ChalkGameClass extends View {
             if(normGravity)
             {
                 playerSpeed = 125;
+                bonk.start();
             }
         }       //limiting the player's y to the top of the screen
 

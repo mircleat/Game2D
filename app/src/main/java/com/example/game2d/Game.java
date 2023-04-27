@@ -52,7 +52,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         Log.d("DIMENSION", String.valueOf(width));
 
         // Set background
-        Bitmap original = BitmapFactory.decodeResource(context.getResources(), R.drawable.classroom_menu);
+        Bitmap original = BitmapFactory.decodeResource(context.getResources(), R.drawable.new_classroom_spots_scaled);
         background = Bitmap.createScaledBitmap(original, width, height, false);
 
         // Initialize game objects

@@ -16,6 +16,8 @@ MainActivity is the entry point
  */
 public class MainActivity extends AppCompatActivity {
 
+    MediaPlayer backgroundMusic;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -28,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         );
 
-        MediaPlayer backgroundMusic = MediaPlayer.create( this, R.raw.moog_city_two );
+        backgroundMusic = MediaPlayer.create( this, R.raw.moog_city_two );
         backgroundMusic.setLooping(true);
         backgroundMusic.start();
 
@@ -39,6 +41,11 @@ public class MainActivity extends AppCompatActivity {
 
         // Set content view to game so that objects in the Game class can be rendered
         setContentView(new Game(this));
+    }
+
+    protected void onPause() {
+        super.onPause();
+        backgroundMusic.stop();
     }
 
 

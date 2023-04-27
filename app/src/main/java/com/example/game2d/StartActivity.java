@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class StartActivity extends AppCompatActivity {
 
-    Button play, credit;
+    Button play, credit,leaderboard;
 
 
     @Override
@@ -28,8 +28,8 @@ public class StartActivity extends AppCompatActivity {
 
         overridePendingTransition(0, 0);
 
-        play = (Button) findViewById(R.id.imageButton);
 
+        play = (Button) findViewById(R.id.imageButton);
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -38,12 +38,21 @@ public class StartActivity extends AppCompatActivity {
             }
         });
 
-        credit = (Button) findViewById(R.id.credit);
 
+        credit = (Button) findViewById(R.id.credit);
         credit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), CreditActivity.class));
+                finish();
+            }
+        });
+
+        leaderboard = (Button) findViewById(R.id.leaderboard_btn);
+        leaderboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), FirebaseActivity.class));
                 finish();
             }
         });

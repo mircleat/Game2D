@@ -28,6 +28,15 @@ public class Player extends Circle {
     Bitmap spriteWalkLeft;
     Bitmap currentSprite;
     Bitmap previousDirection;
+    // position boundaries
+    private final double relativeMinYpercent = 0.27;
+    private final double relativeMaxYpercent = 0.65;
+    private final int relativeMinYpixels = (int) (getScreenHeight() * relativeMinYpercent);
+    private final int relativeMaxYpixels = (int) (getScreenHeight() * relativeMaxYpercent);
+    private final double relativeMinXpercent = 0.04;
+    private final double relativeMaxXpercent = 0.82;
+    private final int relativeMinXpixels = (int) (getScreenWidth() * relativeMinXpercent);
+    private final int relativeMaxXpixels = (int) (getScreenWidth() * relativeMaxXpercent);
     // max speed
     public static final double SPEED_PIXELS_PER_SECOND = 300.0;
     // dimensional analysis lol gives you pixels per update
@@ -65,48 +74,33 @@ public class Player extends Circle {
         // Don't allow to go off screen
         int height = getScreenHeight();
         int width = getScreenWidth();
-        if (positionX >= width) {
-            positionX = width;
+
+
+        float relativePositionY = positionY / height;
+        float relativePositionX = positionX / width;
+
+        // Check for room boundaries in X direction
+        if (relativePositionX > relativeMaxXpercent) {
+            positionX = relativeMaxXpixels;
+        } else if (relativePositionX < relativeMinXpercent) {
+            positionX = relativeMinXpixels;
         }
-        if (positionX <= 0) {
-            positionX = 0;
-        }
-        if (positionY >= height) {
-            positionY = height;
-        }
-        if (positionY <= 0) {
-            positionY = 0;
-        }
-        // Don't allow to go outside room
-        int maxPositionY = (int) (height * 0.65);
-        int minPositionY = (int) (height * 0.27);
-        int maxPositionX = (int) (width * 0.82);
-        int minPositionX = (int) (width * 0.04);
-        if (positionY / height > 0.65) {
-            positionY = maxPositionY;
-        }
-        if (positionY / height < 0.27) {
-            positionY = minPositionY;
-        }
-        if (positionX / width > 0.82) {
-            positionX = maxPositionX;
-        }
-        if (positionX / width < .04) {
-            positionX = minPositionX;
-        }
-        if ((positionX / width < 0.06) && (positionY / height < 0.3)) {
-            positionY = (int) (height * 0.3);
+        // Check for room boundaries in Y direction
+        if (relativePositionY > relativeMaxYpercent) {
+            positionY = relativeMaxYpixels;
+        } else if (relativePositionY < relativeMinYpercent) {
+            positionY = relativeMinYpixels;
         }
 
+        /*
         if (!Game.canMove) {
             velocityX = 0;
             velocityY = 0;
         }
+         */
         // update position
         positionX += velocityX;
         positionY += velocityY;
-        Log.d("PLAYER", String.valueOf(positionY));
-        Log.d("PLAYER", String.valueOf(width));
     }
 
     public void setPosition(float positionX, float positionY) {
