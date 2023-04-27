@@ -75,5 +75,20 @@
         android:layout_height="wrap_content"
         android:text="Go to Leaderboard" />
 
+    <Button
+        android:id="@+id/fetch_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="fetch"
+        android:layout_alignParentBottom="true"/>
+
+    <Button
+        android:id="@+id/set_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="set"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="200dp"/>
+
 
 </RelativeLayout>

@@ -42,7 +42,7 @@ public class FirebaseActivity extends AppCompatActivity {
     TextView nameScore, chalkScore;
 
     public Map<String, Object> userScoreMap;
-    public Map<String, Object> big_userScoreMap;
+    public Map<String, Long> big_userScoreMap = new HashMap<>();
 
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -63,36 +63,76 @@ public class FirebaseActivity extends AppCompatActivity {
 
 
         // Create a new user with a first and last name
-        Map<String, Object> user = new HashMap<>();
-        user.put("username", "test2");
-        user.put("score", 10000);
+//        Map<String, Object> user = new HashMap<>();
+//        user.put("username", "test2");
+//        user.put("score", 10000);
+//
+//
+//        // Add a new document with a generated ID
+//        db.collection("users")
+//                .add(user)
+//                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+//                    @Override
+//                    public void onSuccess(DocumentReference documentReference) {
+//                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+//                    }
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Log.w(TAG, "Error adding document", e);
+//                    }
+//                });
 
 
-        // Add a new document with a generated ID
-        db.collection("users")
-                .add(user)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error adding document", e);
-                    }
-                });
 
+
+        //setting data button
+        Button set_button = (Button) findViewById(R.id.set_btn);
+        set_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UploadData();
+            }
+        });
+
+        //fetching data button
+        Button fetch_button = (Button) findViewById(R.id.fetch_btn);
+        fetch_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                RetrieveData();
+            }
+        });
+
+
+        //button that leads to the leaderboard
+        Button lead_button = (Button) findViewById(R.id.leaderboard_btn);
+        lead_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // switch back to main activity
+                Intent intent = new Intent(FirebaseActivity.this, LeaderboardActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+
+
+
+
+
+    private void UploadData() {
         Map<String, Object> user2 = new HashMap<>();
-        user2.put("username", "Elena is here!");
-        user2.put("score", 444);
-        db.collection("users").document("Elena").set(user2);
+        user2.put("score", 555);
+        db.collection("users").document("new33").set(user2);
+    }
 
 
 
 
-
+    private void RetrieveData() {
         //retrieve data from the database
         db.collection("users")
                 .get()
@@ -102,11 +142,14 @@ public class FirebaseActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Map<String, Object> userScoreMap = document.getData();
+                                Log.d(TAG, "ID: "+document.getId());
                                 for (Map.Entry<String, Object> entry : userScoreMap.entrySet()) {
                                     String user = entry.getKey();
                                     Object scoreObj = entry.getValue();
                                     if (scoreObj instanceof Long) {
                                         Long score = (Long) scoreObj;
+                                        big_userScoreMap.put(document.getId(),score);
+                                        Log.d(TAG,"BIG size : "+ big_userScoreMap.size());
                                         //Log.d(TAG, "User: " + user + ", Score: " + score);
                                     }
                                 }
@@ -116,18 +159,8 @@ public class FirebaseActivity extends AppCompatActivity {
                         }
                     }
                 });
-
-        //button that leads to the leaderbaord
-        Button back_button = (Button) findViewById(R.id.leaderboard_btn);
-        back_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // switch back to main activity
-                Intent intent = new Intent(FirebaseActivity.this, LeaderboardActivity.class);
-                startActivity(intent);
-            }
-        });
     }
+
 
 }
 //    public void saveQuote(View view) {
