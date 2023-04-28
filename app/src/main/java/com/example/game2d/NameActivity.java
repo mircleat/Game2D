@@ -7,7 +7,9 @@ import android.app.AlertDialog;
 import android.content.SharedPreferences;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +30,8 @@ public class NameActivity extends AppCompatActivity implements View.OnClickListe
     TextView totalQuestionsTextView;
     TextView nameTextView;
     Button yes, no, exit;
+
+    MediaPlayer correct, wrong, backgroundMusic;
 
     ImageButton pauseBtn;
 
@@ -51,6 +55,10 @@ public class NameActivity extends AppCompatActivity implements View.OnClickListe
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
         );
 
+        correct = MediaPlayer.create(this, R.raw.correct);
+        wrong = MediaPlayer.create(this, R.raw.gasp);
+        backgroundMusic = MediaPlayer.create(this, R.raw.kahoot_music);
+
         //for pop up intro
         layout = findViewById(R.id.nameActivity); // relative is the id of the layout of the page
         CreatepopUpwindow();
@@ -67,7 +75,8 @@ public class NameActivity extends AppCompatActivity implements View.OnClickListe
         QuestionAnswer QA = new QuestionAnswer(); // Create an instance of MyClass
         QA.run(this); // Call the run method on myObject, passing in the context object
 
-
+        backgroundMusic.start();
+        backgroundMusic.setLooping(true);
 
         yes.setOnClickListener(this);
         no.setOnClickListener(this);
@@ -127,10 +136,13 @@ public class NameActivity extends AppCompatActivity implements View.OnClickListe
         else
             choice = false;
 
+
         if(choice == QuestionAnswer.tfArray[currentQuestionIndex]) {
             score++;
+            correct.start();
             clickedButton.setBackgroundColor(Color.GREEN);
         }else{
+            wrong.start();
             clickedButton.setBackgroundColor(Color.RED);
         }
 
@@ -189,6 +201,11 @@ public class NameActivity extends AppCompatActivity implements View.OnClickListe
         QuestionAnswer QA = new QuestionAnswer();
         QA.run(this);
         loadNewQuestion();
+    }
+
+    protected void onPause() {
+        super.onPause();
+        backgroundMusic.stop();
     }
 
 }
