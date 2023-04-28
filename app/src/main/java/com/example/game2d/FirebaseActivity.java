@@ -10,12 +10,15 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -69,6 +72,11 @@ public class FirebaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_username);
 
+        Window window = getWindow();
+        window.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+        );
 
 
         //-----------DISPLAY-----------------------------------------------------------------
@@ -95,6 +103,7 @@ public class FirebaseActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 UploadData();
+                RetrieveData();
             }
         });
 
@@ -114,6 +123,19 @@ public class FirebaseActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // switch back to main activity
                 Intent intent = new Intent(FirebaseActivity.this, LeaderboardActivity.class);
+                intent.putExtra("scoreboard_object", big_userScoreMap);
+                startActivity(intent);
+
+            }
+        });
+
+        //button that go back to start activtiy
+        Button back_button = (Button) findViewById(R.id.return_btn);
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // switch back to main activity
+                Intent intent = new Intent(FirebaseActivity.this, StartActivity.class);
                 intent.putExtra("scoreboard_object", big_userScoreMap);
                 startActivity(intent);
 
