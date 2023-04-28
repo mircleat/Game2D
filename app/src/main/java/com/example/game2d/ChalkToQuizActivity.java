@@ -7,23 +7,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class QuizToChalkActivity extends AppCompatActivity {
+public class ChalkToQuizActivity extends AppCompatActivity {
     private Button resButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quiz_to_chalk);
-        resButton = findViewById(R.id.QuiztoChalkResume);
+        setContentView(R.layout.activity_chalk_to_quiz);
+        resButton = findViewById(R.id.ChalktoQuizResume);
 
         resButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent Chalktrns = new Intent(QuizToChalkActivity.this,ChalkGameActivity.class);
-                Chalktrns.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                startActivity(Chalktrns);
+                Intent Quiztrns = new Intent(ChalkToQuizActivity.this,ChalkActivity.class);
+                Quiztrns.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(Quiztrns);
             }
         });
-
     }
 }

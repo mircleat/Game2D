@@ -37,6 +37,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     public Game(Context context) {
         super(context);
         gameContext = context;
+        Log.d("plswork", "meow");
 
         // Get surface holder and add callback
         SurfaceHolder surfaceHolder = getHolder();

@@ -46,12 +46,13 @@ public class FirebaseActivity extends AppCompatActivity {
     TextView nameScore, chalkScore;
 
     //public Map<String, Object> userScoreMap;
-    public Map<String, Long> big_userScoreMap = new HashMap<>();
+    //public Map<String, Long> big_userScoreMap = new HashMap<>();
+    Scoreboard big_userScoreMap = new Scoreboard();
 
     int bestChalk;
     float percent;
 
-    String username = "temp userame";
+    String username = "scrub mommy";
 
 
     //access the average accuracy data from nameResultActivity (does not work)
@@ -108,7 +109,9 @@ public class FirebaseActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // switch back to main activity
                 Intent intent = new Intent(FirebaseActivity.this, LeaderboardActivity.class);
+                intent.putExtra("scoreboard_object", big_userScoreMap);
                 startActivity(intent);
+
             }
         });
         //---------------------------------------------------------------------------------
@@ -126,7 +129,7 @@ public class FirebaseActivity extends AppCompatActivity {
         //db.collection("users").document("new33").set(user2);
 
 
-        String userId = "e9kSCVavuhpXiIGNMkAh";
+        String userId = "e9kSCVavuhpXiIGNMkAhhh";
         DocumentReference userRef = db.collection("leaderboard").document(userId);
         userRef.set(user2, SetOptions.merge());
 
@@ -147,6 +150,9 @@ public class FirebaseActivity extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Map<String, Object> userScoreMap = document.getData();
                                 Log.d(TAG, "ID: "+document.getId());
+                                String name = (String) userScoreMap.get("username");
+                                Double scores = (Double) userScoreMap.get("score");
+                                /*
                                 for (Map.Entry<String, Object> entry : userScoreMap.entrySet()) {
                                     //String user = entry.getKey();
                                     Object scoreObj = entry.getValue(); //this is the score value
@@ -154,15 +160,19 @@ public class FirebaseActivity extends AppCompatActivity {
                                     if (scoreObj instanceof Long) { //if it's the score_value
                                         score = (Long) scoreObj;
                                         //big_userScoreMap.put(document.getId(),score);
-                                        Log.d(TAG,"BIG size : "+ big_userScoreMap.size());
+                                        //Log.d(TAG,"BIG size : "+ big_userScoreMap.size());
                                         //Log.d(TAG, "User: " + user + ", Score: " + score);
                                     }
                                     else { //else it's the username
                                         Log.d(TAG,"the username: "+scoreObj.toString());
                                     }
-                                    big_userScoreMap.put(scoreObj.toString(),score); // add <username,score> into the big
-                                }
+                                    big_userScoreMap.scoreboard.put(scoreObj.toString(), score);
                             }
+                                 */
+                                big_userScoreMap.scoreboard.put(name, scores);
+
+                            }
+
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }

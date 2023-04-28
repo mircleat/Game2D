@@ -31,12 +31,12 @@
             android:layout_width="match_parent"
 
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="left"
 
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
-            android:text="You've gotten the question wrong!"
+            android:text="You've gotten the question wrong! Get ready to dodge chalk now!"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
@@ -47,7 +47,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
 
-            android:text="Get ready to dodge chalk now!"
+            android:text="Touch the screen to jump and avoid the colorful chalk. Beware! Gravity might not be constant everytime."
             android:textSize="18sp" />
 
         <Button
