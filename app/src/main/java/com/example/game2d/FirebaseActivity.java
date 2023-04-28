@@ -53,11 +53,12 @@ public class FirebaseActivity extends AppCompatActivity {
     float percent;
 
     String username = "scrub mommy";
+    String userId;
 
 
     //access the average accuracy data from nameResultActivity (does not work)
-    //    NameResultActivity Name_Result_Class = new NameResultActivity();
-    //    float name_average_percent = Name_Result_Class.percent;
+//        NameResultActivity Name_Result_Class = new NameResultActivity();
+//        float name_average_percent = Name_Result_Class.percent;
 
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -68,11 +69,15 @@ public class FirebaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_username);
 
+
+
         //-----------DISPLAY-----------------------------------------------------------------
-        //fetching game data from shared Preference
+        //fetching game data and user credential from shared Preference
         SharedPreferences preferences = getSharedPreferences("MY_PREFS", 0);
         bestChalk = preferences.getInt("bestChalk",0); //get the chalk score (0-4)
         percent = preferences.getFloat("percent",0);
+        username = preferences.getString("username", "user");
+        userId = preferences.getString("ID", "user");
         Log.d(TAG,"best chalk: " + bestChalk + "  percent: " + percent);
 
 
@@ -123,13 +128,14 @@ public class FirebaseActivity extends AppCompatActivity {
 
 
     private void UploadData() {
+
         Map<String, Object> user2 = new HashMap<>();
         user2.put("username",username);
         user2.put("score", percent/2 + bestChalk/4.0*50);//right now it's just the chalk average accuracy
         //db.collection("users").document("new33").set(user2);
 
 
-        String userId = "e9kSCVavuhpXiIGNMkAhhh";
+        //String userId = "e9kSCVavuhpXiIGNMkAhhh";
         DocumentReference userRef = db.collection("leaderboard").document(userId);
         userRef.set(user2, SetOptions.merge());
 

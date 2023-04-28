@@ -7,13 +7,16 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.UUID;
 
 public class CharacterActivity extends AppCompatActivity {
 
     public boolean selectedShortHair;
+
+    String username; // <--- store the username in this variable
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +59,24 @@ public class CharacterActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+    }
+
+    void SaveName() // For saving name to shared preference - this method should be called after name is saved
+    {
+
+        SharedPreferences preferences = getSharedPreferences("MY_PREFS", 0);
+        //username = preferences.getString("username", "user");
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("username", username);
+        editor.apply();
+
+        //assign a random ID
+        String ID = UUID.randomUUID().toString();
+        editor.putString("id", ID);
+        editor.apply();
+
     }
 
 }
