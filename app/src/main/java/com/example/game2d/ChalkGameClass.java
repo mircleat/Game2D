@@ -186,7 +186,7 @@ public class ChalkGameClass extends View {
             {
                 chalkX[ii] = chalkX[ii] - 200;
                 chalkPassed = 0;
-                Intent chalkQuestionIntent  = new Intent(getContext(), ChalkActivity.class);
+                Intent chalkQuestionIntent  = new Intent(getContext(), ChalkToQuizActivity.class);
                 chalkQuestionIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 getContext().startActivity(chalkQuestionIntent);
             }

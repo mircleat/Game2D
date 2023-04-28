@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NamePause"
+    tools:context=".ChalkToQuizActivity"
     android:background="#D6D6D6">
 
     <LinearLayout
@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="Paused"
+            android:text="SUCCESS!"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:fontFamily="@font/alfa_slab_one" />
@@ -31,33 +31,34 @@
             android:layout_width="match_parent"
 
             android:layout_height="wrap_content"
-            android:gravity="left"
+            android:gravity="center"
 
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
-            android:text="Hint!"
+            android:text="You dodged all the chalk successfully!"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+
+            android:text="Get ready for more questions now!"
+            android:textSize="18sp" />
+
         <Button
-            android:id="@+id/nameResumeButton"
+            android:id="@+id/ChalktoQuizResume"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="20dp"
-            android:text="Resume"
+            android:text="Continue"
             android:fontFamily="@font/abeezee" />
-        <Button
-            android:id="@+id/nameGameExitButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginEnd="20dp"
-            android:fontFamily="@font/abeezee"
-            android:text="Return to main menu" />
 
     </LinearLayout>
 

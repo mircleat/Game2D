@@ -11,6 +11,7 @@ import android.widget.Button;
 
 public class NamePause extends AppCompatActivity {
     private Button resumeButton;
+    private Button exitButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +25,7 @@ public class NamePause extends AppCompatActivity {
         );
 
         resumeButton = findViewById(R.id.nameResumeButton);
+        exitButton = findViewById(R.id.nameGameExitButton);
 
         resumeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,6 +34,15 @@ public class NamePause extends AppCompatActivity {
                 Intent resumeIntent = new Intent(NamePause.this, NameActivity.class);
                 resumeIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(resumeIntent);
+            }
+        });
+
+        exitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent exitIntent = new Intent(NamePause.this, MainActivity.class);
+                startActivity(exitIntent);
+
             }
         });
     }
