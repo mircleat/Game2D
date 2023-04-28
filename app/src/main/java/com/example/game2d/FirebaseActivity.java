@@ -150,6 +150,9 @@ public class FirebaseActivity extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Map<String, Object> userScoreMap = document.getData();
                                 Log.d(TAG, "ID: "+document.getId());
+                                String name = (String) userScoreMap.get("username");
+                                Double scores = (Double) userScoreMap.get("score");
+                                /*
                                 for (Map.Entry<String, Object> entry : userScoreMap.entrySet()) {
                                     //String user = entry.getKey();
                                     Object scoreObj = entry.getValue(); //this is the score value
@@ -164,9 +167,12 @@ public class FirebaseActivity extends AppCompatActivity {
                                         Log.d(TAG,"the username: "+scoreObj.toString());
                                     }
                                     big_userScoreMap.scoreboard.put(scoreObj.toString(), score);
-
-                                }
                             }
+                                 */
+                                big_userScoreMap.scoreboard.put(name, scores);
+
+                            }
+
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }

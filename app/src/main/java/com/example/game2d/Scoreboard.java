@@ -5,15 +5,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Scoreboard implements Serializable {
-    public Map<String, Long> scoreboard;
+    public Map<String, Double> scoreboard;
 
     Scoreboard() {
-        scoreboard = new HashMap<String, Long>();
+        scoreboard = new HashMap<String, Double>();
     }
 
-    public void add(String username, long score) {
+    public void add(String username, double score) {
         if (scoreboard != null) {
-            scoreboard.put(username,score);
+            scoreboard.put(username, score);
         }
     }
 }

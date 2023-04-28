@@ -74,7 +74,7 @@ public class LeaderboardActivity extends AppCompatActivity {
             scoreView.setTextSize(20);
             scoreView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             scoreView.setFontFeatureSettings("press_start_2p");
-            scoreView.setText(String.format("%s: %d", username, scoreboardObj.scoreboard.get("scrub daddy")));
+            scoreView.setText(String.format("%s: %f", username, scoreboardObj.scoreboard.get(username)));
             // Add the TextView to the LinearLayout
             scoreListLayout.addView(scoreView);
         }
