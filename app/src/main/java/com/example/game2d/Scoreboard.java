@@ -7,6 +7,8 @@ public class Scoreboard {
     public Map<String, Long> scoreboard;
 
     public void add(String username, long score) {
-        scoreboard.put(username,score);
+        if (scoreboard != null) {
+            scoreboard.put(username,score);
+        }
     }
 }
