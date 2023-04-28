@@ -80,7 +80,7 @@ public class FirebaseActivity extends AppCompatActivity {
         nameScore.setText( percent+"%");
 
         chalkScore = (TextView) findViewById(R.id.chalk_score);
-        chalkScore.setText(bestChalk+" out of 4");
+        chalkScore.setText(bestChalk/4.0*100+"%");
 
         //-----------BUTTON-----------------------------------------------------------------
         //setting data button
