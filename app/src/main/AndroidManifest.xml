@@ -44,6 +44,14 @@
             android:exported="true"
             android:screenOrientation="sensorLandscape" />
         <activity
+            android:name=".FirebaseActivity"
+            android:exported="true"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".LeaderboardActivity"
+            android:exported="true"
+            android:screenOrientation="landscape" />
+        <activity
             android:name=".CreditActivity"
             android:screenOrientation="landscape" />
         <activity
