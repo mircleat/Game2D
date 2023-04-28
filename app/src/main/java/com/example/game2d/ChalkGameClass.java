@@ -5,11 +5,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Matrix;
-import android.graphics.Paint;
 import android.media.MediaPlayer;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -42,7 +39,10 @@ public class ChalkGameClass extends View {
 
     //HEALTH SYSTEM
     private Bitmap lives[] = new Bitmap[2];
-    private int lifecounter;
+        private int lifecounter;
+        private int lifeXstart;
+        private int lifeY;
+
 
     private Bitmap pauseButton;
         private int pauseX = 1700;
@@ -58,11 +58,9 @@ public class ChalkGameClass extends View {
     public ChalkGameClass(Context context)
     {
         super(context);
-        player[0] = BitmapFactory.decodeResource(getResources(), R.drawable.girl);
-        player[1] = BitmapFactory.decodeResource(getResources(), R.drawable.girl_jump_big);
 
-        ranGravity = (int) Math.floor(Math.random() * 5) + 1; //ranGravity is a random integer between 1 and 5
-        Log.d("gravVal", Integer.toString(ranGravity));
+        //ranGravity = (int) Math.floor(Math.random() * 5) + 1; //ranGravity is a random integer between 1 and 5
+        ranGravity = 2;
 
         if(ranGravity%2 ==1)
             normGravity = true; //if ranGravity is odd, normal gravity is used where you jump up but rest at the bottom
@@ -70,13 +68,29 @@ public class ChalkGameClass extends View {
             normGravity = false; //if ranGravity is even, abnormal gravity is used where you jump down but rest at the top
 
 
-        if(normGravity)
+        if(normGravity) {
             playerY = 650; //make the player rest at the bottom if normal gravity
-        else
+            player[0] = BitmapFactory.decodeResource(getResources(), R.drawable.girl);
+            player[1] = BitmapFactory.decodeResource(getResources(), R.drawable.girl_jump_big);
+            backgroundImage= BitmapFactory.decodeResource(getResources(), R.drawable.background_normal);
+            lives[0] = BitmapFactory.decodeResource(getResources(), R.drawable.hearts);
+            lives[1] = BitmapFactory.decodeResource(getResources(), R.drawable.heart_grey);
+            lifeY = 20;
+
+        }
+        else {
             playerY = 0; //make the player rest at the top if abnormal gravity
+            player[0] = BitmapFactory.decodeResource(getResources(), R.drawable.girl_upsidedown);
+            player[1] = BitmapFactory.decodeResource(getResources(), R.drawable.girl_jump_big_upsidedown);
+            backgroundImage = BitmapFactory.decodeResource(getResources(), R.drawable.background_upsidedown);
+            lives[0] = BitmapFactory.decodeResource(getResources(), R.drawable.hearts_upsidedown);
+            lives[1] = BitmapFactory.decodeResource(getResources(), R.drawable.heart_grey_upsidedown);
+            lifeY = 1060;
+        }
 
         jumpcount = 0;
-        backgroundImage = BitmapFactory.decodeResource(getResources(), R.drawable.background);
+        lifeXstart = 1330;
+
 
         //Initializing the chalk array
         chalk[0] = BitmapFactory.decodeResource(getResources(), R.drawable.green_chalk);
@@ -86,8 +100,6 @@ public class ChalkGameClass extends View {
         chalk[4] = BitmapFactory.decodeResource(getResources(), R.drawable.blue_chalk);
         chalkPassed = 0;
 
-        lives[0] = BitmapFactory.decodeResource(getResources(), R.drawable.hearts);
-        lives[1] = BitmapFactory.decodeResource(getResources(), R.drawable.heart_grey);
         lifecounter = 3;
 
         pauseButton = BitmapFactory.decodeResource(getResources(), R.drawable.pause_new);
@@ -109,9 +121,9 @@ public class ChalkGameClass extends View {
         // allocation in onDraw.
         Matrix matrix = new Matrix();
 
-        matrix = StretchMatrix(matrix, canvasWidth, canvasHeight, backgroundImage);
-
         canvas.drawBitmap(backgroundImage, matrix, null);
+
+        matrix = StretchMatrix(matrix, canvasWidth, canvasHeight, backgroundImage);
 
         int minplayerY = 0;
         int floorHeight = 80;
@@ -121,7 +133,7 @@ public class ChalkGameClass extends View {
         if(normGravity)
             playerY= playerY + playerSpeed; //makes character jump up and naturally fall down
         else
-            playerY = playerY - playerSpeed; //makes character jump down and naturally float up
+            playerY = playerY - 2* playerSpeed; //makes character jump down and naturally float up
 
         if (playerY < minplayerY) {
             playerY = minplayerY;
@@ -172,17 +184,17 @@ public class ChalkGameClass extends View {
 
                 }
             }
-            chalkX[ii] = chalkX[ii] - chalkXSpeed; //making the chalk move across the screen
 
-
+            chalkX[ii] = chalkX[ii] - chalkXSpeed; //making the chalk move across the screen from right to left
             if (chalkX[ii] < 0)
             {
                 chalkPassed++;
                 chalkX[ii] = canvasWidth + (ii * 200);
-                if(ii == chalkNum -1)
+                if (ii == chalkNum - 1)
                     chalkXSpeed += 2;
                 chalkY[ii] = (int) Math.floor(Math.random() * ((maxplayerY + player[0].getHeight()) - chalk[0].getHeight())) + chalk[0].getHeight(); //making the chalk appear at random  heights
             }
+
 
             if(chalkPassed == chalkNum * 3)
             {
@@ -197,7 +209,7 @@ public class ChalkGameClass extends View {
             {
                 chalkCol-= 5;
             }
-            //chalkY[ii] = chalkY[ii] - chalkYSpeed; //gravity
+
             canvas.drawBitmap(chalk[chalkCol], chalkX[ii], chalkY[ii],  null);
         }
 
@@ -205,8 +217,8 @@ public class ChalkGameClass extends View {
 
         for(int ii = 0; ii < 3; ii++)
         {
-            int lifeX = (int) (1330 + lives[0].getWidth() * 1.5 * ii);
-            int lifeY = 20;
+            int lifeX = (int) (lifeXstart + lives[0].getWidth() * 1.5 * ii);
+
 
             if(ii < lifecounter)
             {
@@ -247,6 +259,8 @@ public class ChalkGameClass extends View {
 
        return fnMatrix;
     }
+
+
     @Override
     public boolean onTouchEvent(MotionEvent event)
     {
