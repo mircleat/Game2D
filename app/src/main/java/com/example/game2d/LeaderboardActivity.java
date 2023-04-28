@@ -1,9 +1,10 @@
 package com.example.game2d;
 
 import static com.example.game2d.MapUtil.sortByValue;
-//import static com.example.game2d.FirebaseActivity.;
+//import static com.example.game2d.Scoreboard
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
@@ -38,6 +39,10 @@ public class LeaderboardActivity extends AppCompatActivity {
         scoreListLayout = findViewById(R.id.score_list_layout);
 
         // Create map to store usernames and scores
+
+        Intent intent = getIntent();
+        Scoreboard scoreboardObj = (Scoreboard) intent.getSerializableExtra("scoreboard_object");
+
         HashMap<String, Integer> scoreMap = new HashMap<String, Integer>();
         scoreMap.put("Bob", 75);
         scoreMap.put("Dave", 50);
@@ -62,6 +67,19 @@ public class LeaderboardActivity extends AppCompatActivity {
         HashMap<String, Integer> sortedScoreMap = new HashMap<String, Integer>();
         sortedScoreMap = (HashMap<String, Integer>) sortByValue(scoreMap);
 
+        for (String username : scoreboardObj.scoreboard.keySet()) {
+            Log.d("SCORETEXT", username + String.valueOf(scoreboardObj.scoreboard.get("scrub daddy")));
+            // Create a textview for the username and score
+            TextView scoreView = new TextView(this);
+            scoreView.setTextSize(20);
+            scoreView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            scoreView.setFontFeatureSettings("press_start_2p");
+            scoreView.setText(String.format("%s: %d", username, scoreboardObj.scoreboard.get("scrub daddy")));
+            // Add the TextView to the LinearLayout
+            scoreListLayout.addView(scoreView);
+        }
+
+        /*
         // Loop through keys (usernames) and add username and score to the layout
         for (String username : sortedScoreMap.keySet()) {
             // Create a textview for the username and score
@@ -73,5 +91,7 @@ public class LeaderboardActivity extends AppCompatActivity {
             // Add the TextView to the LinearLayout
             scoreListLayout.addView(scoreView);
         }
+
+         */
     }
 }

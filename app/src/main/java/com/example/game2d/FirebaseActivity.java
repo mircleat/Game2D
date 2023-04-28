@@ -52,7 +52,7 @@ public class FirebaseActivity extends AppCompatActivity {
     int bestChalk;
     float percent;
 
-    String username = "temp userame";
+    String username = "scrub mommy";
 
 
     //access the average accuracy data from nameResultActivity (does not work)
@@ -109,7 +109,9 @@ public class FirebaseActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // switch back to main activity
                 Intent intent = new Intent(FirebaseActivity.this, LeaderboardActivity.class);
+                intent.putExtra("scoreboard_object", big_userScoreMap);
                 startActivity(intent);
+
             }
         });
         //---------------------------------------------------------------------------------
@@ -127,7 +129,7 @@ public class FirebaseActivity extends AppCompatActivity {
         //db.collection("users").document("new33").set(user2);
 
 
-        String userId = "e9kSCVavuhpXiIGNMkAh";
+        String userId = "e9kSCVavuhpXiIGNMkAhhh";
         DocumentReference userRef = db.collection("leaderboard").document(userId);
         userRef.set(user2, SetOptions.merge());
 
@@ -161,7 +163,7 @@ public class FirebaseActivity extends AppCompatActivity {
                                     else { //else it's the username
                                         Log.d(TAG,"the username: "+scoreObj.toString());
                                     }
-                                    big_userScoreMap.add(scoreObj.toString(),score); // add <username,score> into the big
+                                    big_userScoreMap.scoreboard.put(scoreObj.toString(), score);
 
                                 }
                             }
