@@ -29,7 +29,7 @@ public class ChalkGameClass extends View {
     private Bitmap backgroundImage ;
 
     //MEDIA
-    MediaPlayer bonk;
+    MediaPlayer bonk, oof;
 
     //CHALK
     private Bitmap chalk[] = new Bitmap[5];
@@ -102,6 +102,7 @@ public class ChalkGameClass extends View {
         canvasHeight = canvas.getHeight();
 
         bonk = MediaPlayer.create(getContext(), R.raw.bonk);
+        oof = MediaPlayer.create(getContext(), R.raw.oof);
 
         if (backgroundImage == null) return;
         // Use the same Matrix over and over again to minimize
@@ -160,6 +161,7 @@ public class ChalkGameClass extends View {
             if (hitChalkChecker(chalkX[ii], chalkY[ii])) //if player collides with chalk
             {
                 chalkX[ii] = chalkX[ii] - 200; //makes chalk disappear
+                oof.start();
                 lifecounter--; //reduces health;
 
                 if(lifecounter == 0)  //if all lives used up
