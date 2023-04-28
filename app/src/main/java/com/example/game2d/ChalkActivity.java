@@ -3,7 +3,7 @@ package com.example.game2d;
 import static java.security.AccessController.getContext;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import java.util.Random;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,6 +23,7 @@ import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ChalkActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -38,7 +39,7 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
     int chalkscore = 0;
     int totalWrong = 0;
     int totalQuestion = ChalkQuestionAnswer.question.length;
-    int currentQuestionIndex = 0;
+    public int currentQuestionIndex = 0;
     String selectedAnswer = "";
 
     //for pop up intro
@@ -57,7 +58,7 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
         // BGM
         backgroundMusic = MediaPlayer.create(this,R.raw.tanpopo);
         backgroundMusic.setLooping(true);
-        backgroundMusic.start();
+        //backgroundMusic.start();
 
         //for pop up intro
         layout = findViewById(R.id.chalkActivity); // relative is the id of the layout of the page
@@ -133,11 +134,12 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
         Button clickedButton = (Button) view;
         if(clickedButton.getId()==R.id.submit_btn){
             if(selectedAnswer == "") {
+                Toast.makeText(getApplicationContext(),"none", Toast.LENGTH_SHORT).show();
                 new AlertDialog.Builder(this)
                         .setMessage("Please select an answer")
                         .show();
-            }
-            else if(selectedAnswer.equals(ChalkQuestionAnswer.correctAnswers[currentQuestionIndex])){
+            } else if(selectedAnswer.equals(ChalkQuestionAnswer.correctAnswers[currentQuestionIndex])){
+                Toast.makeText(getApplicationContext(),"correct", Toast.LENGTH_SHORT).show();
                 //SFX
                 MediaPlayer correctSound = MediaPlayer.create(this, R.raw.correct);
                 correctSound.start();
@@ -149,13 +151,17 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
                 MediaPlayer wrongSound = MediaPlayer.create(this, R.raw.wrong);
                 wrongSound.start();
                 selectedAnswer = "";
+                Log.d("QUESTION", "selectedAnswer clear");
                 totalWrong++;
+                Log.d("QUESTION", "totalWrong++");
                 Intent spawnGame = new Intent(getApplicationContext(), QuizToChalkActivity.class);
                 spawnGame.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                Log.d("QUESTION", "Starting activity...");
+                Log.d("QUESTION", "Starting chalk game...");
                 getApplicationContext().startActivity(spawnGame);
                 currentQuestionIndex++;
-                loadNewQuestion();
+                if (currentQuestionIndex != 4) {
+                    loadNewQuestion();
+                }
             }
         } else {
             //choices button clicked
@@ -166,15 +172,38 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
 
     void loadNewQuestion(){
         // log question numbers
-        Log.d("QUESTION", "current: " + String.valueOf(currentQuestionIndex));
+        Log.d("QUESTION", "current question index: " + String.valueOf(currentQuestionIndex));
         //Log.d("QUESTION", String.valueOf(currentQuestionIndex));
         if(currentQuestionIndex == totalQuestion ){
-            Log.d("QUESTION", "finishing...");
+            Log.d("QUESTION", "finishing quiz...");
             finishQuiz();
             return;
         }
 
         questionTextView.setText(ChalkQuestionAnswer.question[currentQuestionIndex]);
+
+        int[] orders = new int[]{0, 1, 2, 3};
+        // Randomize orders[]
+        Random rand = new Random();
+
+        for (int i = 0; i < orders.length; i++) {
+            // Switch i and randomIndexToSwap
+            int randomIndexToSwap = rand.nextInt(orders.length);
+
+            // temp vars to store element at randomIndex
+            int tempOrder = orders[randomIndexToSwap];
+
+            // element at randomIndex is now element at i (2 i duplicates)
+            orders[randomIndexToSwap] = orders[i];
+
+            // element at i is now element at randomIndex (via temp vars)
+            orders[i] = tempOrder;
+        }
+
+        /*ansA.setText(ChalkQuestionAnswer.choices[currentQuestionIndex][orders[0]]);
+        ansB.setText(ChalkQuestionAnswer.choices[currentQuestionIndex][orders[1]]);
+        ansC.setText(ChalkQuestionAnswer.choices[currentQuestionIndex][orders[2]]);
+        ansD.setText(ChalkQuestionAnswer.choices[currentQuestionIndex][orders[3]]);*/
         ansA.setText(ChalkQuestionAnswer.choices[currentQuestionIndex][0]);
         ansB.setText(ChalkQuestionAnswer.choices[currentQuestionIndex][1]);
         ansC.setText(ChalkQuestionAnswer.choices[currentQuestionIndex][2]);
