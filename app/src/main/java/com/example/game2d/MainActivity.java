@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
 
         backgroundMusic = MediaPlayer.create( this, R.raw.moog_city_two );
         backgroundMusic.setLooping(true);
-        backgroundMusic.start();
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -43,10 +42,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(new Game(this));
     }
 
-    protected void onPause() {
-        super.onPause();
-        backgroundMusic.stop();
+    protected void onStart() {
+        super.onStart();
+        backgroundMusic.start();
     }
 
-
+    protected void onPause() {
+        super.onPause();
+        backgroundMusic.pause();
+    }
 }

@@ -1,6 +1,7 @@
 package com.example.game2d;
 
 import static com.example.game2d.MapUtil.sortByValue;
+//import static com.example.game2d.FirebaseActivity.;
 
 import android.annotation.SuppressLint;
 import android.graphics.Typeface;
@@ -21,6 +22,7 @@ import java.util.Vector;
 
 public class LeaderboardActivity extends AppCompatActivity {
 
+    //big_userScoreData
     private LinearLayout scoreListLayout;
 
     @SuppressLint("DefaultLocale")
@@ -30,7 +32,7 @@ public class LeaderboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboard);
 
-        Typeface customFont = Typeface.createFromAsset(getAssets(), "custom_font.ttf");
+        //Typeface customFont = Typeface.createFromAsset(getAssets(), "custom_font.ttf");
 
         // Get reference to the LinearLayout that will hold the scores
         scoreListLayout = findViewById(R.id.score_list_layout);

@@ -46,7 +46,8 @@ public class FirebaseActivity extends AppCompatActivity {
     TextView nameScore, chalkScore;
 
     //public Map<String, Object> userScoreMap;
-    public Map<String, Long> big_userScoreMap = new HashMap<>();
+    //public Map<String, Long> big_userScoreMap = new HashMap<>();
+    Scoreboard big_userScoreMap = new Scoreboard();
 
     int bestChalk;
     float percent;
@@ -154,13 +155,14 @@ public class FirebaseActivity extends AppCompatActivity {
                                     if (scoreObj instanceof Long) { //if it's the score_value
                                         score = (Long) scoreObj;
                                         //big_userScoreMap.put(document.getId(),score);
-                                        Log.d(TAG,"BIG size : "+ big_userScoreMap.size());
+                                        //Log.d(TAG,"BIG size : "+ big_userScoreMap.size());
                                         //Log.d(TAG, "User: " + user + ", Score: " + score);
                                     }
                                     else { //else it's the username
                                         Log.d(TAG,"the username: "+scoreObj.toString());
                                     }
-                                    big_userScoreMap.put(scoreObj.toString(),score); // add <username,score> into the big
+                                    big_userScoreMap.add(scoreObj.toString(),score); // add <username,score> into the big
+
                                 }
                             }
                         } else {
