@@ -47,6 +47,4 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         backgroundMusic.stop();
     }
-
-
 }

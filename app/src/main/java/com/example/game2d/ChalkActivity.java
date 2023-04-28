@@ -182,13 +182,6 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
     }
 
     void finishQuiz(){
-        String passStatus = "";
-        if(chalkscore > totalQuestion*0.65){
-            passStatus = "Passed";
-        }else{
-            passStatus = "Failed";
-        }
-
 //        Intent intent = new Intent(ChalkActivity.this, MainActivity.class);
 //        startActivity(intent);
 
@@ -200,13 +193,6 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
         Intent intent = new Intent(getApplicationContext(),ChalkResultActivity.class);//
         startActivity(intent);
         finish();
-
-        /*new AlertDialog.Builder(this)
-                .setTitle(passStatus)
-                .setMessage("Score is "+ score+" out of "+ totalQuestion)
-                .setPositiveButton("Restart",(dialogInterface, i) -> restartQuiz() )
-                .setCancelable(false)
-                .show();*/
     }
 
     protected void onPause() {
@@ -214,9 +200,4 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
         backgroundMusic.stop();
     }
 
-    /*void restartQuiz(){
-        chalkscore = 0;
-        currentQuestionIndex = 0;
-        loadNewQuestion();
-    }*/
 }
