@@ -57,7 +57,6 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
         // BGM
         backgroundMusic = MediaPlayer.create(this,R.raw.tanpopo);
         backgroundMusic.setLooping(true);
-        backgroundMusic.start();
 
         //for pop up intro
         layout = findViewById(R.id.chalkActivity); // relative is the id of the layout of the page
@@ -209,11 +208,15 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
                 .show();*/
     }
 
-    protected void onPause() {
-        super.onPause();
-        backgroundMusic.stop();
+    protected void onStart() {
+        super.onStart();
+        backgroundMusic.start();
     }
 
+    protected void onPause() {
+        super.onPause();
+        backgroundMusic.pause();
+    }
     /*void restartQuiz(){
         chalkscore = 0;
         currentQuestionIndex = 0;

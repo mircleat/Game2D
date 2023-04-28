@@ -75,7 +75,6 @@ public class NameActivity extends AppCompatActivity implements View.OnClickListe
         QuestionAnswer QA = new QuestionAnswer(); // Create an instance of MyClass
         QA.run(this); // Call the run method on myObject, passing in the context object
 
-        backgroundMusic.start();
         backgroundMusic.setLooping(true);
 
         yes.setOnClickListener(this);
@@ -203,9 +202,14 @@ public class NameActivity extends AppCompatActivity implements View.OnClickListe
         loadNewQuestion();
     }
 
+    protected void onStart() {
+        super.onStart();
+        backgroundMusic.start();
+    }
+
     protected void onPause() {
         super.onPause();
-        backgroundMusic.stop();
+        backgroundMusic.pause();
     }
 
 }
