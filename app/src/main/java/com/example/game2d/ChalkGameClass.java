@@ -59,8 +59,8 @@ public class ChalkGameClass extends View {
     {
         super(context);
 
-        //ranGravity = (int) Math.floor(Math.random() * 5) + 1; //ranGravity is a random integer between 1 and 5
-        ranGravity = 2;
+        ranGravity = (int) Math.floor(Math.random() * 5) + 1; //ranGravity is a random integer between 1 and 5
+
 
         if(ranGravity%2 ==1)
             normGravity = true; //if ranGravity is odd, normal gravity is used where you jump up but rest at the bottom
@@ -178,9 +178,9 @@ public class ChalkGameClass extends View {
 
                 if(lifecounter == 0)  //if all lives used up
                 {
-                    Intent mainIntent = new Intent(getContext(), MainActivity.class);
-                    mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    getContext().startActivity(mainIntent);
+                    Intent RIPIntent = new Intent(getContext(), ChalkGameRIPActivity.class);
+                    RIPIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    getContext().startActivity(RIPIntent);
 
                 }
             }
