@@ -58,7 +58,7 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
         // BGM
         backgroundMusic = MediaPlayer.create(this,R.raw.tanpopo);
         backgroundMusic.setLooping(true);
-        //backgroundMusic.start();
+        backgroundMusic.start();
 
         //for pop up intro
         layout = findViewById(R.id.chalkActivity); // relative is the id of the layout of the page
