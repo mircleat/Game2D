@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.media.MediaPlayer;
+import android.provider.MediaStore;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -34,6 +35,7 @@ public class ChalkGameClass extends View {
     //MEDIA
     MediaPlayer bonk = MediaPlayer.create(getContext(), R.raw.bonk);
     MediaPlayer oof = MediaPlayer.create(getContext(), R.raw.oof);
+    MediaPlayer bossMusic = MediaPlayer.create(getContext(), R.raw.aramid);
 
     //CHALK
     private Bitmap chalk[] = new Bitmap[5];
@@ -125,6 +127,9 @@ public class ChalkGameClass extends View {
         // Use the same Matrix over and over again to minimize
         // allocation in onDraw.
 
+        // boss music start
+        bossMusic.start();
+
         //getting the question index
 
         Matrix matrix = new Matrix();
@@ -186,6 +191,7 @@ public class ChalkGameClass extends View {
 
                 if(lifecounter == 0)  //if all lives used up
                 {
+                    bossMusic.stop();
                     Intent RIPIntent = new Intent(getContext(), ChalkGameRIPActivity.class);
                     RIPIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     getContext().startActivity(RIPIntent);
@@ -208,6 +214,7 @@ public class ChalkGameClass extends View {
             {
                 chalkX[ii] = chalkX[ii] - 200;
                 chalkPassed = 0;
+                bossMusic.stop();
                 Intent returnQuiz = new Intent(getContext(), ChalkToQuizActivity.class);
                 returnQuiz.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 getContext().startActivity(returnQuiz);
@@ -308,4 +315,5 @@ public class ChalkGameClass extends View {
 
         return false;
     }
+
 }
