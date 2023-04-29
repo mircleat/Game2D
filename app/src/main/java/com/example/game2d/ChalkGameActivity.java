@@ -18,6 +18,9 @@ public class ChalkGameActivity extends AppCompatActivity {
     private ChalkGameClass gameView;
     private Handler handler = new Handler();
     private final static long Interval = 50;
+    private boolean timeup = true;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,18 @@ public class ChalkGameActivity extends AppCompatActivity {
             }
         }, 0, Interval);
 
+        Timer timer2 = new Timer();
+        timer2.schedule(
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+
+                    }
+                })
+        );
+
+
     }
+
 
 }

@@ -17,8 +17,8 @@ public class ChalkGameRIPActivity extends AppCompatActivity {
         resButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent ChalkRIPtrns = new Intent(ChalkGameRIPActivity.this,ChalkGameActivity.class);
-                ChalkRIPtrns.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                Intent ChalkRIPtrns = new Intent(ChalkGameRIPActivity.this,MainActivity.class);
+                ChalkRIPtrns.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(ChalkRIPtrns);
             }
         });

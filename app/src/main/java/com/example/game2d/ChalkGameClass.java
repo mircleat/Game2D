@@ -1,5 +1,7 @@
 package com.example.game2d;
 
+import static android.content.Intent.getIntent;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -9,7 +11,7 @@ import android.graphics.Matrix;
 import android.media.MediaPlayer;
 import android.view.MotionEvent;
 import android.view.View;
-import "ChalkActivity.java";
+
 
 public class ChalkGameClass extends View {
     //PLAYER
@@ -27,7 +29,7 @@ public class ChalkGameClass extends View {
     private Bitmap backgroundImage ;
 
     //MEDIA
-    MediaPlayer bonk, oof;
+   // MediaPlayer bonk,  oof;
 
     //CHALK
     private Bitmap chalk[] = new Bitmap[5];
@@ -53,7 +55,6 @@ public class ChalkGameClass extends View {
     private Bitmap hintButton;
         private int hintX = 1800;
         private int hintY = 20;
-
 
 
     public ChalkGameClass(Context context)
@@ -106,6 +107,7 @@ public class ChalkGameClass extends View {
         pauseButton = BitmapFactory.decodeResource(getResources(), R.drawable.pause_new);
         hintButton = BitmapFactory.decodeResource(getResources(), R.drawable.question_new);
 
+
     }
 
     @Override
@@ -114,12 +116,15 @@ public class ChalkGameClass extends View {
         canvasWidth = canvas.getWidth();
         canvasHeight = canvas.getHeight();
 
-        bonk = MediaPlayer.create(getContext(), R.raw.bonk);
-        oof = MediaPlayer.create(getContext(), R.raw.oof);
+       // bonk = MediaPlayer.create(getContext(), R.raw.bonk);
+        //oof = MediaPlayer.create(getContext(), R.raw.oof);
 
         if (backgroundImage == null) return;
         // Use the same Matrix over and over again to minimize
         // allocation in onDraw.
+
+        //getting the question index
+
         Matrix matrix = new Matrix();
 
         canvas.drawBitmap(backgroundImage, matrix, null);
@@ -142,7 +147,7 @@ public class ChalkGameClass extends View {
             if(normGravity)
             {
                 playerSpeed = 125;
-                bonk.start();
+               // bonk.start();
             }
         }       //limiting the player's y to the top of the screen
 
@@ -174,7 +179,7 @@ public class ChalkGameClass extends View {
             if (hitChalkChecker(chalkX[ii], chalkY[ii])) //if player collides with chalk
             {
                 chalkX[ii] = chalkX[ii] - 200; //makes chalk disappear
-                oof.start();
+                //oof.start();
                 lifecounter--; //reduces health;
 
                 if(lifecounter == 0)  //if all lives used up
@@ -201,9 +206,10 @@ public class ChalkGameClass extends View {
             {
                 chalkX[ii] = chalkX[ii] - 200;
                 chalkPassed = 0;
-                Intent chalkQuestionIntent  = new Intent(getContext(), ChalkToQuizActivity.class);
-                chalkQuestionIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                getContext().startActivity(chalkQuestionIntent);
+                Intent returnQuiz = new Intent(getContext(), ChalkToQuizActivity.class);
+                returnQuiz.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                getContext().startActivity(returnQuiz);
+
             }
             chalkCol = ii;
             while(chalkCol > 4) //keeping chalkCol between 0 and 4;
