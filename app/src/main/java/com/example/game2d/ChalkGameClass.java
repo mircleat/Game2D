@@ -9,6 +9,7 @@ import android.graphics.Matrix;
 import android.media.MediaPlayer;
 import android.view.MotionEvent;
 import android.view.View;
+import "ChalkActivity.java";
 
 public class ChalkGameClass extends View {
     //PLAYER
