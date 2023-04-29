@@ -1,9 +1,12 @@
 package com.example.game2d;
+import static android.content.ContentValues.TAG;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -18,6 +21,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.Vector;
 
 public class NameResultActivity extends AppCompatActivity { //
 
@@ -106,42 +110,74 @@ public class NameResultActivity extends AppCompatActivity { //
             comment.setText("You cheated.");
         }
 
+        //----
+        // 1. Get a string variable from shared preferences called allNameScores
+        String allNameScores = preferences.getString("allNameScores", "");
+
+        // 2. Convert it into a vector called score_vec by breaking up each digit as an element
+        Vector<Integer> score_vec = new Vector<>();
+        for (int i = 0; i < allNameScores.length(); i++) {
+            score_vec.add(Integer.parseInt(allNameScores.substring(i, i + 1)));
+        }
+
+        // 3. Append lastScore (a predetermined variable) to score_vec
+        score_vec.add(lastScore);
+
+        // 4. Calculate average of score_vec and store it in variable average
+        int sum = 0;
+        for (int score : score_vec) {
+            sum += score;
+        }
+        double average = (double) sum / score_vec.size();
+        percent = (float) (average/5.0*100);
+
+        // 5. Convert the new score_vec back into a string and store back in allNameScores in shared Preferences
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int score : score_vec) {
+            stringBuilder.append(score);
+        }
+        preferences.edit().putString("allNameScores", stringBuilder.toString()).apply();
+        //----
+
         //storing a vector of scores to find average
-        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-
-        Set<String> floatSet = sharedPreferences.getStringSet(FLOAT_VECTOR_KEY, null);
-        List<Float> floatList = new ArrayList<>();
-
-        if (floatSet != null) {
-            for (String floatValue : floatSet) {
-                floatList.add(Float.valueOf(floatValue));
-            }
-        }
-
-        floatList.add((float)lastScore);
-
-        Set<String> updatedFloatSet = new HashSet<>();
-        for (Float floatValue : floatList) {
-            updatedFloatSet.add(String.valueOf(floatValue));
-        }
-        sharedPreferences.edit().putStringSet(FLOAT_VECTOR_KEY, updatedFloatSet).apply();
-
-        float sum = 0;
-        for (Float floatValue : floatList) {
-            sum += floatValue;
-        }
-
-        //calculate average, convert to percentage, then display, then store back in shared preference
-        float average = sum / floatList.size();
-        float raw_percent = average/5*100;
-        DecimalFormat df = new DecimalFormat("##.##");
-        df.setRoundingMode(RoundingMode.CEILING);
-
-        percent = Float.parseFloat(df.format(raw_percent));
-
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putFloat("percent", percent);
-        editor.apply();
+//        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+//
+//        Set<String> floatSet = sharedPreferences.getStringSet(FLOAT_VECTOR_KEY, null);
+//        List<Float> floatList = new ArrayList<>();
+//
+//        if (floatSet != null) {
+//            for (String floatValue : floatSet) {
+//                floatList.add(Float.valueOf(floatValue));
+//            }
+//        }
+//
+//        for (String item:floatSet){
+//            Log.d(TAG,item);
+//        }
+//        floatList.add((float)lastScore);
+//
+//        Set<String> updatedFloatSet = new HashSet<>();
+//        for (Float floatValue : floatList) {
+//            updatedFloatSet.add(String.valueOf(floatValue));
+//        }
+//        sharedPreferences.edit().putStringSet(FLOAT_VECTOR_KEY, updatedFloatSet).apply();
+//
+//        float sum = 0;
+//        for (Float floatValue : floatList) {
+//            sum += floatValue;
+//        }
+//
+//        //calculate average, convert to percentage, then display, then store back in shared preference
+//        float average = sum / floatList.size();
+//        float raw_percent = average/5*100;
+//        DecimalFormat df = new DecimalFormat("##.##");
+//        df.setRoundingMode(RoundingMode.CEILING);
+//
+//        percent = Float.parseFloat(df.format(raw_percent));
+//
+//        SharedPreferences.Editor editor = preferences.edit();
+//        editor.putFloat("percent", percent);
+//        editor.apply();
 
 
         averagescore.setText(percent + "%");

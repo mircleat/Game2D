@@ -3,100 +3,189 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_200">
+    android:background="@drawable/scoreboard">
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="347dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="100dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/username_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="0dp"
+                android:fontFamily="@font/press_start_2p"
+                android:text="Username" />
+
+            <TextView
+                android:id="@+id/userid_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="0dp"
+                android:fontFamily="@font/press_start_2p"
+                android:text="Unique ID" />
+
+            <TextView
+                android:id="@+id/name_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="0dp"
+                android:fontFamily="@font/press_start_2p"
+                android:text="Average Name Guessing Accuracy" />
+
+            <TextView
+                android:id="@+id/chalk_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/name_score"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="0dp"
+                android:fontFamily="@font/press_start_2p"
+                android:text="Best Chalk Dodging Score" />
+
+            <TextView
+                android:id="@+id/hint_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/name_score"
+                android:layout_marginStart="10dp"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/press_start_2p"
+                android:text="(press sync to sync data)"
+                android:textSize="10dp" />
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="194dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="100dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="0dp"
+                android:fontFamily="@font/press_start_2p"
+                android:text="no_username"
+                android:textAlignment="textEnd"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/user_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="0dp"
+                android:textSize="5dp"
+                android:fontFamily="@font/press_start_2p"
+                android:text="no_username"
+                android:textAlignment="textEnd"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/name_score"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="0dp"
+                android:fontFamily="@font/press_start_2p"
+                android:text="0"
+                android:textAlignment="textEnd"
+                android:textColor="@color/white" />
+
+
+            <TextView
+                android:id="@+id/chalk_score"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/press_start_2p"
+                android:text="0"
+                android:textAlignment="textEnd"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/title"
         android:padding="20dp"
-        android:textSize="25dp"
+        android:layout_marginTop="50dp"
+        android:textSize="23dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Your Score Summary"
+        android:text="•••Your Score Summary•••"
         android:layout_centerHorizontal="true"
         android:fontFamily="@font/press_start_2p"/>
 
-    <TextView
-        android:id="@+id/username_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/title"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:text="Username"
-        android:fontFamily="@font/press_start_2p"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/username"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/username_text"
-        android:text="no_username"
-        android:textColor="@color/white"
-        android:fontFamily="@font/press_start_2p"
-        />
 
-    <TextView
-        android:id="@+id/name_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/username"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:text="Your Average Name Guessing Accuracy"
-        android:fontFamily="@font/press_start_2p"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/name_score"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/name_text"
-        android:text="0"
-        android:textColor="@color/white"
-        android:fontFamily="@font/press_start_2p"
-        />
 
-    <TextView
-        android:id="@+id/chalk_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/name_score"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:text="Best Chalk Dodging Score"
-        android:fontFamily="@font/press_start_2p"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/chalk_score"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/chalk_text"
-        android:text="0"
-        android:textColor="@color/white"
-        android:fontFamily="@font/press_start_2p"
-        />
+
+
+
 
 
     <Button
         android:id="@+id/leaderboard_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/chalk_score"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
+        android:textSize="10dp"
         android:text="Online Leaderboard"
+        android:layout_marginTop="270dp"
+        android:fontFamily="@font/press_start_2p"
+        android:background="@drawable/buttonbg"/>
+
+    <Button
+        android:id="@+id/set_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sync Data"
+        android:background="@drawable/buttonbg"
+        android:layout_marginLeft="80dp"
+        android:textSize="10sp"
+        android:layout_marginTop="270dp"
         android:fontFamily="@font/press_start_2p"/>
 
     <Button
@@ -107,12 +196,15 @@
         android:layout_alignParentBottom="true"/>
 
     <Button
-        android:id="@+id/set_btn"
+        android:id="@+id/return_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="set"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="200dp"/>
+        android:text="Return"
+        android:background="@drawable/buttonbg"
+        android:layout_marginLeft="480dp"
+        android:textSize="10sp"
+        android:layout_marginTop="270dp"
+        android:fontFamily="@font/press_start_2p"/>
 
 
 </RelativeLayout>

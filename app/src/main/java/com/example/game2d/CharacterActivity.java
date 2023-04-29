@@ -1,19 +1,26 @@
 package com.example.game2d;
+import static android.content.ContentValues.TAG;
+
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.UUID;
 
 public class CharacterActivity extends AppCompatActivity {
 
     public boolean selectedShortHair;
+
+    String username = "another name"; // <--- store the username in this variable
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +34,8 @@ public class CharacterActivity extends AppCompatActivity {
         );
 
         overridePendingTransition(0, 0);
+
+        SaveName();
 
         // select short hair button
         Button shortHairButton = (Button) findViewById(R.id.boy_btn);
@@ -56,6 +65,26 @@ public class CharacterActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+    }
+
+    void SaveName() // For saving name to shared preference - this method should be called after name is saved
+    {
+        //save username to USER_CREDENTIALS
+        String user_name = username;
+        SharedPreferences user_info = getSharedPreferences("USER_CREDENTIALS", 0);
+        user_info.edit().putString("username", user_name).apply();
+
+        //assign a random ID when log in for the first time.
+        if (user_info.getString("user_ID", null) == null){
+            String ID = UUID.randomUUID().toString();
+            Log.d(TAG, "generated ID is: " + ID);
+            user_info.edit().putString("user_ID", ID).apply();
+        }else {
+            Log.d(TAG,"User ID already generated:" +user_info.getString("user_ID", null));
+        }
+
     }
 
 }

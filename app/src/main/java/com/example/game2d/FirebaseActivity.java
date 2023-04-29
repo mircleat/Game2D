@@ -10,12 +10,15 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -43,7 +46,7 @@ public class FirebaseActivity extends AppCompatActivity {
 //    private static final String SCORE_KEY = "score";
 
     private Button SaveButton;
-    TextView nameScore, chalkScore;
+    TextView userName, userID,nameScore, chalkScore;
 
     //public Map<String, Object> userScoreMap;
     //public Map<String, Long> big_userScoreMap = new HashMap<>();
@@ -52,12 +55,13 @@ public class FirebaseActivity extends AppCompatActivity {
     int bestChalk;
     float percent;
 
-    String username = "scrub mommy";
+
+    String CRE_username, CRE_userid;
 
 
     //access the average accuracy data from nameResultActivity (does not work)
-    //    NameResultActivity Name_Result_Class = new NameResultActivity();
-    //    float name_average_percent = Name_Result_Class.percent;
+//        NameResultActivity Name_Result_Class = new NameResultActivity();
+//        float name_average_percent = Name_Result_Class.percent;
 
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -68,13 +72,30 @@ public class FirebaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_username);
 
+        Window window = getWindow();
+        window.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+        );
+
+
         //-----------DISPLAY-----------------------------------------------------------------
-        //fetching game data from shared Preference
+        //fetching game data and user credential from shared Preference
         SharedPreferences preferences = getSharedPreferences("MY_PREFS", 0);
         bestChalk = preferences.getInt("bestChalk",0); //get the chalk score (0-4)
         percent = preferences.getFloat("percent",0);
         Log.d(TAG,"best chalk: " + bestChalk + "  percent: " + percent);
 
+        SharedPreferences user_info = getSharedPreferences("USER_CREDENTIALS", 0);
+        CRE_username = user_info.getString("username", "fire_base");
+        CRE_userid = user_info.getString("user_ID", "user_id");
+
+
+        //display credentials on screen
+        userName = (TextView) findViewById(R.id.username);
+        userName.setText(CRE_username);
+        userID = (TextView) findViewById(R.id.user_id);
+        userID.setText(CRE_userid);
 
         //display personal score on screen
         nameScore = (TextView) findViewById(R.id.name_score);
@@ -90,6 +111,7 @@ public class FirebaseActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 UploadData();
+                RetrieveData();
             }
         });
 
@@ -114,6 +136,19 @@ public class FirebaseActivity extends AppCompatActivity {
 
             }
         });
+
+        //button that go back to start activtiy
+        Button back_button = (Button) findViewById(R.id.return_btn);
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // switch back to main activity
+                Intent intent = new Intent(FirebaseActivity.this, StartActivity.class);
+                intent.putExtra("scoreboard_object", big_userScoreMap);
+                startActivity(intent);
+
+            }
+        });
         //---------------------------------------------------------------------------------
     }
 
@@ -123,14 +158,15 @@ public class FirebaseActivity extends AppCompatActivity {
 
 
     private void UploadData() {
+
         Map<String, Object> user2 = new HashMap<>();
-        user2.put("username",username);
+        user2.put("username",CRE_username);
         user2.put("score", percent/2 + bestChalk/4.0*50);//right now it's just the chalk average accuracy
         //db.collection("users").document("new33").set(user2);
 
 
-        String userId = "e9kSCVavuhpXiIGNMkAhhh";
-        DocumentReference userRef = db.collection("leaderboard").document(userId);
+        //String userId = "e9kSCVavuhpXiIGNMkAhhh";
+        DocumentReference userRef = db.collection("leaderboard").document(CRE_userid);
         userRef.set(user2, SetOptions.merge());
 
 
@@ -179,8 +215,6 @@ public class FirebaseActivity extends AppCompatActivity {
                     }
                 });
     }
-
-
 }
 //    public void saveQuote(View view) {
 //        EditText quoteView = (EditText) findViewById(R.id.editUsername);

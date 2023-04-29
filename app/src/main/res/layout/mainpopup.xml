@@ -18,7 +18,7 @@ android:background="#D6D6D6">
         android:fontFamily="@font/alfa_slab_one"
         style="@android:style/TextAppearance.DeviceDefault.Medium"
         android:padding="10dp"
-        android:text="Objective"
+        android:text="Name Guessing Game: Objective"
         android:textColor="@color/black"
         android:textSize="24sp" />
 

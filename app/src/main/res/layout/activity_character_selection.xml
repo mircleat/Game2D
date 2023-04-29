@@ -9,10 +9,18 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginLeft="100sp"
+        android:layout_marginTop="80sp"
+        android:fontFamily="@font/press_start_2p"
+        android:text="Select your Avatar:" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginLeft="500sp"
         android:layout_marginTop="120sp"
         android:fontFamily="@font/press_start_2p"
-        android:text="Select\n\nyour\n\nAvatar:" />
+        android:text="Enter a \nusername:" />
 
 
     <LinearLayout

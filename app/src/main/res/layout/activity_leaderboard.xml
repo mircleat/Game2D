@@ -3,19 +3,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_200"
+    android:background="@drawable/leaderboard"
     >
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="°°°°Online Leaderboard°°°°"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="50dp"
         android:fontFamily="@font/press_start_2p"
         android:textSize="20dp"
         android:id="@+id/title"
         android:layout_centerHorizontal="true"
-
         />
 
     <TextView
@@ -34,15 +33,14 @@
         android:layout_width="500dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="30dp"
-        android:background="@color/white">
+        android:layout_marginTop="120dp"
+        android:layout_marginBottom="30dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="16dp">
+            >
 
 
             <LinearLayout
@@ -52,6 +50,13 @@
                 android:orientation="vertical"
                 android:padding="16dp"
                 >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ranking"
+                    android:fontFamily="@font/press_start_2p"
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -61,6 +66,12 @@
                 android:orientation="vertical"
                 android:padding="16dp"
                 >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Username"
+                    android:fontFamily="@font/press_start_2p"
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -70,11 +81,27 @@
                 android:orientation="vertical"
                 android:padding="16dp"
                 >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Score"
+                    android:fontFamily="@font/press_start_2p"
+                    />
             </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
 
+    <Button
+        android:id="@+id/return_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Return"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/press_start_2p"
+        />
 
 
 </RelativeLayout>
