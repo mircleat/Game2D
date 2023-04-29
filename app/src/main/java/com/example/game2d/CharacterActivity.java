@@ -24,7 +24,7 @@ public class CharacterActivity extends AppCompatActivity {
 
     public boolean selectedShortHair;
 
-    String username = ""; // <--- store the username in this variable
+    String username ; // <--- store the username in this variable
 
     String ID;
     @SuppressLint("SetTextI18n")
@@ -40,10 +40,17 @@ public class CharacterActivity extends AppCompatActivity {
         );
 
         overridePendingTransition(0, 0);
-        SaveName(username);
 
         SharedPreferences preferences = getSharedPreferences("MY_PREFS", 0);
         selectedShortHair = preferences.getBoolean("shortHairSelection", false);//get data
+
+        //SaveName(username);
+        SharedPreferences user_info = getSharedPreferences("USER_CREDENTIALS", 0);
+        //user_info.edit().putString("username", user_name).apply();
+        username = user_info.getString("username", null);
+        ID = user_info.getString("user_ID", null);
+        Log.d(TAG,"username is now "+username);
+        Log.d(TAG,"user id is now "+ ID);
 
         //username input
         View textInputLayout = findViewById(R.id.textInputLayout);
