@@ -4,6 +4,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Window;
@@ -29,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         );
+
+        SharedPreferences preferences = getSharedPreferences("MY_PREFS", 0);
+        Game surfaceView = new Game(this);
 
         backgroundMusic = MediaPlayer.create( this, R.raw.moog_city_two );
         backgroundMusic.setLooping(true);

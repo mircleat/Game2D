@@ -72,7 +72,7 @@
                 android:layout_width="80sp"
                 android:layout_height="80sp"
                 android:layout_marginLeft="50sp"
-                android:background="@drawable/girl_idle" />
+                android:background="@drawable/girl_idle_right" />
         </LinearLayout>
 
 
