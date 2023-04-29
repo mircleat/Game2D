@@ -134,12 +134,10 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
         Button clickedButton = (Button) view;
         if(clickedButton.getId()==R.id.submit_btn){
             if(selectedAnswer == "") {
-                Toast.makeText(getApplicationContext(),"none", Toast.LENGTH_SHORT).show();
                 new AlertDialog.Builder(this)
                         .setMessage("Please select an answer")
                         .show();
             } else if(selectedAnswer.equals(ChalkQuestionAnswer.correctAnswers[currentQuestionIndex])){
-                Toast.makeText(getApplicationContext(),"correct", Toast.LENGTH_SHORT).show();
                 //SFX
                 MediaPlayer correctSound = MediaPlayer.create(this, R.raw.correct);
                 correctSound.start();

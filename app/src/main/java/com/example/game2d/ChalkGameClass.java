@@ -26,7 +26,9 @@ public class ChalkGameClass extends View {
     private Bitmap backgroundImage ;
 
     //MEDIA
-    MediaPlayer bonk, oof;
+/*    MediaPlayer bonk, oof;*/
+    MediaPlayer bonk = MediaPlayer.create(getContext(), R.raw.bonk);
+    MediaPlayer oof = MediaPlayer.create(getContext(), R.raw.oof);
 
     //CHALK
     private Bitmap chalk[] = new Bitmap[5];
@@ -113,8 +115,8 @@ public class ChalkGameClass extends View {
         canvasWidth = canvas.getWidth();
         canvasHeight = canvas.getHeight();
 
-        bonk = MediaPlayer.create(getContext(), R.raw.bonk);
-        oof = MediaPlayer.create(getContext(), R.raw.oof);
+        /*bonk = MediaPlayer.create(getContext(), R.raw.bonk);
+        oof = MediaPlayer.create(getContext(), R.raw.oof);*/
 
         if (backgroundImage == null) return;
         // Use the same Matrix over and over again to minimize
