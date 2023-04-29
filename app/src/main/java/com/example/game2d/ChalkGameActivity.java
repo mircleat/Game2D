@@ -46,6 +46,7 @@ public class ChalkGameActivity extends AppCompatActivity {
                 });
             }
         }, 0, Interval);
+
     }
 
 
