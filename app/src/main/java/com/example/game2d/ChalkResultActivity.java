@@ -3,7 +3,9 @@ package com.example.game2d;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -23,6 +25,8 @@ public class ChalkResultActivity extends AppCompatActivity { //
     int lastChalkScore;
     int bestChalk;
 
+MediaPlayer winSound = MediaPlayer.create(getApplicationContext(), R.raw.eerie_win);
+
     Button submitBtn;
 
     @SuppressLint("SetTextI18n")
@@ -30,7 +34,8 @@ public class ChalkResultActivity extends AppCompatActivity { //
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_name_result);
-
+        winSound.start();
+        Log.d("CHALKRESULT", "onCreate after sound start");
         Window window = getWindow();
         window.setFlags(
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -47,6 +52,7 @@ public class ChalkResultActivity extends AppCompatActivity { //
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                winSound.stop();
                 // switch back to main activity
                 Intent intent = new Intent(ChalkResultActivity.this, MainActivity.class);
                 startActivity(intent);
@@ -59,6 +65,7 @@ public class ChalkResultActivity extends AppCompatActivity { //
         again_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                winSound.stop();
                 // switch back to main activity
                 Intent intent = new Intent(ChalkResultActivity.this, ChalkActivity.class);
                 startActivity(intent);
