@@ -12,9 +12,17 @@
         android:theme="@style/Theme.Game2D"
         tools:targetApi="31">
         <activity
-            android:name=".QuizToChalkActivity"
+            android:name=".ChalkGameRIPActivity"
             android:exported="false"
             android:screenOrientation="landscape"/>
+        <activity
+            android:name=".ChalkToQuizActivity"
+            android:exported="false"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".QuizToChalkActivity"
+            android:exported="false"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".ChalkIntroActivity"
             android:exported="false"
@@ -81,11 +89,11 @@
         <activity
             android:name=".ChalkQuizPause"
             android:exported="false"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".NamePause"
             android:exported="false"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".NameActivity"
             android:exported="true"
