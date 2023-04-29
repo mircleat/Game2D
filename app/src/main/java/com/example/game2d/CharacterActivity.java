@@ -11,8 +11,12 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.UUID;
 
@@ -20,7 +24,9 @@ public class CharacterActivity extends AppCompatActivity {
 
     public boolean selectedShortHair;
 
-    String username = "another name"; // <--- store the username in this variable
+    String username = ""; // <--- store the username in this variable
+
+    String ID;
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +40,28 @@ public class CharacterActivity extends AppCompatActivity {
         );
 
         overridePendingTransition(0, 0);
+        SaveName(username);
 
-        SaveName();
+
+
+        //username input
+        View textInputLayout = findViewById(R.id.textInputLayout);
+        TextInputEditText editText = findViewById(R.id.editText);
+        View button = findViewById(R.id.button);
+
+        TextView credentialDisplay = findViewById(R.id.credential_display);
+        credentialDisplay.setText("Your \nUsername: \n"+username+"\n\nUnique ID:\n"+ID);
+
+        //this button saves name, create ID, and display name/ID on greenscreen
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                username = editText.getText().toString();
+                SaveName(username);
+                credentialDisplay.setText("Your \nUsername: \n"+username+"\n\nUnique ID:\n"+ID);
+                Toast.makeText(CharacterActivity.this, "Username Saved: " + username, Toast.LENGTH_SHORT).show();
+            }
+        });
 
         // select short hair button
         Button shortHairButton = (Button) findViewById(R.id.boy_btn);
@@ -69,16 +95,17 @@ public class CharacterActivity extends AppCompatActivity {
 
     }
 
-    void SaveName() // For saving name to shared preference - this method should be called after name is saved
+    void SaveName(String username) // For saving name to shared preference - this method should be called after name is saved
     {
         //save username to USER_CREDENTIALS
         String user_name = username;
         SharedPreferences user_info = getSharedPreferences("USER_CREDENTIALS", 0);
         user_info.edit().putString("username", user_name).apply();
+        ID = user_info.getString("user_ID", null);
 
         //assign a random ID when log in for the first time.
         if (user_info.getString("user_ID", null) == null){
-            String ID = UUID.randomUUID().toString();
+            ID = UUID.randomUUID().toString();
             Log.d(TAG, "generated ID is: " + ID);
             user_info.edit().putString("user_ID", ID).apply();
         }else {

@@ -4,30 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/character_selection_remodled">
+    android:background="@drawable/character_selction_neew">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="100sp"
-        android:layout_marginTop="80sp"
+        android:layout_marginTop="160sp"
         android:fontFamily="@font/press_start_2p"
+        android:textColor="@color/white"
         android:text="Select your Avatar:" />
 
     <TextView
         android:layout_width="match_parent"
+        android:id="@+id/credential_display"
         android:layout_height="match_parent"
-        android:layout_marginLeft="500sp"
+        android:layout_marginLeft="495sp"
+        android:textSize="10sp"
         android:layout_marginTop="120sp"
+        android:layout_marginRight="100dp"
         android:fontFamily="@font/press_start_2p"
-        android:text="Enter a \nusername:" />
+        android:text="Your \nUsername: \n\n\nUnique ID:" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:layout_marginTop="200sp">
+        android:layout_marginTop="290sp">
 
 
 
@@ -55,7 +59,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="100sp"
+            android:layout_marginTop="200sp"
             android:orientation="horizontal">
 
             <ImageView
@@ -77,12 +81,37 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="110sp"
-        android:background="@drawable/buttonbg"
-        android:layout_marginBottom="60sp"
+        android:layout_marginLeft="450sp"
+        android:background="@android:color/transparent"
+        android:layout_marginBottom="80sp"
         android:fontFamily="@font/press_start_2p"
-        android:paddingHorizontal="75sp"
-        android:text="Confirm"
+        android:paddingHorizontal="70sp"
          />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/popupbg"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="70dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:layout_marginTop="75dp"
+        android:layout_marginLeft="280dp"
+        android:background="@drawable/buttonbg"
+/>
 
 </RelativeLayout>
