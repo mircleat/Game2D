@@ -42,7 +42,8 @@ public class CharacterActivity extends AppCompatActivity {
         overridePendingTransition(0, 0);
         SaveName(username);
 
-
+        SharedPreferences preferences = getSharedPreferences("MY_PREFS", 0);
+        selectedShortHair = preferences.getBoolean("shortHairSelection", false);//get data
 
         //username input
         View textInputLayout = findViewById(R.id.textInputLayout);
@@ -68,7 +69,7 @@ public class CharacterActivity extends AppCompatActivity {
         shortHairButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectedShortHair = true;
+                preferences.edit().putBoolean("shortHairSelection", true).apply();
             }
         });
 
@@ -77,7 +78,7 @@ public class CharacterActivity extends AppCompatActivity {
         longHairButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectedShortHair = false;
+                preferences.edit().putBoolean("shortHairSelection", false).apply();
             }
         });
 

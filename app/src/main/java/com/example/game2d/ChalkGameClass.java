@@ -4,6 +4,7 @@ import static android.content.Intent.getIntent;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -20,6 +21,7 @@ import java.util.logging.Handler;
 public class ChalkGameClass extends View {
     //PLAYER
     private Bitmap player[] = new Bitmap[2];
+    private boolean selectedShortHair;
     private int ranGravity;
     private boolean normGravity;
     private int playerX = 10;
@@ -68,6 +70,9 @@ public class ChalkGameClass extends View {
     {
         super(context);
 
+        SharedPreferences preferences = getContext().getSharedPreferences("MY_PREFS", 0);
+        selectedShortHair = preferences.getBoolean("shortHairSelection", false);
+
         ranGravity = (int) Math.floor(Math.random() * 5) + 1; //ranGravity is a random integer between 1 and 5
 
 
@@ -79,8 +84,17 @@ public class ChalkGameClass extends View {
 
         if(normGravity) {
             playerY = 650; //make the player rest at the bottom if normal gravity
-            player[0] = BitmapFactory.decodeResource(getResources(), R.drawable.girl);
-            player[1] = BitmapFactory.decodeResource(getResources(), R.drawable.girl_jump_big);
+            if(selectedShortHair == false)
+            {
+                player[0] = BitmapFactory.decodeResource(getResources(), R.drawable.girl);
+                player[1] = BitmapFactory.decodeResource(getResources(), R.drawable.girl_jump_big);
+            }
+            else
+            {
+                player[0] = BitmapFactory.decodeResource(getResources(), R.drawable.boy_big);
+                player[1] = BitmapFactory.decodeResource(getResources(), R.drawable.boy_jump_big);
+            }
+
             backgroundImage= BitmapFactory.decodeResource(getResources(), R.drawable.background_normal);
             lives[0] = BitmapFactory.decodeResource(getResources(), R.drawable.hearts);
             lives[1] = BitmapFactory.decodeResource(getResources(), R.drawable.heart_grey);
@@ -89,8 +103,14 @@ public class ChalkGameClass extends View {
         }
         else {
             playerY = 0; //make the player rest at the top if abnormal gravity
-            player[0] = BitmapFactory.decodeResource(getResources(), R.drawable.girl_upsidedown);
-            player[1] = BitmapFactory.decodeResource(getResources(), R.drawable.girl_jump_big_upsidedown);
+            if(selectedShortHair == false) {
+                player[0] = BitmapFactory.decodeResource(getResources(), R.drawable.girl_upsidedown);
+                player[1] = BitmapFactory.decodeResource(getResources(), R.drawable.girl_jump_upsidedown);
+            }
+            else {
+                player[0] = BitmapFactory.decodeResource(getResources(), R.drawable.boy_idle_upsidedown);
+                player[1] = BitmapFactory.decodeResource(getResources(), R.drawable.boy_jump_upsidedown);
+            }
             backgroundImage = BitmapFactory.decodeResource(getResources(), R.drawable.background_upsidedown);
             lives[0] = BitmapFactory.decodeResource(getResources(), R.drawable.hearts_upsidedown);
             lives[1] = BitmapFactory.decodeResource(getResources(), R.drawable.heart_grey_upsidedown);

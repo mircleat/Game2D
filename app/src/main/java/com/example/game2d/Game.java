@@ -2,6 +2,7 @@ package com.example.game2d;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -37,7 +38,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     public Game(Context context) {
         super(context);
         gameContext = context;
-        Log.d("plswork", "meow");
 
         // Get surface holder and add callback
         SurfaceHolder surfaceHolder = getHolder();
