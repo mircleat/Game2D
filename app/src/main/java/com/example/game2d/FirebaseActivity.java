@@ -46,7 +46,7 @@ public class FirebaseActivity extends AppCompatActivity {
 //    private static final String SCORE_KEY = "score";
 
     private Button SaveButton;
-    TextView nameScore, chalkScore;
+    TextView userName, userID,nameScore, chalkScore;
 
     //public Map<String, Object> userScoreMap;
     //public Map<String, Long> big_userScoreMap = new HashMap<>();
@@ -55,8 +55,8 @@ public class FirebaseActivity extends AppCompatActivity {
     int bestChalk;
     float percent;
 
-    String username = "scrub mommy";
-    String userId;
+
+    String CRE_username, CRE_userid;
 
 
     //access the average accuracy data from nameResultActivity (does not work)
@@ -84,10 +84,18 @@ public class FirebaseActivity extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("MY_PREFS", 0);
         bestChalk = preferences.getInt("bestChalk",0); //get the chalk score (0-4)
         percent = preferences.getFloat("percent",0);
-        username = preferences.getString("username", "user");
-        userId = preferences.getString("ID", "user");
         Log.d(TAG,"best chalk: " + bestChalk + "  percent: " + percent);
 
+        SharedPreferences user_info = getSharedPreferences("USER_CREDENTIALS", 0);
+        CRE_username = user_info.getString("username", "fire_base");
+        CRE_userid = user_info.getString("user_ID", "user_id");
+
+
+        //display credentials on screen
+        userName = (TextView) findViewById(R.id.username);
+        userName.setText(CRE_username);
+        userID = (TextView) findViewById(R.id.user_id);
+        userID.setText(CRE_userid);
 
         //display personal score on screen
         nameScore = (TextView) findViewById(R.id.name_score);
@@ -152,13 +160,13 @@ public class FirebaseActivity extends AppCompatActivity {
     private void UploadData() {
 
         Map<String, Object> user2 = new HashMap<>();
-        user2.put("username",username);
+        user2.put("username",CRE_username);
         user2.put("score", percent/2 + bestChalk/4.0*50);//right now it's just the chalk average accuracy
         //db.collection("users").document("new33").set(user2);
 
 
         //String userId = "e9kSCVavuhpXiIGNMkAhhh";
-        DocumentReference userRef = db.collection("leaderboard").document(userId);
+        DocumentReference userRef = db.collection("leaderboard").document(CRE_userid);
         userRef.set(user2, SetOptions.merge());
 
 
@@ -207,8 +215,6 @@ public class FirebaseActivity extends AppCompatActivity {
                     }
                 });
     }
-
-
 }
 //    public void saveQuote(View view) {
 //        EditText quoteView = (EditText) findViewById(R.id.editUsername);
