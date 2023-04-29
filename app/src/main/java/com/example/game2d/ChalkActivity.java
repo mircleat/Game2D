@@ -140,7 +140,9 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
             } else if(selectedAnswer.equals(ChalkQuestionAnswer.correctAnswers[currentQuestionIndex])){
                 //SFX
                 MediaPlayer correctSound = MediaPlayer.create(this, R.raw.correct);
-                correctSound.start();
+                if (currentQuestionIndex != 3) {
+                    correctSound.start();
+                }
                 selectedAnswer = "";
                 chalkscore++;
                 currentQuestionIndex++;
