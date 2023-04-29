@@ -12,6 +12,9 @@ import android.media.MediaPlayer;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.Timer;
+import java.util.logging.Handler;
+
 
 public class ChalkGameClass extends View {
     //PLAYER
@@ -45,6 +48,7 @@ public class ChalkGameClass extends View {
         private int lifecounter;
         private int lifeXstart;
         private int lifeY;
+        private Handler handler;
 
 
     private Bitmap pauseButton;
