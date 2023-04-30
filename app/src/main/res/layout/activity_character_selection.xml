@@ -41,7 +41,6 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="110sp"
             android:layout_marginRight="10sp"
-            android:background="@drawable/buttonbg"
             android:fontFamily="@font/press_start_2p"
             android:text="Select"
              />
@@ -52,7 +51,6 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/press_start_2p"
             android:text="Select"
-            android:background="@drawable/buttonbg"
              />
     </LinearLayout>
 
