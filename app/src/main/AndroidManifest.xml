@@ -100,6 +100,7 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".NameResultActivity"
+            android:exported="true"
             android:screenOrientation="landscape" />
 
         <meta-data
