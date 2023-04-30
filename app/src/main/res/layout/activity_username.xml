@@ -75,7 +75,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_centerHorizontal="true"
                 android:fontFamily="@font/press_start_2p"
-                android:text="(press sync to sync data)"
+                android:text="(press sync data)"
                 android:textSize="10dp" />
 
 
