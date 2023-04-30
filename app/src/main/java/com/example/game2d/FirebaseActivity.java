@@ -53,7 +53,7 @@ public class FirebaseActivity extends AppCompatActivity {
     Scoreboard big_userScoreMap = new Scoreboard();
 
     int bestChalk;
-    float percent;
+    Float percent;
 
 
     String CRE_username, CRE_userid;

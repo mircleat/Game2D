@@ -88,6 +88,7 @@ public class NameResultActivity extends AppCompatActivity { //
         SharedPreferences preferences = getSharedPreferences("MY_PREFS", 0);
         lastScore = preferences.getInt("lastScore", 0);
         newscore.setText((lastScore/5.0*100)+"%");
+        //preferences.edit().remove("allNameScores").apply();
 
         // ----- this was used to store best score
         best = preferences.getInt("best", 0);
@@ -137,6 +138,7 @@ public class NameResultActivity extends AppCompatActivity { //
             stringBuilder.append(score);
         }
         preferences.edit().putString("allNameScores", stringBuilder.toString()).apply();
+        preferences.edit().putFloat("percent", percent).apply();
         //----
 
         //storing a vector of scores to find average
