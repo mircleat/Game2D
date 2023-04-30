@@ -142,21 +142,30 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
                 selectedAnswer = ""; // clear selectedAnswer
                 chalkscore++;
                 currentQuestionIndex++;
+                SharedPreferences preferences = getSharedPreferences("MY_PREFS", 0);
+                preferences.edit().putInt("ChalkQuestionIndex", currentQuestionIndex);
+
                 loadNewQuestion();
             } else { // wrong choice has been chosen
                 MediaPlayer wrongSound = MediaPlayer.create(this, R.raw.wrong);
                 wrongSound.start();
                 selectedAnswer = "";
-                        Log.d("QUESTION", "selectedAnswer clear");
                 totalWrong++;
-                        Log.d("QUESTION", "totalWrong++");
                 currentQuestionIndex++;
+                SharedPreferences preferences = getSharedPreferences("MY_PREFS", 0);
+                preferences.edit().putInt("ChalkQuestionIndex", currentQuestionIndex);
+                if(currentQuestionIndex == totalQuestion)
+                {
+                    preferences.edit().putInt("lastChalkScore", chalkscore).apply();
+                }
                 Intent spawnGame = new Intent(getApplicationContext(), QuizToChalkActivity.class);
                 spawnGame.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 spawnGame.putExtra("QuestionCount", currentQuestionIndex);
                         Log.d("QUESTION", "Starting chalk game...");
                 startActivity(spawnGame);
-                loadNewQuestion();
+                if(currentQuestionIndex != totalQuestion) {
+                    loadNewQuestion();
+                }
             }
         } else {
             // one of the choices buttons clicked
