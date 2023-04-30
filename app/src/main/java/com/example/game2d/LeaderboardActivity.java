@@ -35,6 +35,7 @@ public class LeaderboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboard);
+        Log.d("LEADERBOARD", "Leaderboard activity");
 
         Window window = getWindow();
         window.setFlags(
@@ -77,6 +78,7 @@ public class LeaderboardActivity extends AppCompatActivity {
         // Sort map by values (descending scores)
         HashMap<String, Integer> sortedScoreMap = new HashMap<String, Integer>();
         sortedScoreMap = (HashMap<String, Integer>) sortByValue(scoreMap);
+        scoreboardObj.scoreboard = sortByValue(scoreboardObj.scoreboard);
 
         int ranking = 0;
         for (String username : scoreboardObj.scoreboard.keySet()) {

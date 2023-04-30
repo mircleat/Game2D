@@ -26,6 +26,8 @@ public class ChalkGameClass extends View {
     private boolean normGravity;
     private int playerX = 10;
     private int playerY;
+    private int minplayerY;
+    private int maxplayerY;
     private int playerSpeed;
     private boolean touch = false;
     private int jumpcount;
@@ -80,8 +82,8 @@ public class ChalkGameClass extends View {
         selectedShortHair = preferences.getBoolean("shortHairSelection", false);
         chalkIndex = preferences.getInt("ChalkQuestionIndex", 0);
 
-       ranGravity = (int) Math.floor(Math.random() * 5) + 1; //ranGravity is a random integer between 1 and 5
-
+      // ranGravity = (int) Math.floor(Math.random() * 5) + 1; //ranGravity is a random integer between 1 and 5
+        ranGravity = 2;
         if(ranGravity%2 ==1)
             normGravity = true; //if ranGravity is odd, normal gravity is used where you jump up but rest at the bottom
         else
@@ -117,7 +119,7 @@ public class ChalkGameClass extends View {
                 player[0] = BitmapFactory.decodeResource(getResources(), R.drawable.boy_idle_upsidedown);
                 player[1] = BitmapFactory.decodeResource(getResources(), R.drawable.boy_jump_upsidedown);
             }
-            backgroundImage = BitmapFactory.decodeResource(getResources(), R.drawable.background_upsidedown);
+            backgroundImage = BitmapFactory.decodeResource(getResources(), R.drawable.unspide_down);
             lives[0] = BitmapFactory.decodeResource(getResources(), R.drawable.hearts_upsidedown);
             lives[1] = BitmapFactory.decodeResource(getResources(), R.drawable.heart_grey_upsidedown);
         }
@@ -160,13 +162,20 @@ public class ChalkGameClass extends View {
         Matrix matrix = new Matrix();
 
         canvas.drawBitmap(backgroundImage, matrix, null);
+        int floorHeight = 70;
 
         matrix = StretchMatrix(matrix, canvasWidth, canvasHeight, backgroundImage);
+        if (normGravity)
+        {
+            minplayerY = 0;
 
-        int minplayerY = 0;
-        int floorHeight = 80;
-        int maxplayerY = canvasHeight - player[0].getHeight() - floorHeight;
-
+            maxplayerY = canvasHeight - player[1].getHeight() - floorHeight;
+        }
+        else
+        {
+            minplayerY = 0 + floorHeight;
+            maxplayerY = canvasHeight - player[1].getHeight();
+        }
         //PLAYER MECHANICS
         if(normGravity)
             playerY = playerY + playerSpeed; //makes character jump up and naturally fall down
@@ -243,6 +252,7 @@ public class ChalkGameClass extends View {
 
                 if(chalkIndex!=4)
                 {
+                    bossMusic.stop();
                     Intent returnQuiz = new Intent(getContext(), ChalkToQuizActivity.class);
                     returnQuiz.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     getContext().startActivity(returnQuiz);
@@ -257,6 +267,7 @@ public class ChalkGameClass extends View {
                 }
 
             }
+            bossMusic.start();
             chalkCol = ii;
             while(chalkCol > 4) //keeping chalkCol between 0 and 4;
             {
