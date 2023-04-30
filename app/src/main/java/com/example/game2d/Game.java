@@ -26,10 +26,6 @@ and rendering all objects to the screen.
  */
 public class Game extends SurfaceView implements SurfaceHolder.Callback {
     Bitmap background;
-    Bitmap pauseButton;
-    private boolean pauseTouch;
-    private int pauseX = 1800;
-    private int pauseY = 20;
     private final Joystick joystick;
     private final Player player;
     public static boolean canMove;
@@ -57,10 +53,10 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         Log.d("DIMENSION", String.valueOf(height));
         Log.d("DIMENSION", String.valueOf(width));
 
-        // Set background and pause Button
+        // Set background
         Bitmap original = BitmapFactory.decodeResource(context.getResources(), R.drawable.new_classroom_spots_scaled);
         background = Bitmap.createScaledBitmap(original, width, height, false);
-        pauseButton = BitmapFactory.decodeResource(context.getResources(), R.drawable.pause_new);
+
         // Initialize game objects
         // initialize joystick
         int joystickX = 150;
@@ -84,7 +80,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         // handle touch event actions
-        pauseTouch = onSingleTap(event);
         switch(event.getAction()) {
             // when user presses down
             case MotionEvent.ACTION_DOWN:
@@ -142,7 +137,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         detector1.draw(canvas);
         detector2.draw(canvas);
         detector3.draw(canvas);
-        canvas.drawBitmap(pauseButton, pauseX, pauseY, null);
     }
     // method to display how many updates per second (UPS)
     public void drawUPS(Canvas canvas) {
@@ -198,11 +192,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
             }
             canMove = false;
         }
-
-        if(pauseTouch)
-        {
-            startPauseActivity();
-        }
     }
 
     // check screen width and height
@@ -226,24 +215,5 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     public void startLeaderboardActivity() {
         Intent intent = new Intent(gameContext, FirebaseActivity.class);
         gameContext.startActivity(intent);
-    }
-
-    public void startPauseActivity() {
-        Intent intent = new Intent(gameContext, MenuPause.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        gameContext.startActivity(intent);
-    }
-    public boolean onSingleTap(MotionEvent event) {
-        int x = (int) event.getX();
-        int y = (int) event.getY();
-
-        if (pauseX < x && x < (pauseX + pauseButton.getWidth()) //if user touches pause button
-                && pauseY < y && y < (pauseY + pauseButton.getHeight()))
-
-        {
-            return true;
-        }
-
-        return false;
     }
 }
