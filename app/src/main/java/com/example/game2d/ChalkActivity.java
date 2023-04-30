@@ -39,7 +39,8 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
     int chalkscore = 0;
     int totalWrong = 0;
     int totalQuestion = ChalkQuestionAnswer.question.length;
-    public int currentQuestionIndex = 0;
+    int currentQuestionIndex = 0;
+    int sendQuestionIndex = 0;
     String selectedAnswer = "";
 
     //for pop up intro
@@ -125,6 +126,9 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
     }
     @Override
     public void onClick(View view) {
+        //Initializing Access to shared preferences;
+        SharedPreferences preferences = getSharedPreferences("MY_PREFS", 0);
+        sendQuestionIndex = preferences.getInt("ChalkQuestionIndex", 0);
 
         ansA.setBackgroundColor(Color.WHITE);
         ansB.setBackgroundColor(Color.WHITE);
@@ -146,6 +150,7 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
                 selectedAnswer = "";
                 chalkscore++;
                 currentQuestionIndex++;
+                preferences.edit().putInt("ChalkQuestionIndex", currentQuestionIndex).apply();
                 loadNewQuestion();
             } else {
                 MediaPlayer wrongSound = MediaPlayer.create(this, R.raw.wrong);
@@ -155,11 +160,19 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
                 totalWrong++;
                 Log.d("QUESTION", "totalWrong++");
                 Intent spawnGame = new Intent(getApplicationContext(), QuizToChalkActivity.class);
-                spawnGame.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                spawnGame.putExtra("QuestionCount", currentQuestionIndex);
+                spawnGame.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 Log.d("QUESTION", "Starting chalk game...");
-                getApplicationContext().startActivity(spawnGame);
+                startActivity(spawnGame);
                 currentQuestionIndex++;
+                preferences.edit().putInt("ChalkQuestionIndex", currentQuestionIndex).apply();
+                if(currentQuestionIndex != 4)
+                {
+                    loadNewQuestion();
+                }
+                else
+                {
+                    preferences.edit().putInt("lastChalkScore", chalkscore).apply();
+                }
             }
         } else {
             //choices button clicked
@@ -214,8 +227,9 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
 
         SharedPreferences preferences = getSharedPreferences("MY_PREFS", 0);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putInt("lastChalkScore",chalkscore);
-        editor.apply();
+        editor.putInt("lastChalkScore",chalkscore).apply();
+
+        editor.putInt("ChalkQuestionIndex",0).apply();
 
         Intent intent = new Intent(getApplicationContext(),ChalkResultActivity.class);//
         startActivity(intent);

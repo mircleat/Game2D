@@ -28,7 +28,7 @@ public class QuizToChalkActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent Chalktrns = new Intent(QuizToChalkActivity.this,ChalkGameActivity.class);
-                Chalktrns.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                Chalktrns.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(Chalktrns);
             }
         });
