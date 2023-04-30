@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="#D6D6D6">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="30dp"
+    android:background="@drawable/popupbg"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/alfa_slab_one"
+        style="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:padding="10dp"
+        android:text="Name Guessing Game: Objective"
+        android:textColor="@color/black"
+        android:textSize="24sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/abeezee"
+        android:text="In order to be a good engineer in the workspace, it is crucial to practice basic respect of your colleagues, and rememberbing their names is the first step. Otherwise you would be deemed as a racist, sexist, or just straight up ignorant.
+            \n\nLet's put it to the test! Here are a list of names from our EC327 class + TAs. Some are real people,
+others are just random combinations of first and last names in our class... Are you a respectful person?"
+        android:textSize="18sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_alignParentBottom="true"
+        >
+
+        <TextView
+            android:id="@+id/Continue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/buttonbg"
+            android:fontFamily="@font/abeezee"
+            android:padding="12dp"
+            android:text="Continue"
+            android:textColor="@color/white"
+            android:textSize="24dp" />
+
+
+
+    </RelativeLayout>
+
+</LinearLayout>
+
+
+
+
+</RelativeLayout>

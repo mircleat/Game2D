@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/title_page_optimized">
+
+
+
+
+    <Button
+        android:id="@+id/imageButton"
+        android:layout_width="170sp"
+        android:layout_height="110sp"
+        android:background="@android:color/transparent"
+        android:layout_marginTop="210sp"
+        android:layout_marginLeft="105sp"
+        android:textColor="@color/black"
+        android:textSize="24sp"/>
+
+    <Button
+        android:id="@+id/credit"
+        android:layout_width="170sp"
+        android:layout_height="70sp"
+        android:layout_marginLeft="280sp"
+        android:layout_marginTop="170sp"
+        android:background="@android:color/transparent"
+        android:fontFamily="@font/press_start_2p"
+        android:textColor="@color/black"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/leaderboard_btn"
+        android:layout_width="170sp"
+        android:layout_height="70sp"
+        android:layout_marginLeft="280sp"
+        android:layout_marginTop="250sp"
+        android:background="@android:color/transparent"
+        android:fontFamily="@font/press_start_2p"
+        android:textColor="@color/black"
+        android:textSize="24sp" />
+
+
+</RelativeLayout>

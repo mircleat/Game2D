@@ -1,0 +1,41 @@
+package com.example.game2d;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.media.MediaPlayer;
+import android.os.Bundle;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
+
+public class ChalkGameRIPActivity extends AppCompatActivity {
+    private Button resButton;
+
+    MediaPlayer ripSound;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        ripSound = MediaPlayer.create(getApplicationContext(), R.raw.gta_wasted);
+        ripSound.start();
+        setContentView(R.layout.activity_chalk_game_ripactivity);
+        resButton = findViewById(R.id.ChalkRIPResume);
+
+        Window window = getWindow();
+        window.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+        );
+        resButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ripSound.stop();
+                Intent ChalkRIPtrns = new Intent(ChalkGameRIPActivity.this,MainActivity.class);
+                ChalkRIPtrns.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(ChalkRIPtrns);
+            }
+        });
+    }
+}

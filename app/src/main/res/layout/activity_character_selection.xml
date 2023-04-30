@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/character_selction_neew">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="100sp"
+        android:layout_marginTop="160sp"
+        android:fontFamily="@font/press_start_2p"
+        android:textColor="@color/white"
+        android:text="Select your Avatar:" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:id="@+id/credential_display"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="495sp"
+        android:textSize="10sp"
+        android:layout_marginTop="120sp"
+        android:layout_marginRight="100dp"
+        android:fontFamily="@font/press_start_2p"
+        android:text="Your \nUsername: \n\n\nUnique ID:" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="290sp">
+
+
+
+        <Button
+            android:id="@+id/boy_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="110sp"
+            android:layout_marginRight="10sp"
+            android:fontFamily="@font/press_start_2p"
+            android:text="Select"
+             />
+
+        <Button
+            android:id="@+id/girl_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/press_start_2p"
+            android:text="Select"
+             />
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="200sp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="80sp"
+                android:layout_height="80sp"
+                android:layout_marginLeft="120sp"
+                android:background="@drawable/boy_idle_right" />
+
+            <ImageView
+                android:layout_width="80sp"
+                android:layout_height="80sp"
+                android:layout_marginLeft="60sp"
+                android:background="@drawable/girl_idle_right" />
+        </LinearLayout>
+
+
+    <Button
+        android:id="@+id/confirm_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="450sp"
+        android:background="@android:color/transparent"
+        android:layout_marginBottom="80sp"
+        android:fontFamily="@font/press_start_2p"
+        android:paddingHorizontal="70sp"
+         />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/popupbg"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="70dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:layout_marginTop="75dp"
+        android:layout_marginLeft="280dp"
+        android:background="@drawable/buttonbg"
+/>
+
+</RelativeLayout>

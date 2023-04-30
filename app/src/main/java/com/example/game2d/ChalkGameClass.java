@@ -1,0 +1,371 @@
+package com.example.game2d;
+
+import static android.content.Intent.getIntent;
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.media.MediaPlayer;
+import android.provider.MediaStore;
+import android.view.MotionEvent;
+import android.view.View;
+
+import java.util.Timer;
+import java.util.logging.Handler;
+
+
+public class ChalkGameClass extends View {
+    //PLAYER
+    private Bitmap player[] = new Bitmap[2];
+    private boolean selectedShortHair;
+    private int ranGravity;
+    private boolean normGravity;
+    private int playerX = 10;
+    private int playerY;
+    private int minplayerY;
+    private int maxplayerY;
+    private int playerSpeed;
+    private boolean touch = false;
+    private int jumpcount;
+
+    //CANVAS
+    private int canvasWidth, canvasHeight;
+    private Bitmap backgroundImage ;
+
+    //MEDIA
+    MediaPlayer bonk;
+    MediaPlayer oof;
+    MediaPlayer bossMusic;
+
+    //CHALK
+    private Bitmap chalk[] = new Bitmap[5];
+        private int chalkNum = 7;
+        private int chalkCol;
+        private int[] chalkX = new int[chalkNum];
+        private int[] chalkY = new int[chalkNum];
+        private int chalkXSpeed = 20;
+        private int chalkPassed;
+
+    //HEALTH SYSTEM
+    private Bitmap lives[] = new Bitmap[2];
+        private int lifecounter;
+        private int lifeXstart;
+        private int lifeY;
+        private Handler handler;
+
+
+    private Bitmap pauseButton;
+        private int pauseX = 1800;
+        private int pauseY = 20;
+    private boolean pauseTouch = false;
+
+    private int chalkIndex;
+
+
+    public ChalkGameClass(Context context)
+    {
+        super(context);
+
+        bonk = MediaPlayer.create(getContext(), R.raw.bonk);
+        oof = MediaPlayer.create(getContext(), R.raw.oof);
+        bossMusic = MediaPlayer.create(getContext(), R.raw.aramid);
+
+        SharedPreferences preferences = getContext().getSharedPreferences("MY_PREFS", 0);
+        selectedShortHair = preferences.getBoolean("shortHairSelection", false);
+        chalkIndex = preferences.getInt("ChalkQuestionIndex", 0);
+
+       ranGravity = (int) Math.floor(Math.random() * 5) + 1; //ranGravity is a random integer between 1 and 5
+
+        if(ranGravity%2 ==1)
+            normGravity = true; //if ranGravity is odd, normal gravity is used where you jump up but rest at the bottom
+        else
+            normGravity = false; //if ranGravity is even, abnormal gravity is used where you jump down but rest at the top
+
+
+        if(normGravity) {
+            playerY = 650; //make the player rest at the bottom if normal gravity
+            if(selectedShortHair == false)
+            {
+                player[0] = BitmapFactory.decodeResource(getResources(), R.drawable.girl);
+                player[1] = BitmapFactory.decodeResource(getResources(), R.drawable.girl_jump_big);
+            }
+            else
+            {
+                player[0] = BitmapFactory.decodeResource(getResources(), R.drawable.boy_big);
+                player[1] = BitmapFactory.decodeResource(getResources(), R.drawable.boy_jump_big);
+            }
+
+            backgroundImage= BitmapFactory.decodeResource(getResources(), R.drawable.background_normal);
+            lives[0] = BitmapFactory.decodeResource(getResources(), R.drawable.hearts);
+            lives[1] = BitmapFactory.decodeResource(getResources(), R.drawable.heart_grey);
+            lifeY = 20;
+
+        }
+        else {
+            playerY = 0; //make the player rest at the top if abnormal gravity
+            if(selectedShortHair == false) {
+                player[0] = BitmapFactory.decodeResource(getResources(), R.drawable.girl_upsidedown);
+                player[1] = BitmapFactory.decodeResource(getResources(), R.drawable.girl_jump_upsidedown);
+            }
+            else {
+                player[0] = BitmapFactory.decodeResource(getResources(), R.drawable.boy_idle_upsidedown);
+                player[1] = BitmapFactory.decodeResource(getResources(), R.drawable.boy_jump_upsidedown);
+            }
+            backgroundImage = BitmapFactory.decodeResource(getResources(), R.drawable.unspide_down);
+            lives[0] = BitmapFactory.decodeResource(getResources(), R.drawable.hearts_upsidedown);
+            lives[1] = BitmapFactory.decodeResource(getResources(), R.drawable.heart_grey_upsidedown);
+        }
+
+        jumpcount = 0;
+        lifeXstart = 1430;
+
+
+        //Initializing the chalk array
+        chalk[0] = BitmapFactory.decodeResource(getResources(), R.drawable.green_chalk);
+        chalk[1] = BitmapFactory.decodeResource(getResources(), R.drawable.yellow_chalk);
+        chalk[2] = BitmapFactory.decodeResource(getResources(), R.drawable.red_chalk);
+        chalk[3] = BitmapFactory.decodeResource(getResources(), R.drawable.white_chalk);
+        chalk[4] = BitmapFactory.decodeResource(getResources(), R.drawable.blue_chalk);
+        chalkPassed = 0;
+
+        lifecounter = 3;
+
+        pauseButton = BitmapFactory.decodeResource(getResources(), R.drawable.pause_new);
+
+
+
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        canvasWidth = canvas.getWidth();
+        canvasHeight = canvas.getHeight();
+
+        if (backgroundImage == null) return;
+        // Use the same Matrix over and over again to minimize
+        // allocation in onDraw.
+
+        // boss music start
+        bossMusic.start();
+
+        //getting the question index
+
+        Matrix matrix = new Matrix();
+
+        canvas.drawBitmap(backgroundImage, matrix, null);
+        int floorHeight = 70;
+
+        matrix = StretchMatrix(matrix, canvasWidth, canvasHeight, backgroundImage);
+        if (normGravity)
+        {
+            minplayerY = 0;
+
+            maxplayerY = canvasHeight - player[1].getHeight() - floorHeight;
+        }
+        else
+        {
+            minplayerY = 0 + floorHeight;
+            maxplayerY = canvasHeight - player[1].getHeight();
+        }
+        //PLAYER MECHANICS
+        if(normGravity)
+            playerY = playerY + playerSpeed; //makes character jump up and naturally fall down
+        else
+            playerY = playerY - playerSpeed; //makes character jump down and naturally float up
+
+        if (playerY < minplayerY) {
+            playerY = minplayerY;
+            touch = false;
+            if(normGravity)
+            {
+                playerSpeed = 125;
+                bonk.start();
+            }
+        }       //limiting the player's y to the top of the screen
+
+        if (playerY > maxplayerY) {
+            playerY = maxplayerY;
+            touch = false;
+            if(!normGravity)
+            {
+                playerSpeed = 125;
+            }
+        }       //limiting the player's y tot he bottom of the screen
+
+        playerSpeed = playerSpeed + 2; //gravity
+
+        if (touch) { //jumping animation
+            if (jumpcount > 0) { //double jump, draw idle character before drawing jump again
+                canvas.drawBitmap(player[0], playerX, playerY, null);
+                jumpcount = 0; //reset double jump
+            } else
+                canvas.drawBitmap(player[1], playerX, playerY, null);
+
+        } else {
+            canvas.drawBitmap(player[0], playerX, playerY, null);
+        }
+
+        //CHALK MECHANICS
+
+        for(int ii = 0; ii < chalkNum; ii ++) {
+            if (hitChalkChecker(chalkX[ii], chalkY[ii])) //if player collides with chalk
+            {
+                chalkX[ii] = chalkX[ii] - 200; //makes chalk disappear
+                oof.start();
+                lifecounter--; //reduces health;
+
+                if(lifecounter == 0)  //if all lives used up
+                {
+                    bossMusic.stop();
+                    Intent RIPIntent = new Intent(getContext(), ChalkGameRIPActivity.class);
+                    RIPIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    getContext().startActivity(RIPIntent);
+
+                }
+            }
+
+            chalkX[ii] = chalkX[ii] - chalkXSpeed; //making the chalk move across the screen from right to left
+            if (chalkX[ii] < 0)
+            {
+                chalkPassed++;
+                chalkX[ii] = canvasWidth + (ii * 200);
+                if (ii == chalkNum - 1)
+                    chalkXSpeed += 2;
+                chalkY[ii] = (int) Math.floor(Math.random() * ((maxplayerY + player[0].getHeight()) - chalk[0].getHeight())) + chalk[0].getHeight(); //making the chalk appear at random  heights
+            }
+
+
+            if(chalkPassed == chalkNum * 3)
+            {
+                chalkXSpeed = 0;
+                chalkPassed = 0;
+                bossMusic.stop();
+
+                if(chalkIndex!=4)
+                {
+                    bossMusic.stop();
+                    Intent returnQuiz = new Intent(getContext(), ChalkToQuizActivity.class);
+                    returnQuiz.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    getContext().startActivity(returnQuiz);
+                }
+                else
+                {
+                    SharedPreferences preferences = getContext().getSharedPreferences("MY_PREFS", 0);
+                    preferences.edit().putInt("ChalkQuestionIndex", 0).apply();
+                    Intent endQuiz = new Intent(getContext(), ChalkResultActivity.class);
+                    endQuiz.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    getContext().startActivity(endQuiz);
+                }
+
+            }
+            bossMusic.start();
+            chalkCol = ii;
+            while(chalkCol > 4) //keeping chalkCol between 0 and 4;
+            {
+                chalkCol-= 5;
+            }
+
+            canvas.drawBitmap(chalk[chalkCol], chalkX[ii], chalkY[ii],  null);
+        }
+
+        //Health System Display
+
+        for(int ii = 0; ii < 3; ii++)
+        {
+            int lifeX = (int) (lifeXstart + lives[0].getWidth() * 1.5 * ii);
+
+
+            if(ii < lifecounter)
+            {
+                canvas.drawBitmap(lives[0], lifeX, lifeY, null); //drawing full heart
+            }
+            else
+            {
+                canvas.drawBitmap(lives[1], lifeX, lifeY, null); //drawing lost heart
+            }
+        }
+
+        //PAUSE BUTTON
+        canvas.drawBitmap(pauseButton, pauseX, pauseY, null);
+        if (pauseTouch == true)
+        {
+            pauseTouch = false;
+            Intent pauseIntent = new Intent(getContext(), PauseWindow.class);
+            pauseIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            getContext().startActivity(pauseIntent);
+
+        }
+
+
+    }
+
+    private Matrix StretchMatrix(Matrix fnMatrix, int x, int y, Bitmap img)
+    {
+        float vw = x;
+        float vh = y;
+        float bw = (float) img.getWidth ();
+        float bh = (float) img.getHeight ();
+
+        // Scale the bitmap to fit into the view.
+        float s1x = vw / bw;
+        float s1y = vh / bh;
+       fnMatrix.postScale (s1x, s1y);
+
+       return fnMatrix;
+    }
+
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event)
+    {
+        pauseTouch = onSingleTap(event);
+        if (event.getAction() == MotionEvent.ACTION_UP)
+        {
+            if(pauseTouch == false)
+            {
+                touch = true;
+                playerSpeed = -30;
+                jumpcount++;
+            }
+        }
+        return true;
+    }
+
+    public boolean hitChalkChecker(int x, int y)
+    {
+        if(playerX < x && x < (playerX + player[0].getWidth())
+                && playerY < y && y < (playerY + player[0].getHeight()))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean onSingleTap(MotionEvent event) {
+        int x = (int) event.getX();
+        int y = (int) event.getY();
+
+        if ((pauseX < x && x < (pauseX + pauseButton.getWidth()) //if user touches pause button
+                && pauseY < y && y < (pauseY + pauseButton.getHeight())))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasWindowFocus) {
+        super.onWindowFocusChanged(hasWindowFocus);
+        if (hasWindowFocus) { //onresume() called
+            bossMusic.start();
+        } else { // onPause() called
+            bossMusic.pause();
+        }
+    }
+}

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/new_blackboard_enlarged">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Looks like there are some unanswered questions on the board."
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_marginTop="330dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="50dp"
+        android:textSize="15dp"
+        android:fontFamily="@font/press_start_2p"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="80dp"
+        android:layout_marginBottom="60dp"
+        android:text="Answer Question"
+        android:fontFamily="@font/press_start_2p"
+        android:id="@+id/answerQuestion"
+        />
+
+
+
+</RelativeLayout>
