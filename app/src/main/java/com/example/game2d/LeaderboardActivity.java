@@ -77,6 +77,7 @@ public class LeaderboardActivity extends AppCompatActivity {
         // Sort map by values (descending scores)
         HashMap<String, Integer> sortedScoreMap = new HashMap<String, Integer>();
         sortedScoreMap = (HashMap<String, Integer>) sortByValue(scoreMap);
+        scoreboardObj.scoreboard = sortByValue(scoreboardObj.scoreboard);
 
         int ranking = 0;
         for (String username : scoreboardObj.scoreboard.keySet()) {
