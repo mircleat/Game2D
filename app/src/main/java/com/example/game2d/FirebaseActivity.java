@@ -15,6 +15,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -112,6 +113,7 @@ public class FirebaseActivity extends AppCompatActivity {
             public void onClick(View view) {
                 UploadData();
                 RetrieveData();
+                Toast.makeText(FirebaseActivity.this, "Synched!", Toast.LENGTH_SHORT).show();
             }
         });
 

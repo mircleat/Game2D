@@ -37,9 +37,9 @@ public class ChalkGameClass extends View {
     private Bitmap backgroundImage ;
 
     //MEDIA
-    MediaPlayer bonk = MediaPlayer.create(getContext(), R.raw.bonk);
-    MediaPlayer oof = MediaPlayer.create(getContext(), R.raw.oof);
-    MediaPlayer bossMusic = MediaPlayer.create(getContext(), R.raw.aramid);
+    MediaPlayer bonk;
+    MediaPlayer oof;
+    MediaPlayer bossMusic;
 
     //CHALK
     private Bitmap chalk[] = new Bitmap[5];
@@ -73,6 +73,10 @@ public class ChalkGameClass extends View {
     public ChalkGameClass(Context context)
     {
         super(context);
+
+        bonk = MediaPlayer.create(getContext(), R.raw.bonk);
+        oof = MediaPlayer.create(getContext(), R.raw.oof);
+        bossMusic = MediaPlayer.create(getContext(), R.raw.aramid);
 
         SharedPreferences preferences = getContext().getSharedPreferences("MY_PREFS", 0);
         selectedShortHair = preferences.getBoolean("shortHairSelection", false);
@@ -360,4 +364,13 @@ public class ChalkGameClass extends View {
         return false;
     }
 
+    @Override
+    public void onWindowFocusChanged(boolean hasWindowFocus) {
+        super.onWindowFocusChanged(hasWindowFocus);
+        if (hasWindowFocus) { //onresume() called
+            bossMusic.start();
+        } else { // onPause() called
+            bossMusic.pause();
+        }
+    }
 }

@@ -156,6 +156,7 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
                 spawnGame.putExtra("QuestionCount", currentQuestionIndex);
                         Log.d("QUESTION", "Starting chalk game...");
                 getApplicationContext().startActivity(spawnGame);
+                loadNewQuestion();
             }
         } else {
             // one of the choices buttons clicked
