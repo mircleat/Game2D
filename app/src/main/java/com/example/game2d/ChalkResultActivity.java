@@ -25,7 +25,7 @@ public class ChalkResultActivity extends AppCompatActivity { //
     int lastChalkScore;
     int bestChalk;
 
-MediaPlayer winSound = MediaPlayer.create(getApplicationContext(), R.raw.eerie_win);
+    MediaPlayer winSound;
 
     Button submitBtn;
 
@@ -34,6 +34,7 @@ MediaPlayer winSound = MediaPlayer.create(getApplicationContext(), R.raw.eerie_w
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_name_result);
+        winSound = MediaPlayer.create(this, R.raw.eerie_win);
         winSound.start();
         Log.d("CHALKRESULT", "onCreate after sound start");
         Window window = getWindow();

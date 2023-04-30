@@ -11,11 +11,11 @@ import android.widget.Button;
 public class ChalkToQuizActivity extends AppCompatActivity {
     private Button resButton;
 
-    MediaPlayer victorySound = MediaPlayer.create(getApplicationContext(), R.raw.valorant_ace);
-
+    MediaPlayer victorySound;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        victorySound = MediaPlayer.create(getApplicationContext(), R.raw.valorant_ace);
         victorySound.start();
         setContentView(R.layout.activity_chalk_to_quiz);
         resButton = findViewById(R.id.ChalktoQuizResume);

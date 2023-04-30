@@ -11,11 +11,12 @@ import android.widget.Button;
 public class ChalkGameRIPActivity extends AppCompatActivity {
     private Button resButton;
 
-    MediaPlayer ripSound = MediaPlayer.create(getApplicationContext(), R.raw.gta_wasted);
+    MediaPlayer ripSound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ripSound = MediaPlayer.create(getApplicationContext(), R.raw.gta_wasted);
         ripSound.start();
         setContentView(R.layout.activity_chalk_game_ripactivity);
         resButton = findViewById(R.id.ChalkRIPResume);

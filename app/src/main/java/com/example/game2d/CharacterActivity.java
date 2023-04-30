@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,6 +25,8 @@ public class CharacterActivity extends AppCompatActivity {
 
     public boolean selectedShortHair;
 
+    MediaPlayer openSound;
+
     String username ; // <--- store the username in this variable
 
     String ID;
@@ -32,6 +35,9 @@ public class CharacterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_selection);
+
+        openSound = MediaPlayer.create(this, R.raw.metal_click);
+        openSound.start();
 
         Window window = getWindow();
         window.setFlags(
