@@ -16,9 +16,9 @@ public abstract class Circle extends GameObject{
     /** Constructs a circle that can be drawn to the screen.
      * @param context the current context
      * @param color the color of the drawn circle, defined in the res/values/colors.xml file
-     * @param positionX an x-coordinate for the center of the circle
-     * @param positionY a y-coordinate for the center of the circle
-     * @param radius the radius (in pixels) of the circle
+     * @param positionX an x-coordinate for the circle's center
+     * @param positionY a y-coordinate for the circle's center
+     * @param radius the circle's radius (in pixels)
      * @return the newly constructed Circle object
      */
     public Circle(Context context, int color, float positionX, float positionY, double radius) {
