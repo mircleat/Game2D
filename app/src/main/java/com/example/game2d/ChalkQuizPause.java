@@ -11,6 +11,9 @@ import android.widget.Button;
 
 public class ChalkQuizPause extends AppCompatActivity {
     private Button resumeButton;
+    private Button exitButton;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +27,7 @@ public class ChalkQuizPause extends AppCompatActivity {
         );
 
         resumeButton = findViewById(R.id.chalkResumeButton);
+        exitButton = findViewById(R.id.chalkExitButton);
 
         resumeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,6 +36,15 @@ public class ChalkQuizPause extends AppCompatActivity {
                 Intent resumeIntent = new Intent(ChalkQuizPause.this, ChalkActivity.class);
                 resumeIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(resumeIntent);
+            }
+        });
+
+        exitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent exitIntent = new Intent(ChalkQuizPause.this, MainActivity.class);
+                startActivity(exitIntent);
+
             }
         });
     }

@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 
 public class ChalkToQuizActivity extends AppCompatActivity {
@@ -19,6 +21,12 @@ public class ChalkToQuizActivity extends AppCompatActivity {
         victorySound.start();
         setContentView(R.layout.activity_chalk_to_quiz);
         resButton = findViewById(R.id.ChalktoQuizResume);
+
+        Window window = getWindow();
+        window.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+        );
 
         resButton.setOnClickListener(new View.OnClickListener() {
             @Override
