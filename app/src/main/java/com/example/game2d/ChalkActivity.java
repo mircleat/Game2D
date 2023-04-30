@@ -25,13 +25,19 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * This is an activity where users are faced with a quiz on Machine Code and can choose one of
+ * four options in response. If they select the right answer, they move on to the next question
+ * but if they select the wrong answer they are transported to the chalk-dodging activity and
+ * must survive that to come back and answer the next question.
+ */
 public class ChalkActivity extends AppCompatActivity implements View.OnClickListener{
 
     MediaPlayer backgroundMusic;
     TextView totalQuestionsTextView;
     TextView questionTextView;
     Button ansA, ansB, ansC, ansD;
-    Button submitBtn/*, helpBtn*/;
+    Button submitBtn;
     ImageButton pauseBtn;
 
     int chalkscore = 0;
@@ -42,6 +48,15 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
 
     //for pop up intro
     RelativeLayout layout;
+
+    /**
+     * Sets the view to the one declared in the corresponding XML file and implements
+     * the mechanics of the selection of answers and the sequential actions (mentioned above).
+     * It also manages the background music and sound effects which are based on if the
+     * right or wrong answer is selected by the user.
+     * @param savedInstanceState the bundle of the instance of the game in case the
+     * activity needs to be restored to this instance
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,10 +92,13 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
         ansC.setOnClickListener(this);
         ansD.setOnClickListener(this);
         submitBtn.setOnClickListener(this);
-        /*helpBtn.setOnClickListener(this);*/
 
         //Pause menu implementation
         pauseBtn.setOnClickListener(new View.OnClickListener() {
+            /**
+             *
+             * @param view
+             */
             @Override
             public void onClick(View view)
             {
@@ -142,21 +160,30 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
                 selectedAnswer = ""; // clear selectedAnswer
                 chalkscore++;
                 currentQuestionIndex++;
+                SharedPreferences preferences = getSharedPreferences("MY_PREFS", 0);
+                preferences.edit().putInt("ChalkQuestionIndex", currentQuestionIndex);
+
                 loadNewQuestion();
             } else { // wrong choice has been chosen
                 MediaPlayer wrongSound = MediaPlayer.create(this, R.raw.wrong);
                 wrongSound.start();
                 selectedAnswer = "";
-                        Log.d("QUESTION", "selectedAnswer clear");
                 totalWrong++;
-                        Log.d("QUESTION", "totalWrong++");
                 currentQuestionIndex++;
+                SharedPreferences preferences = getSharedPreferences("MY_PREFS", 0);
+                preferences.edit().putInt("ChalkQuestionIndex", currentQuestionIndex);
+                if(currentQuestionIndex == totalQuestion)
+                {
+                    preferences.edit().putInt("lastChalkScore", chalkscore).apply();
+                }
                 Intent spawnGame = new Intent(getApplicationContext(), QuizToChalkActivity.class);
-                spawnGame.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                spawnGame.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 spawnGame.putExtra("QuestionCount", currentQuestionIndex);
                         Log.d("QUESTION", "Starting chalk game...");
-                getApplicationContext().startActivity(spawnGame);
-                loadNewQuestion();
+                startActivity(spawnGame);
+                if(currentQuestionIndex != totalQuestion) {
+                    loadNewQuestion();
+                }
             }
         } else {
             // one of the choices buttons clicked

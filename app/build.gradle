@@ -4,6 +4,9 @@ plugins {
 }
 
 android {
+    /*testOptions {
+        unitTests.returnDefaultValues = true
+    }*/
     namespace 'com.example.game2d'
     compileSdk 33
 
@@ -36,8 +39,25 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     implementation 'com.google.firebase:firebase-database:20.0.4'
     testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    testImplementation "androidx.arch.core:core-testing:2.2.0"
+
+    // testing
+    allprojects {
+        repositories {
+            jcenter()
+            google()
+        }
+    }
+    // https://mvnrepository.com/artifact/org.mockito/mockito-core
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '4.0.0'
+    testImplementation 'org.mockito:mockito-inline:4.0.0'
+    testImplementation 'org.mockito:mockito-junit-jupiter:4.0.0'
+    // required if you want to use Mockito for Android tests
+    testImplementation 'org.mockito:mockito-android:4.0.0'
+
 
     //*
     implementation platform('com.google.firebase:firebase-bom:31.5.0')

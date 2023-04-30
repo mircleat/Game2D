@@ -10,17 +10,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/popupbg"
         android:layout_margin="30dp"
-        android:orientation="vertical"
         android:gravity="center"
-        android:background="@drawable/popupbg">
+        android:orientation="vertical">
 
         <TextView
             style="@android:style/TextAppearance.DeviceDefault.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
             android:text="Paused"
+            android:padding="10dp"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:fontFamily="@font/alfa_slab_one" />
@@ -31,34 +31,30 @@
             android:layout_width="match_parent"
 
             android:layout_height="wrap_content"
-            android:gravity="left"
-
             android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
+
+            android:layout_marginTop="2dp"
             android:layout_marginEnd="20dp"
-            android:text="Hint!"
+            android:gravity="left"
+            android:text="Hint: Look at the table of examples below"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
-        <TextView
+        <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
-
-            android:text="Paused"
-            android:textSize="18sp" />
+            android:layout_height="136dp"
+            android:src="@drawable/chalk_quiz_hint" />
 
         <Button
             android:id="@+id/chalkResumeButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
-            android:text="Resume"
-            android:fontFamily="@font/abeezee" />
+            android:fontFamily="@font/abeezee"
+            android:text="Resume" />
+
         <Button
             android:id="@+id/chalkExitButton"
             android:layout_width="match_parent"

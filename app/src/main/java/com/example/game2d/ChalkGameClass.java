@@ -2,6 +2,7 @@ package com.example.game2d;
 
 import static android.content.Intent.getIntent;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -47,7 +48,7 @@ public class ChalkGameClass extends View {
         private int chalkCol;
         private int[] chalkX = new int[chalkNum];
         private int[] chalkY = new int[chalkNum];
-        private int chalkXSpeed = 20;
+        private int chalkXSpeed;
         private int chalkPassed;
 
     //HEALTH SYSTEM
@@ -55,7 +56,6 @@ public class ChalkGameClass extends View {
         private int lifecounter;
         private int lifeXstart;
         private int lifeY;
-        private Handler handler;
 
 
     private Bitmap pauseButton;
@@ -63,7 +63,7 @@ public class ChalkGameClass extends View {
         private int pauseY = 20;
     private boolean pauseTouch = false;
 
-    private int chalkIndex;
+    SharedPreferences preferences;
 
 
     public ChalkGameClass(Context context)
@@ -74,9 +74,8 @@ public class ChalkGameClass extends View {
         oof = MediaPlayer.create(getContext(), R.raw.oof);
         bossMusic = MediaPlayer.create(getContext(), R.raw.aramid);
 
-        SharedPreferences preferences = getContext().getSharedPreferences("MY_PREFS", 0);
+        preferences = getContext().getSharedPreferences("MY_PREFS", 0);
         selectedShortHair = preferences.getBoolean("shortHairSelection", false);
-        chalkIndex = preferences.getInt("ChalkQuestionIndex", 0);
 
        ranGravity = (int) Math.floor(Math.random() * 5) + 1; //ranGravity is a random integer between 1 and 5
 
@@ -136,7 +135,9 @@ public class ChalkGameClass extends View {
 
         pauseButton = BitmapFactory.decodeResource(getResources(), R.drawable.pause_new);
 
-
+        chalkXSpeed = 20;
+        // boss music start
+        bossMusic.start();
 
     }
 
@@ -150,10 +151,7 @@ public class ChalkGameClass extends View {
         // Use the same Matrix over and over again to minimize
         // allocation in onDraw.
 
-        // boss music start
-        bossMusic.start();
 
-        //getting the question index
 
         Matrix matrix = new Matrix();
 
@@ -194,6 +192,7 @@ public class ChalkGameClass extends View {
             if(!normGravity)
             {
                 playerSpeed = 125;
+                bonk.start();
             }
         }       //limiting the player's y tot he bottom of the screen
 
@@ -242,27 +241,16 @@ public class ChalkGameClass extends View {
 
             if(chalkPassed == chalkNum * 3)
             {
-                chalkXSpeed = 0;
                 chalkPassed = 0;
                 bossMusic.stop();
 
-                if(chalkIndex!=4)
-                {
-                    bossMusic.stop();
                     Intent returnQuiz = new Intent(getContext(), ChalkToQuizActivity.class);
                     returnQuiz.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     getContext().startActivity(returnQuiz);
-                }
-                else
-                {
-                    SharedPreferences preferences = getContext().getSharedPreferences("MY_PREFS", 0);
-                    preferences.edit().putInt("ChalkQuestionIndex", 0).apply();
-                    Intent endQuiz = new Intent(getContext(), ChalkResultActivity.class);
-                    endQuiz.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    getContext().startActivity(endQuiz);
-                }
+                    finishFunction();
 
             }
+
             bossMusic.start();
             chalkCol = ii;
             while(chalkCol > 4) //keeping chalkCol between 0 and 4;
@@ -367,5 +355,10 @@ public class ChalkGameClass extends View {
         } else { // onPause() called
             bossMusic.pause();
         }
+    }
+
+    private void finishFunction() {
+        Activity activity = (Activity)getContext();
+        activity.finish();
     }
 }
