@@ -14,6 +14,10 @@ import android.widget.Button;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * Implementation of the custom view for the Chalk Dodging Game
+ */
+
 public class ChalkGameActivity extends AppCompatActivity {
     private ChalkGameClass gameView;
     private Handler handler = new Handler();
