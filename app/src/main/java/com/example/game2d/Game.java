@@ -31,6 +31,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     public static boolean canMove;
     private final Detector detector1;
     private final Detector detector2;
+    private final Detector detector3;
 
     private GameLoop gameLoop;
     private Context gameContext;
@@ -69,6 +70,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         // initialize new detectors
         detector1 = new Detector(getContext(), player, (float) (width * 0.25), (float) (height * 0.17), 100);
         detector2 = new Detector(getContext(), player, (float) (width * 0.47), (float) (height * 0.17), 100);
+        detector3 = new Detector(getContext(), player, (float) (width * 0.75), (float) (height * 0.17), 100);
 
         // copy other developers lol
         setFocusable(true);
@@ -134,6 +136,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         // draw single detectors
         detector1.draw(canvas);
         detector2.draw(canvas);
+        detector3.draw(canvas);
     }
     // method to display how many updates per second (UPS)
     public void drawUPS(Canvas canvas) {
@@ -166,13 +169,13 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         player.update();
         detector1.update();
         detector2.update();
+        detector3.update();
         // Check for collision with detectors
         if (Circle.isColliding(player, detector1)) {
             if (canMove) {
                 // call method to start quiz activity
                 startSecondActivity();
             }
-            Log.d("COLLISION", "DETECTOR");
             canMove = false;
         }
         if (Circle.isColliding(player, detector2)) {
@@ -180,7 +183,13 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
                 // call method to start chalk activity
                 startChalkActivity();
             }
-            Log.d("COLLISION", "DETECTOR");
+            canMove = false;
+        }
+        if (Circle.isColliding(player, detector3)) {
+            if (canMove) {
+                // call method to start leaderboard activity
+                startLeaderboardActivity();
+            }
             canMove = false;
         }
     }
@@ -197,12 +206,14 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     public void startSecondActivity() {
         Intent intent = new Intent(gameContext, NameIntroActivity.class);
         gameContext.startActivity(intent);
-        Log.d("COLLISION", "Starting name activity");
     }
     // method to start chalk activity
     public void startChalkActivity() {
         Intent intent = new Intent(gameContext, ChalkIntroActivity.class);
         gameContext.startActivity(intent);
-        Log.d("COLLISION", "Starting chalk activity");
+    }
+    public void startLeaderboardActivity() {
+        Intent intent = new Intent(gameContext, FirebaseActivity.class);
+        gameContext.startActivity(intent);
     }
 }
