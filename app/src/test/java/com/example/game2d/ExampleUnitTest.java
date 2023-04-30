@@ -37,11 +37,19 @@ public class ExampleUnitTest {
         assertEquals(4, 2 + 2);
     }*/
 
+
+    // -------------------------------- BEGIN --------------------------------
+    // ChalkActivity.java
     @Test
     public void randomizeOrderTest() {
         int[] original = new int[] { 0, 1, 2, 3 };
-
-        testObj = new ChalkActivity();
-        assertNotEquals(original, testObj.randomizeOrders());
+        ChalkActivity testObj = new ChalkActivity();
+        int[] created = testObj.randomizeOrders();
+        for (int i = 0; i < 4; i++) {
+            System.out.println(created[i]);
+        }
+        assertEquals(original, testObj.randomizeOrders());
     }
+
+
 }
