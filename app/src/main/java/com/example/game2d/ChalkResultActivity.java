@@ -33,7 +33,7 @@ public class ChalkResultActivity extends AppCompatActivity { //
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_name_result);
+        setContentView(R.layout.activity_chalk_result);
         winSound = MediaPlayer.create(this, R.raw.eerie_win);
         winSound.start();
         Log.d("CHALKRESULT", "onCreate after sound start");

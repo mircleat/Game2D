@@ -80,6 +80,9 @@ public class FirebaseActivity extends AppCompatActivity {
         );
 
 
+
+
+
         //-----------DISPLAY-----------------------------------------------------------------
         //fetching game data and user credential from shared Preference
         SharedPreferences preferences = getSharedPreferences("MY_PREFS", 0);
@@ -105,6 +108,9 @@ public class FirebaseActivity extends AppCompatActivity {
         chalkScore = (TextView) findViewById(R.id.chalk_score);
         chalkScore.setText(bestChalk/4.0*100+"%");
 
+        UploadData();
+        RetrieveData();
+
         //-----------BUTTON-----------------------------------------------------------------
         //setting data button
         Button set_button = (Button) findViewById(R.id.set_btn);
@@ -113,7 +119,7 @@ public class FirebaseActivity extends AppCompatActivity {
             public void onClick(View view) {
                 UploadData();
                 RetrieveData();
-                Toast.makeText(FirebaseActivity.this, "Synched!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(FirebaseActivity.this, "Data synced", Toast.LENGTH_SHORT).show();
             }
         });
 
