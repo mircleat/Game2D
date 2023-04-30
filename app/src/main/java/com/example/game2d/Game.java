@@ -174,7 +174,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         detector2.update();
         detector3.update();
         detector4.update();
-
         // Check for collision with detectors
         if (Circle.isColliding(player, detector1)) {
             if (canMove) {

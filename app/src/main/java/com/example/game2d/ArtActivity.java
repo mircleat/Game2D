@@ -31,7 +31,7 @@ public class ArtActivity extends AppCompatActivity { //
             @Override
             public void onClick(View view) {
                 // switch back to main activity
-                Intent intent = new Intent(ArtActivity.this, StartActivity.class);
+                Intent intent = new Intent(ArtActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
