@@ -28,19 +28,17 @@ import android.widget.Toast;
 public class ChalkActivity extends AppCompatActivity implements View.OnClickListener{
 
     MediaPlayer backgroundMusic;
-
     TextView totalQuestionsTextView;
     TextView questionTextView;
     Button ansA, ansB, ansC, ansD;
     Button submitBtn/*, helpBtn*/;
-    
     ImageButton pauseBtn;
 
     int chalkscore = 0;
     int totalWrong = 0;
-    int totalQuestion = ChalkQuestionAnswer.question.length;
-    public int currentQuestionIndex = 0;
-    String selectedAnswer = "";
+    int totalQuestion = ChalkQuestionAnswer.question.length; // the total number of questions
+    public int currentQuestionIndex = 0; // Starts off as zero, but increments after pressing submit. (The first question has an index of 1)
+    String selectedAnswer = ""; // A string containing the selected answer once the user clicks on a choice
 
     //for pop up intro
     RelativeLayout layout;
@@ -51,8 +49,8 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
 
         Window window = getWindow();
         window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
         );
 
         // BGM
@@ -64,7 +62,7 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
         layout = findViewById(R.id.chalkActivity); // relative is the id of the layout of the page
         CreatepopUpwindow();
 
-        /*totalQuestionsTextView = findViewById(R.id.total_question);*/
+        // Set the text for the question, choices, and submit button based on the data from ChalkQuestionAnswer.java
         questionTextView = findViewById(R.id.question);
         ansA = findViewById(R.id.ans_A);
         ansB = findViewById(R.id.ans_B);
@@ -81,8 +79,6 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
         submitBtn.setOnClickListener(this);
         /*helpBtn.setOnClickListener(this);*/
 
-        /*totalQuestionsTextView.setText("Total questions : "+totalQuestion);*/
-
         //Pause menu implementation
         pauseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,7 +91,6 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
         });
 
         loadNewQuestion();
-
     }
 
     //for pop up intro
@@ -132,47 +127,48 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
         ansD.setBackgroundColor(Color.WHITE);
 
         Button clickedButton = (Button) view;
-        if(clickedButton.getId()==R.id.submit_btn){
-            if(selectedAnswer == "") {
+        if(clickedButton.getId()==R.id.submit_btn){ // When submit button is clicked
+            if(selectedAnswer == "") { // If no answer has been selected
                 new AlertDialog.Builder(this)
-                        .setMessage("Please select an answer")
+                        .setMessage("Please select an answer.")
                         .show();
             } else if(selectedAnswer.equals(ChalkQuestionAnswer.correctAnswers[currentQuestionIndex])){
+                // correct choice has been chosen
                 //SFX
                 MediaPlayer correctSound = MediaPlayer.create(this, R.raw.correct);
                 if (currentQuestionIndex != 3) {
                     correctSound.start();
                 }
-                selectedAnswer = "";
+                selectedAnswer = ""; // clear selectedAnswer
                 chalkscore++;
                 currentQuestionIndex++;
                 loadNewQuestion();
-            } else {
+            } else { // wrong choice has been chosen
                 MediaPlayer wrongSound = MediaPlayer.create(this, R.raw.wrong);
                 wrongSound.start();
                 selectedAnswer = "";
-                Log.d("QUESTION", "selectedAnswer clear");
+                        Log.d("QUESTION", "selectedAnswer clear");
                 totalWrong++;
-                Log.d("QUESTION", "totalWrong++");
+                        Log.d("QUESTION", "totalWrong++");
                 Intent spawnGame = new Intent(getApplicationContext(), QuizToChalkActivity.class);
                 spawnGame.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 spawnGame.putExtra("QuestionCount", currentQuestionIndex);
-                Log.d("QUESTION", "Starting chalk game...");
+                        Log.d("QUESTION", "Starting chalk game...");
                 getApplicationContext().startActivity(spawnGame);
                 currentQuestionIndex++;
             }
         } else {
-            //choices button clicked
-            selectedAnswer  = clickedButton.getText().toString();
+            // one of the choices buttons clicked
+            selectedAnswer = clickedButton.getText().toString();
             clickedButton.setBackgroundColor(Color.MAGENTA);
         }
     }
 
     void loadNewQuestion(){
-        // log question numbers
-        Log.d("QUESTION", "current question index: " + String.valueOf(currentQuestionIndex));
-        //Log.d("QUESTION", String.valueOf(currentQuestionIndex));
-        if(currentQuestionIndex == totalQuestion ){
+            // log question numbers
+            Log.d("QUESTION", "current question index: " + String.valueOf(currentQuestionIndex));
+            //Log.d("QUESTION", String.valueOf(currentQuestionIndex));
+        if(currentQuestionIndex == totalQuestion ){ // If current question is the last question
             Log.d("QUESTION", "finishing quiz...");
             finishQuiz();
             return;
@@ -180,6 +176,7 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
 
         questionTextView.setText(ChalkQuestionAnswer.question[currentQuestionIndex]);
 
+        // Randomize orders of choices displayed
         int[] orders = new int[]{0, 1, 2, 3};
         // Randomize orders[]
         Random rand = new Random();
