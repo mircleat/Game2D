@@ -5,6 +5,7 @@ import static com.example.game2d.MapUtil.sortByValue;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
@@ -91,6 +92,7 @@ public class LeaderboardActivity extends AppCompatActivity {
             rankView.setFontFeatureSettings("press_start_2p");
             rankView.setText(String.format("%d",ranking));
 
+
             TextView nameView = new TextView(this);
             nameView.setTextSize(20);
             nameView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
@@ -103,7 +105,12 @@ public class LeaderboardActivity extends AppCompatActivity {
             scoreView.setFontFeatureSettings("press_start_2p");
             scoreView.setText(String.format("%f",  scoreboardObj.scoreboard.get(username)));
 
-
+            if(ranking <=3)
+            {
+                rankView.setTextColor(Color.RED);
+                nameView.setTextColor(Color.RED);
+                scoreView.setTextColor(Color.RED);
+            }
 
             // Add the TextView to the LinearLayout
             scoreListLayout.addView(rankView);

@@ -32,6 +32,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     private final Detector detector1;
     private final Detector detector2;
     private final Detector detector3;
+    private final Detector detector4;
 
     private GameLoop gameLoop;
     private Context gameContext;
@@ -71,6 +72,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         detector1 = new Detector(getContext(), player, (float) (width * 0.25), (float) (height * 0.17), 100);
         detector2 = new Detector(getContext(), player, (float) (width * 0.47), (float) (height * 0.17), 100);
         detector3 = new Detector(getContext(), player, (float) (width * 0.75), (float) (height * 0.17), 100);
+        detector4 = new Detector(getContext(), player, (float) (width * 0.1), (float) (height * 0.17), 100);
 
         // copy other developers lol
         setFocusable(true);
@@ -137,6 +139,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         detector1.draw(canvas);
         detector2.draw(canvas);
         detector3.draw(canvas);
+        detector4.draw(canvas);
     }
     // method to display how many updates per second (UPS)
     public void drawUPS(Canvas canvas) {
@@ -170,6 +173,8 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         detector1.update();
         detector2.update();
         detector3.update();
+        detector4.update();
+
         // Check for collision with detectors
         if (Circle.isColliding(player, detector1)) {
             if (canMove) {
@@ -189,6 +194,13 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
             if (canMove) {
                 // call method to start leaderboard activity
                 startLeaderboardActivity();
+            }
+            canMove = false;
+        }
+        if (Circle.isColliding(player, detector4)) {
+            if (canMove) {
+                // call method to start art activity
+                startArtActivity();
             }
             canMove = false;
         }
@@ -214,6 +226,10 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     }
     public void startLeaderboardActivity() {
         Intent intent = new Intent(gameContext, FirebaseActivity.class);
+        gameContext.startActivity(intent);
+    }
+    public void startArtActivity() {
+        Intent intent = new Intent(gameContext, ArtActivity.class);
         gameContext.startActivity(intent);
     }
 }
