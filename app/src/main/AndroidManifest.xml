@@ -28,6 +28,10 @@
             android:exported="false"
             android:screenOrientation="landscape" />
         <activity
+            android:name=".ArtActivity"
+            android:exported="false"
+            android:screenOrientation="landscape" />
+        <activity
             android:name=".NameIntroActivity"
             android:exported="false"
             android:screenOrientation="landscape" />
