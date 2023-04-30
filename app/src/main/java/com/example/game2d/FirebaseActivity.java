@@ -87,7 +87,7 @@ public class FirebaseActivity extends AppCompatActivity {
         Log.d(TAG,"best chalk: " + bestChalk + "  percent: " + percent);
 
         SharedPreferences user_info = getSharedPreferences("USER_CREDENTIALS", 0);
-        CRE_username = user_info.getString("username", "fire_base");
+        CRE_username = user_info.getString("username", "unnamed user");
         CRE_userid = user_info.getString("user_ID", "user_id");
 
 
@@ -116,13 +116,13 @@ public class FirebaseActivity extends AppCompatActivity {
         });
 
         //fetching data button
-        Button fetch_button = (Button) findViewById(R.id.fetch_btn);
-        fetch_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                RetrieveData();
-            }
-        });
+//        Button fetch_button = (Button) findViewById(R.id.fetch_btn);
+//        fetch_button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                RetrieveData();
+//            }
+//        });
 
         //button that leads to the leaderboard
         Button lead_button = (Button) findViewById(R.id.leaderboard_btn);

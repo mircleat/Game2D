@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -60,6 +61,8 @@ public class CharacterActivity extends AppCompatActivity {
         TextView credentialDisplay = findViewById(R.id.credential_display);
         credentialDisplay.setText("Your \nUsername: \n"+username+"\n\nUnique ID:\n"+ID);
 
+
+
         //this button saves name, create ID, and display name/ID on greenscreen
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,19 +76,24 @@ public class CharacterActivity extends AppCompatActivity {
 
         // select short hair button
         Button shortHairButton = (Button) findViewById(R.id.boy_btn);
+        // select long hair button
+        Button longHairButton = (Button) findViewById(R.id.girl_btn);
+
         shortHairButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 preferences.edit().putBoolean("shortHairSelection", true).apply();
+                shortHairButton.setBackgroundColor(Color.GREEN);
+                longHairButton.setBackgroundColor(Color.BLACK);
             }
         });
 
-        // select long hair button
-        Button longHairButton = (Button) findViewById(R.id.girl_btn);
         longHairButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 preferences.edit().putBoolean("shortHairSelection", false).apply();
+                longHairButton.setBackgroundColor(Color.GREEN);
+                shortHairButton.setBackgroundColor(Color.BLACK);
             }
         });
 
