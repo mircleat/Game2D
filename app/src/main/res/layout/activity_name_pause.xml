@@ -36,7 +36,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
-            android:text="Hint!"
+            android:text="Hint: Choose whether you think the name is a real person."
             android:textColor="@color/black"
             android:textSize="20sp" />
 

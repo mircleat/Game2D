@@ -18,7 +18,7 @@
         android:layout_height="35dp"
         android:layout_centerVertical="true"
         android:onClick="pauseGame"
-        android:background="@drawable/pause"
+        android:background="@drawable/pause_new"
         android:id="@+id/pause_lb"/>
 
     <TextView

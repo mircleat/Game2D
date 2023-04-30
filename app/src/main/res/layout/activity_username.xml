@@ -12,7 +12,7 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="347dp"
+            android:layout_width="340dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="70dp"
             android:layout_marginTop="100dp"
@@ -107,10 +107,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginStart="10dp"
+
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="0dp"
+                android:layout_marginBottom="10dp"
                 android:textSize="5dp"
                 android:fontFamily="@font/press_start_2p"
                 android:text="no_username"
@@ -125,7 +125,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="0dp"
+                android:layout_marginBottom="10dp"
                 android:fontFamily="@font/press_start_2p"
                 android:text="0"
                 android:textAlignment="textEnd"
@@ -188,12 +188,6 @@
         android:layout_marginTop="270dp"
         android:fontFamily="@font/press_start_2p"/>
 
-    <Button
-        android:id="@+id/fetch_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="fetch"
-        android:layout_alignParentBottom="true"/>
 
     <Button
         android:id="@+id/return_btn"
