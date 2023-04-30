@@ -4,6 +4,7 @@ import static com.example.game2d.Game.getScreenHeight;
 import static com.example.game2d.Game.getScreenWidth;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -22,6 +23,7 @@ import com.example.game2d.R;
  * Player is an extension of a Circle, which is an extension of a GameObject
  */
 public class Player extends Circle {
+    private boolean selectedShortHair;
     Bitmap spriteIdleRight;
     Bitmap spriteIdleLeft;
     Bitmap spriteWalkRight;
@@ -53,14 +55,29 @@ public class Player extends Circle {
         this.joystick = joystick;
         this.context = context;
         // Sprites
-        Bitmap originalIdleRight = BitmapFactory.decodeResource(context.getResources(), R.drawable.boy_idle_right);
-        spriteIdleRight = Bitmap.createScaledBitmap(originalIdleRight, 200, 200, false);
-        Bitmap originalIdleLeft = BitmapFactory.decodeResource(context.getResources(), R.drawable.boy_idle_fliped);
-        spriteIdleLeft = Bitmap.createScaledBitmap(originalIdleLeft, 200, 200, false);
-        Bitmap originalWalkRight = BitmapFactory.decodeResource(context.getResources(), R.drawable.boy_walk_right);
-        spriteWalkRight = Bitmap.createScaledBitmap(originalWalkRight, 200, 200, false);
-        Bitmap originalWalkLeft = BitmapFactory.decodeResource(context.getResources(), R.drawable.boy_walk_left);
-        spriteWalkLeft = Bitmap.createScaledBitmap(originalWalkLeft, 200, 200, false);
+        SharedPreferences preferences = context.getSharedPreferences("MY_PREFS", 0);
+        selectedShortHair = preferences.getBoolean("shortHairSelection", false);
+
+        if(selectedShortHair) {
+            Bitmap originalIdleRight = BitmapFactory.decodeResource(context.getResources(), R.drawable.boy_idle_right);
+            spriteIdleRight = Bitmap.createScaledBitmap(originalIdleRight, 200, 200, false);
+            Bitmap originalIdleLeft = BitmapFactory.decodeResource(context.getResources(), R.drawable.boy_idle_fliped);
+            spriteIdleLeft = Bitmap.createScaledBitmap(originalIdleLeft, 200, 200, false);
+            Bitmap originalWalkRight = BitmapFactory.decodeResource(context.getResources(), R.drawable.boy_walk_right);
+            spriteWalkRight = Bitmap.createScaledBitmap(originalWalkRight, 200, 200, false);
+            Bitmap originalWalkLeft = BitmapFactory.decodeResource(context.getResources(), R.drawable.boy_walk_left);
+            spriteWalkLeft = Bitmap.createScaledBitmap(originalWalkLeft, 200, 200, false);
+        }
+        else {
+            Bitmap originalIdleRight = BitmapFactory.decodeResource(context.getResources(), R.drawable.girl_idle_right);
+            spriteIdleRight = Bitmap.createScaledBitmap(originalIdleRight, 200, 200, false);
+            Bitmap originalIdleLeft = BitmapFactory.decodeResource(context.getResources(), R.drawable.girl_idle_left);
+            spriteIdleLeft = Bitmap.createScaledBitmap(originalIdleLeft, 200, 200, false);
+            Bitmap originalWalkRight = BitmapFactory.decodeResource(context.getResources(), R.drawable.girl_walk_right);
+            spriteWalkRight = Bitmap.createScaledBitmap(originalWalkRight, 200, 200, false);
+            Bitmap originalWalkLeft = BitmapFactory.decodeResource(context.getResources(), R.drawable.girl_walk_left);
+            spriteWalkLeft = Bitmap.createScaledBitmap(originalWalkLeft, 200, 200, false);
+        }
         currentSprite = spriteIdleRight;
         previousDirection = currentSprite;
     }

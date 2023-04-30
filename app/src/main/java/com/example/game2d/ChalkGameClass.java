@@ -73,8 +73,8 @@ public class ChalkGameClass extends View {
         SharedPreferences preferences = getContext().getSharedPreferences("MY_PREFS", 0);
         selectedShortHair = preferences.getBoolean("shortHairSelection", false);
 
-        ranGravity = (int) Math.floor(Math.random() * 5) + 1; //ranGravity is a random integer between 1 and 5
-
+       // ranGravity = (int) Math.floor(Math.random() * 5) + 1; //ranGravity is a random integer between 1 and 5
+        ranGravity = 2;
 
         if(ranGravity%2 ==1)
             normGravity = true; //if ranGravity is odd, normal gravity is used where you jump up but rest at the bottom
@@ -114,7 +114,6 @@ public class ChalkGameClass extends View {
             backgroundImage = BitmapFactory.decodeResource(getResources(), R.drawable.background_upsidedown);
             lives[0] = BitmapFactory.decodeResource(getResources(), R.drawable.hearts_upsidedown);
             lives[1] = BitmapFactory.decodeResource(getResources(), R.drawable.heart_grey_upsidedown);
-            lifeY = 1060;
         }
 
         jumpcount = 0;
