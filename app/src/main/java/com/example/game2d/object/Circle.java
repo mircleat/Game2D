@@ -56,7 +56,7 @@ public abstract class Circle extends GameObject{
 
     /**
      * Abstract function to draw Circle objects to the screen.
-     * See Player and Detecter classes for implementations.
+     * See Player and Detector classes for implementations.
      * @param canvas the canvas to which the object will be drawn
      */
     public abstract void draw(Canvas canvas);
