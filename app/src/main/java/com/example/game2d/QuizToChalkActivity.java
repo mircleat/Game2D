@@ -10,10 +10,20 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
+/**
+ * This is the transition page/activity between the chalkQuiz and the chalkGame/
+ * chalk dodging activity. It is called when a user gets the question wrong in
+ * chalkQuiz. It allows users to continue to the chalkGame activity when they
+ * are ready.
+ */
 public class QuizToChalkActivity extends AppCompatActivity {
     private Button resButton;
 
-
+    /**
+     * Initializes the sound effects and buttons as well as their mechanisms.
+     * @param savedInstanceState the bundle of the instance of the game in case the
+     * activity needs to be restored to this instance
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +37,11 @@ public class QuizToChalkActivity extends AppCompatActivity {
         );
 
         resButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Creates/executes the intent to the chalkGame/ chalk
+             * dodging when the user hits continue.
+             * @param view the button instance/click from the user on the continue button.
+             */
             @Override
             public void onClick(View view) {
                 Intent Chalktrns = new Intent(QuizToChalkActivity.this, ChalkGameActivity.class);
