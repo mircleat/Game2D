@@ -161,7 +161,7 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
                 chalkscore++;
                 currentQuestionIndex++;
                 SharedPreferences preferences = getSharedPreferences("MY_PREFS", 0);
-                preferences.edit().putInt("ChalkQuestionIndex", currentQuestionIndex);
+                preferences.edit().putInt("ChalkQuestionIndex", currentQuestionIndex).apply();
 
                 loadNewQuestion();
             } else { // wrong choice has been chosen
@@ -171,7 +171,7 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
                 totalWrong++;
                 currentQuestionIndex++;
                 SharedPreferences preferences = getSharedPreferences("MY_PREFS", 0);
-                preferences.edit().putInt("ChalkQuestionIndex", currentQuestionIndex);
+                preferences.edit().putInt("ChalkQuestionIndex", currentQuestionIndex).apply();
                 if(currentQuestionIndex == totalQuestion)
                 {
                     preferences.edit().putInt("lastChalkScore", chalkscore).apply();
