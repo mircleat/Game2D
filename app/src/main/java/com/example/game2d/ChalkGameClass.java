@@ -282,6 +282,7 @@ public class ChalkGameClass extends View {
         canvas.drawBitmap(pauseButton, pauseX, pauseY, null);
         if (pauseTouch == true)
         {
+            bossMusic.stop();
             pauseTouch = false;
             Intent pauseIntent = new Intent(getContext(), PauseWindow.class);
             pauseIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);

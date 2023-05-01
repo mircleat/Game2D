@@ -47,7 +47,7 @@ public class FirebaseActivity extends AppCompatActivity {
 //    private static final String SCORE_KEY = "score";
 
     private Button SaveButton;
-    TextView userName, userID,nameScore, chalkScore;
+    TextView userName, userID,nameScore, chalkScore,avScore;
 
     //public Map<String, Object> userScoreMap;
     //public Map<String, Long> big_userScoreMap = new HashMap<>();
@@ -107,6 +107,12 @@ public class FirebaseActivity extends AppCompatActivity {
 
         chalkScore = (TextView) findViewById(R.id.chalk_score);
         chalkScore.setText(bestChalk/4.0*100+"%");
+
+        avScore = (TextView) findViewById(R.id.av_score);
+        Double av = (bestChalk/4.0*100+percent)/2;
+        DecimalFormat df = new DecimalFormat("##.##");
+        String formattedNum = df.format(av);
+        avScore.setText(formattedNum+"%");
 
         UploadData();
         RetrieveData();
@@ -213,7 +219,8 @@ public class FirebaseActivity extends AppCompatActivity {
                                     big_userScoreMap.scoreboard.put(scoreObj.toString(), score);
                             }
                                  */
-                                big_userScoreMap.scoreboard.put(name, scores);
+                                String userId = document.getId()+name;
+                                big_userScoreMap.scoreboard.put(userId, scores);
 
                             }
 
