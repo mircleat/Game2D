@@ -18,25 +18,19 @@ import android.view.View;
 import java.util.Timer;
 import java.util.logging.Handler;
 
-/**
- * Custom view of the ChalkGame/Chalk dodging activity. Draws
- * the selected character repeatedly along with the health system,
- * pause button and chalk. There are also mechanics so the player can
- * jump by tapping on the screen. The aim is to dodge the chalk.
- */
 
 public class ChalkGameClass extends View {
     //PLAYER
     private Bitmap player[] = new Bitmap[2];
-    private boolean selectedShortHair; //Stores whether the player selected the short haired character at the start of the game
-    private int ranGravity; //random integer that determines whether gravity is normal or not
-    private boolean normGravity; //stores whether gravity is normal or not depending on weather ranGravity is even or odd
+    private boolean selectedShortHair;
+    private int ranGravity;
+    private boolean normGravity;
     private int playerX = 10;
     private int playerY;
     private int minplayerY;
     private int maxplayerY;
     private int playerSpeed;
-    private boolean touch = false; //stores whether the user has tapped on the screen;
+    private boolean touch = false;
     private int jumpcount;
 
     //CANVAS
@@ -44,14 +38,14 @@ public class ChalkGameClass extends View {
     private Bitmap backgroundImage ;
 
     //MEDIA
-    MediaPlayer bonk; //sound when player hits their head on the ceiling
-    MediaPlayer oof; //sound when player is hit by chalk
-    MediaPlayer bossMusic; //background music
+    MediaPlayer bonk;
+    MediaPlayer oof;
+    MediaPlayer bossMusic;
 
     //CHALK
-    private Bitmap chalk[] = new Bitmap[5]; //array of bitmaps storing the various chalks
+    private Bitmap chalk[] = new Bitmap[5];
         private int chalkNum = 7;
-        private int chalkCol; //random number between 0 and 4 that determines color of chalk
+        private int chalkCol;
         private int[] chalkX = new int[chalkNum];
         private int[] chalkY = new int[chalkNum];
         private int chalkXSpeed;
@@ -60,23 +54,18 @@ public class ChalkGameClass extends View {
     //HEALTH SYSTEM
     private Bitmap lives[] = new Bitmap[2];
         private int lifecounter;
-        private int lifeXstart; //stores the X coordinate of where the first heart is drawn
+        private int lifeXstart;
         private int lifeY;
 
 
     private Bitmap pauseButton;
         private int pauseX = 1800;
         private int pauseY = 20;
-    private boolean pauseTouch = false; //stores whether user has tapped on the pause
+    private boolean pauseTouch = false;
 
     SharedPreferences preferences;
 
-    /**
-     * Initializes most variables above and calculates ranGravity and determines
-     * whether normal or abnormal gravity is used. All the bitmaps are initialized here
-     * from the resources.
-     * @param context the current context
-     */
+
     public ChalkGameClass(Context context)
     {
         super(context);
@@ -152,12 +141,6 @@ public class ChalkGameClass extends View {
 
     }
 
-    /**
-     * Creates the canvas and draws all the elements mentioned at the beginning. Also manages
-     * the background music and sound effects as well as the mechanisms for movements
-     * and the health system.
-     * @param canvas
-     */
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -169,12 +152,13 @@ public class ChalkGameClass extends View {
         // allocation in onDraw.
 
 
+
         Matrix matrix = new Matrix();
-        matrix = StretchMatrix(matrix, canvasWidth, canvasHeight, backgroundImage);
 
         canvas.drawBitmap(backgroundImage, matrix, null);
         int floorHeight = 70;
 
+        matrix = StretchMatrix(matrix, canvasWidth, canvasHeight, backgroundImage);
         if (normGravity)
         {
             minplayerY = 0;
@@ -309,14 +293,6 @@ public class ChalkGameClass extends View {
 
     }
 
-    /**
-     * Scales a matrix to scale a bitmap to specific dimensions
-     * @param fnMatrix the matrix to be scaled
-     * @param x the width to scale to
-     * @param y the height to scale to
-     * @param img the bitmap to sclale
-     * @return
-     */
     private Matrix StretchMatrix(Matrix fnMatrix, int x, int y, Bitmap img)
     {
         float vw = x;
@@ -332,13 +308,7 @@ public class ChalkGameClass extends View {
        return fnMatrix;
     }
 
-    /**
-     * Checks if the user has tapped on the screen and calls onSingelTap
-     * as well as allows the user to jump when they aren't tapping on
-     * the pause button
-     * @param event the instance of the user interacting/ tapping on the screen
-     * @return boolean value (unused)
-     */
+
     @Override
     public boolean onTouchEvent(MotionEvent event)
     {
@@ -355,12 +325,6 @@ public class ChalkGameClass extends View {
         return true;
     }
 
-    /**
-     * Checks if the chalk has collided with the player
-     * @param x the chalk's x coordinate
-     * @param y the chalk's y coordinate
-     * @return boolean value of whether or not the object/chalk collided with the player
-     */
     public boolean hitChalkChecker(int x, int y)
     {
         if(playerX < x && x < (playerX + player[0].getWidth())
@@ -371,11 +335,6 @@ public class ChalkGameClass extends View {
         return false;
     }
 
-    /**
-     * Checks if the user has touched the pause button
-     * @param event the instance of the user interaction/tapping ont he screen
-     * @return boolean value of whether or not the user has tapped the pause button.
-     */
     public boolean onSingleTap(MotionEvent event) {
         int x = (int) event.getX();
         int y = (int) event.getY();
@@ -389,11 +348,6 @@ public class ChalkGameClass extends View {
         return false;
     }
 
-    /**
-     * Checks if the activity/window is in focus to see
-     * if the player is interacting with it or another activity at the moment
-     * @param hasWindowFocus boolean determining if the window is in focus or not.
-     */
     @Override
     public void onWindowFocusChanged(boolean hasWindowFocus) {
         super.onWindowFocusChanged(hasWindowFocus);
@@ -404,10 +358,6 @@ public class ChalkGameClass extends View {
         }
     }
 
-    /**
-     * A substitute for the finish() for a view,
-     * kills the view/activity when called.
-     */
     private void finishFunction() {
         Activity activity = (Activity)getContext();
         activity.finish();
