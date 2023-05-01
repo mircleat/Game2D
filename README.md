@@ -1,50 +1,17 @@
 # Group7Project
 
-## Getting started
+## App User Instruction
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+Follow [this Google Doc](https://docs.google.com/document/d/1GzOz6lCIO9-j1esVCNZ64J18vl1_PMV1DgRqveJSo84/edit?usp=sharing) for a detailed cloning/downloading instructions!
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+## !Attention for Testers!
 
-## Add your files
+1. After cloning the project, please select ****Pixel 2 + upsideDownCake + landscape**** as your emulator setting! (detailed instructions above)
+2. The game has great audio, so ****turning audio on**** is recommended, 
+Wifi connection is required for the online leaderboard to work properly. All other parts do not. If you go to the leaderboard and nothing shows up, try going back and clicking sync data.
+3. When you play the game for the first time, you receive a ****unique ID**** number that is binded to that device. You can change your username but the score would be updated to the same ID.
+4. If you get sent back to the beginning of a game after finishing it - ****it is a glitch that we are experiencing****. Simply continue to the game and exit by hitting the pause button and “return to main menu.”
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
-
-```
-cd existing_repo
-git remote add origin https://agile.bu.edu/gitlab/ec327_projects/group7project.git
-git branch -M master
-git push -uf origin master
-```
-
-## Integrate with your tools
-
-- [ ] [Set up project integrations](https://agile.bu.edu/gitlab/ec327_projects/group7project/-/settings/integrations)
-
-## Collaborate with your team
-
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
----
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
 
 ## Name
 
