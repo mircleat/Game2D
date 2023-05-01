@@ -92,12 +92,12 @@ public class LeaderboardActivity extends AppCompatActivity {
             rankView.setFontFeatureSettings("press_start_2p");
             rankView.setText(String.format("%d",ranking));
 
-
+            String sub_name = username.substring(36);
             TextView nameView = new TextView(this);
             nameView.setTextSize(20);
             nameView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             nameView.setFontFeatureSettings("press_start_2p");
-            nameView.setText(String.format("%s", username));
+            nameView.setText(String.format("%s", sub_name));
 
             TextView scoreView = new TextView(this);
             scoreView.setTextSize(20);
