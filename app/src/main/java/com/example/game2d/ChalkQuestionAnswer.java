@@ -17,9 +17,9 @@ public class ChalkQuestionAnswer {
     };
 
     public static String[] correctAnswers = {
-        "/501B50797001",
-        "/C0017001C0017001",
-        "/5000504a50947040",
-        "/c000c0014042d7fc"
+        "501B50797001",
+        "C0017001C0017001",
+        "5000504a50947040",
+        "c000c0014042d7fc"
     };
 }
