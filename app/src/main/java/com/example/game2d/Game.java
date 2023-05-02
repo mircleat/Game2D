@@ -2,13 +2,11 @@ package com.example.game2d;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -21,85 +19,85 @@ import com.example.game2d.object.Detector;
 import com.example.game2d.object.Player;
 
 /*
-Game manages all objects in the game and is responsible for updating all states
-and rendering all objects to the screen.
+Game manages the objects in the MainActivity classroom. It is responsible for player movement and
+animation as well as switching to different mini-game activities when a collision is detected.
  */
 public class Game extends SurfaceView implements SurfaceHolder.Callback {
+    // Background image
     Bitmap background;
+    // Touch joystick to control player
     private final Joystick joystick;
+    // Player object
     private final Player player;
     public static boolean canMove;
+    // Collision detectors
     private final Detector detector1;
     private final Detector detector2;
     private final Detector detector3;
     private final Detector detector4;
-
+    // Game loop and context
     private GameLoop gameLoop;
     private Context gameContext;
 
+    /**
+     * Constructs a new Game object and initializes its background, player, joystick, and detectors.
+     * @param context the current context
+     */
     public Game(Context context) {
         super(context);
         gameContext = context;
-
         // Get surface holder and add callback
         SurfaceHolder surfaceHolder = getHolder();
         surfaceHolder.addCallback(this);
-        // new gameloop object
+        // New gameLoop object
         gameLoop = new GameLoop(this, surfaceHolder);
+        // Allow player movement
         canMove = true;
-
-        // check screen height and width
+        // Check screen height and width
         int height = getScreenHeight();
         int width = getScreenWidth();
-        Log.d("DIMENSION", String.valueOf(height));
-        Log.d("DIMENSION", String.valueOf(width));
-
         // Set background
         Bitmap original = BitmapFactory.decodeResource(context.getResources(), R.drawable.new_classroom_spots_scaled);
         background = Bitmap.createScaledBitmap(original, width, height, false);
-
-        // Initialize game objects
-        // initialize joystick
+        // Initialize joystick
         int joystickX = 150;
         int joystickY = height - 150;
-        //joystick = new Joystick(275, 700, 70, 40);
         joystick = new Joystick(joystickX, joystickY, 70, 40);
-        // initialize new instance of player class
+        // Initialize player
         player = new Player(context, joystick, (float) (width / 2 - 100), (float) (height * 0.65), 30);
-        // initialize new enemy
-        //enemy = new Enemy(context, player, 500, 500, 30);
-        // initialize new detectors
+        // Initialize detectors
         detector1 = new Detector(getContext(), player, (float) (width * 0.25), (float) (height * 0.17), 100);
         detector2 = new Detector(getContext(), player, (float) (width * 0.47), (float) (height * 0.17), 100);
         detector3 = new Detector(getContext(), player, (float) (width * 0.75), (float) (height * 0.17), 100);
         detector4 = new Detector(getContext(), player, (float) (width * 0.1), (float) (height * 0.17), 100);
-
-        // copy other developers lol
+        // Copy other developers lol
         setFocusable(true);
     }
 
-    // for player controls, override on touch event
+    /**
+     * Overrides onTouchEvent to provide touch control of the player.
+     * Handles touch events by setting the joystick actuator when the user presses down or holds and
+     * drags, and resetting the actuator when the user releases.
+     * @param event the motion event
+     * @return true if the event has been handled
+     */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        // handle touch event actions
         switch(event.getAction()) {
-            // when user presses down
+            // When user presses down
             case MotionEvent.ACTION_DOWN:
                 if (joystick.isPressed((double) event.getX(), (double) event.getY())) {
                     joystick.setIsPressed(true);
                 }
-                // cast to double
-                //player.setPosition((double) event.getX(), (double) event.getY());
-                return true; // true indicates event has been handled :)
-            // when user does touch and hold / drag
+                return true;
+            // When user does touch and hold / drag
             case MotionEvent.ACTION_MOVE:
                 if(joystick.getIsPressed()) {
-                    // joystick is BOTH pressed down AND moved
+                    // Joystick is pressed down and moved
                     joystick.setActuator((double) event.getX(), (double) event.getY());
                 }
-                //player.setPosition((double) event.getX(), (double) event.getY());
-                return true; // true indicates event has been handled :)
-            // when user lets go of joystick
+                return true;
+            // When user lets go of joystick
             case MotionEvent.ACTION_UP:
                 joystick.setIsPressed(false);
                 joystick.resetActuator();
@@ -108,125 +106,180 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         return super.onTouchEvent(event);
     }
 
+    /**
+     * Override the surfaceCreated method for when the SurfaceView surface is created.
+     * Starts the game loop.
+     * @param surfaceHolder the SurfaceHolder associated with the SurfaceView
+     */
     @Override
     public void surfaceCreated(@NonNull SurfaceHolder surfaceHolder) {
         gameLoop.startLoop();
     }
 
+    /**
+     * Overrides the surfaceChanged method for when the surface is changed (does nothing).
+     * @param surfaceHolder the SurfaceHolder associated with the SurfaceView
+     * @param i the new format of the surface
+     * @param i1 the new width of the surface
+     * @param i2 the new height of the surface
+     */
     @Override
     public void surfaceChanged(@NonNull SurfaceHolder surfaceHolder, int i, int i1, int i2) { }
 
+    /**
+     * Overrides the surfaceDestroyed method for when the surface is destroyed (does nothing).
+     * @param surfaceHolder the SurfaceHolder associated with the SurfaceView
+     */
     @Override
     public void surfaceDestroyed(@NonNull SurfaceHolder surfaceHolder) { }
 
-    // override draw method to get visual feedback when we render things to screen
+    /**
+     * Overrides the draw method to be called in GameLoop to render objects to the screen.
+     * Draws the background, joystick, player, and detectors.
+     * Detectors are not visible unless the Detector draw method is uncommented in Detector class.
+     * @param canvas the canvas to which the objects are drawn
+     */
     @Override
     public void draw(Canvas canvas) {
         if (canvas == null) {
             return;
         }
         super.draw(canvas);
+        // Draw UPS and FPS (not visible)
         drawUPS(canvas);
         drawFPS(canvas);
-        // draw background
+        // Draw background
         Paint paint = new Paint();
         canvas.drawBitmap(background, 0, 0, paint);
-        // draw joystick
+        // Draw joystick
         joystick.draw(canvas);
-        // draw player
+        // Draw player
         player.draw(canvas);
-        // draw single detectors
+        // Draw detectors (not visible, see above)
         detector1.draw(canvas);
         detector2.draw(canvas);
         detector3.draw(canvas);
         detector4.draw(canvas);
     }
-    // method to display how many updates per second (UPS)
+
+    /**
+     * Displays the number of updates per second (UPS).
+     * @param canvas the canvas to which the text is drawn
+     */
     public void drawUPS(Canvas canvas) {
-        //String averageUPS = Double.toString(gameLoop.getAverageUPS());
-        // round to one decimal place
+        // Round to one decimal place
         String averageUPS = String.format("%.3g%n", gameLoop.getAverageUPS());
+        // Set text properties
         Paint paint = new Paint();
-        // also need to add magenta in colors.xml file
         int color = ContextCompat.getColor(getContext(), R.color.magenta);
         paint.setColor(color);
         paint.setTextSize(50);
+        // Draw text
         canvas.drawText("UPS: " + averageUPS, 100, 100, paint);
     }
-    // method to display how many frames per second (FPS)
+
+    /**
+     * Displays the number of frames per second (FPS).
+     * @param canvas the canvas to which the text is drawn
+     */
     public void drawFPS(Canvas canvas) {
-        //String averageFPS = Double.toString(gameLoop.getAverageFPS());
-        // round to one decimal place
+        // Round to one decimal place
         String averageFPS = String.format("%.3g%n", gameLoop.getAverageFPS());
+        // Set text properties
         Paint paint = new Paint();
-        // also need to add magenta in colors.xml file
         int color = ContextCompat.getColor(getContext(), R.color.magenta);
         paint.setColor(color);
         paint.setTextSize(50);
+        // Draw text
         canvas.drawText("FPS: " + averageFPS, 100, 200, paint);
     }
 
+    /**
+     * Updates the state of the player, joystick, and detector and switches activities if a
+     * collision is detected.
+     */
     public void update() {
-        // update game state
-        joystick.update();
+        // Update objects
         player.update();
+        joystick.update();
         detector1.update();
         detector2.update();
         detector3.update();
         detector4.update();
-        // Check for collision with detectors
+        // Check for collisions with detectors
         if (Circle.isColliding(player, detector1)) {
             if (canMove) {
-                // call method to start quiz activity
-                startSecondActivity();
+                // Call method to start name quiz activity
+                startQuizActivity();
             }
             canMove = false;
         }
         if (Circle.isColliding(player, detector2)) {
             if (canMove) {
-                // call method to start chalk activity
+                // Call method to start chalk activity
                 startChalkActivity();
             }
             canMove = false;
         }
         if (Circle.isColliding(player, detector3)) {
             if (canMove) {
-                // call method to start leaderboard activity
+                // Call method to start leaderboard activity
                 startLeaderboardActivity();
             }
             canMove = false;
         }
         if (Circle.isColliding(player, detector4)) {
             if (canMove) {
-                // call method to start art activity
+                // Call method to start art activity
                 startArtActivity();
             }
             canMove = false;
         }
     }
 
-    // check screen width and height
+    /**
+     * Gets the width of the screen.
+     * @return the width of the screen (in pixels)
+     */
     public static int getScreenWidth() {
         return Resources.getSystem().getDisplayMetrics().widthPixels;
     }
+
+    /**
+     * Gets the height of the scree.
+     * @return the height of the screen (in pixels)
+     */
     public static int getScreenHeight() {
         return Resources.getSystem().getDisplayMetrics().heightPixels;
     }
 
-    // method to start name activity
-    public void startSecondActivity() {
+    /**
+     * Switches to the name quiz activity.
+     */
+    public void startQuizActivity() {
         Intent intent = new Intent(gameContext, NameIntroActivity.class);
         gameContext.startActivity(intent);
     }
-    // method to start chalk activity
+
+    /**
+     * Switches to the chalk quiz activity.
+     */
     public void startChalkActivity() {
         Intent intent = new Intent(gameContext, ChalkIntroActivity.class);
         gameContext.startActivity(intent);
     }
+
+    /**
+     * Switches to the leaderboard activity.
+     */
     public void startLeaderboardActivity() {
         Intent intent = new Intent(gameContext, FirebaseActivity.class);
         gameContext.startActivity(intent);
     }
+
+    /**
+     * Switches to the art credit activity.
+     */
     public void startArtActivity() {
         Intent intent = new Intent(gameContext, ArtActivity.class);
         gameContext.startActivity(intent);
