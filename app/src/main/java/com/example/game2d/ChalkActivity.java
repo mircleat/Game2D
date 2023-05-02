@@ -96,8 +96,9 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
         //Pause menu implementation
         pauseBtn.setOnClickListener(new View.OnClickListener() {
             /**
-             *
-             * @param view
+             *Allows the user to pause the activity and read the hints. The user can then either
+             * return to the activity or return to the main menu.
+             * @param view button instance/click from the user on the pause button
              */
             @Override
             public void onClick(View view)
@@ -121,6 +122,11 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
         boolean focusable = true;
         PopupWindow popupWindow = new PopupWindow(popUpView, width,height,focusable);
         layout.post(new Runnable() {
+            /**
+             * Creates a popup window at the start of the activity with an introduction.
+             * Users can start the Chalk Activity at their convenience by clicking on
+             * resume.
+             */
             @Override
             public void run() {
                 popupWindow.showAtLocation(layout, Gravity.BOTTOM,0,0);
@@ -129,6 +135,12 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
         TextView Continue;
         Continue = popUpView.findViewById(R.id.Continue);
         Continue.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Allows the user to continue to the chalk activity when they click
+             * continue by dissolving the popup window.
+             * @param view button instance/click from the user on the resume
+             * button.
+             */
             @Override
             public void onClick(View view) {
                 popupWindow.dismiss();
@@ -136,6 +148,15 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
         });
 
     }
+
+    /**
+     * Mechanics of the options/buttons for the questions and the subsequent actions.
+     * Also manages the sound effects played based on whether the answer is correct
+     * or wrong. Alongside this, it creates an intent to the chalk dodging (Chalk Game)
+     * activity when they submit the wrong answer. If they answer right, it loads the next
+     * question.
+     * @param view button instance of the option that has been selected.
+     */
     @Override
     public void onClick(View view) {
 
@@ -161,7 +182,7 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
                 chalkscore++;
                 currentQuestionIndex++;
                 SharedPreferences preferences = getSharedPreferences("MY_PREFS", 0);
-                preferences.edit().putInt("ChalkQuestionIndex", currentQuestionIndex);
+                preferences.edit().putInt("ChalkQuestionIndex", currentQuestionIndex).apply();
 
                 loadNewQuestion();
             } else { // wrong choice has been chosen
@@ -171,7 +192,7 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
                 totalWrong++;
                 currentQuestionIndex++;
                 SharedPreferences preferences = getSharedPreferences("MY_PREFS", 0);
-                preferences.edit().putInt("ChalkQuestionIndex", currentQuestionIndex);
+                preferences.edit().putInt("ChalkQuestionIndex", currentQuestionIndex).apply();
                 if(currentQuestionIndex == totalQuestion)
                 {
                     preferences.edit().putInt("lastChalkScore", chalkscore).apply();
@@ -192,6 +213,11 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    /**
+     * loads the next question unless it is the last question in
+     * which case it loads the chalk result activity. Also randomizes
+     * the order of the questions and the choices displayed.
+     */
     void loadNewQuestion(){
             // log question numbers
             Log.d("QUESTION", "current question index: " + String.valueOf(currentQuestionIndex));
@@ -233,6 +259,11 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
         ansD.setText(ChalkQuestionAnswer.choices[currentQuestionIndex][3]);
     }
 
+    /**
+     * Stores the final score in the shared preferences so that
+     * it persists even when the app is closed and reopened. It
+     * then creates/executes the intent to the results page.
+     */
     void finishQuiz(){
 //        Intent intent = new Intent(ChalkActivity.this, MainActivity.class);
 //        startActivity(intent);
@@ -247,6 +278,9 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
         finish();
     }
 
+    /**
+     * Pauses the background music when onPause is called.
+     */
     protected void onPause() {
         super.onPause();
         backgroundMusic.stop();

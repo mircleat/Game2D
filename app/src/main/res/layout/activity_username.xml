@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="05dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="0dp"
                 android:fontFamily="@font/press_start_2p"
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="05dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="0dp"
                 android:fontFamily="@font/press_start_2p"
@@ -49,7 +49,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginBottom="0dp"
                 android:fontFamily="@font/press_start_2p"
                 android:text="Average Name Guessing Accuracy" />
@@ -61,22 +61,25 @@
                 android:layout_below="@+id/name_score"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="0dp"
                 android:fontFamily="@font/press_start_2p"
                 android:text="Best Chalk Dodging Score" />
-
             <TextView
-                android:id="@+id/hint_text"
+                android:id="@+id/av_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/name_score"
-                android:layout_marginStart="10dp"
                 android:layout_centerHorizontal="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="0dp"
                 android:fontFamily="@font/press_start_2p"
-                android:text="(press sync data)"
-                android:textSize="10dp" />
+                android:text="Overall Score" />
+
+
 
 
 
@@ -94,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="0dp"
                 android:fontFamily="@font/press_start_2p"
@@ -123,7 +126,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/press_start_2p"
@@ -138,13 +141,27 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/press_start_2p"
                 android:text="0"
                 android:textAlignment="textEnd"
                 android:textColor="@color/white" />
+            <TextView
+                android:id="@+id/av_score"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/press_start_2p"
+                android:text="0"
+                android:textAlignment="textEnd"
+                android:textColor="@color/white" />
+
         </LinearLayout>
     </LinearLayout>
 

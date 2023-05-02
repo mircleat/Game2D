@@ -11,11 +11,22 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
+/**
+ * This is a transition page/activity between the chalkGame and the chalkQuiz
+ * that is run when the user successfully dodges all the chalk. It allows
+ * users to continue to the chalkQuiz/chalkResult activity when they are ready.
+ */
 public class ChalkToQuizActivity extends AppCompatActivity {
     private Button resButton;
-    private int chalkIndex;
+    private int chalkIndex; //stores the question the user was on before getting sent to the chalk dodging game.
     SharedPreferences preferences;
     MediaPlayer victorySound;
+
+    /**
+     * Initializes the sound effects and buttons as well as their mechanisms.
+     * @param savedInstanceState the bundle of the instance of the game in case the
+     * activity needs to be restored to this instance
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +45,13 @@ public class ChalkToQuizActivity extends AppCompatActivity {
         );
 
         resButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Allows users to continue to the next activity when they click the resume button.
+             * If the user was on the last question before getting sent to the chalk dodging,
+             * the next activity is the chalk result page. Otherwise it is the chalkQuiz
+             * and the next question.
+             * @param view the button instance/click from the user on the continue button.
+             */
             @Override
             public void onClick(View view) {
                 victorySound.stop();
