@@ -64,8 +64,8 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
 
         Window window = getWindow();
         window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
         );
 
         // BGM
@@ -87,7 +87,7 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
         ansC = findViewById(R.id.ans_C);
         ansD = findViewById(R.id.ans_D);
         submitBtn = findViewById(R.id.submit_btn);
-        
+
         pauseBtn = (ImageButton) findViewById(R.id.pause_lb);
 
         ansA.setOnClickListener(this);
@@ -204,7 +204,7 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
                 Intent spawnGame = new Intent(getApplicationContext(), QuizToChalkActivity.class);
                 spawnGame.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 spawnGame.putExtra("QuestionCount", currentQuestionIndex);
-                        Log.d("QUESTION", "Starting chalk game...");
+                Log.d("QUESTION", "Starting chalk game...");
                 startActivity(spawnGame);
                 if(currentQuestionIndex != totalQuestion) {
                     loadNewQuestion();
@@ -223,9 +223,9 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
      * the order of the questions and the choices displayed.
      */
     void loadNewQuestion(){
-            // log question numbers
-            Log.d("QUESTION", "current question index: " + String.valueOf(currentQuestionIndex));
-            //Log.d("QUESTION", String.valueOf(currentQuestionIndex));
+        // log question numbers
+        Log.d("QUESTION", "current question index: " + String.valueOf(currentQuestionIndex));
+        //Log.d("QUESTION", String.valueOf(currentQuestionIndex));
         if(currentQuestionIndex == totalQuestion ){ // If current question is the last question
             Log.d("QUESTION", "finishing quiz...");
             finishQuiz();
@@ -235,32 +235,13 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
         questionTextView.setText(ChalkQuestionAnswer.question[currentQuestionIndex]);
 
         // Randomize orders of choices displayed
-        int[] orders = new int[]{0, 1, 2, 3};
         // Randomize orders[]
-        Random rand = new Random();
+        int[] orders = randomizeOrders();
 
-        for (int i = 0; i < orders.length; i++) {
-            // Switch i and randomIndexToSwap
-            int randomIndexToSwap = rand.nextInt(orders.length);
-
-            // temp vars to store element at randomIndex
-            int tempOrder = orders[randomIndexToSwap];
-
-            // element at randomIndex is now element at i (2 i duplicates)
-            orders[randomIndexToSwap] = orders[i];
-
-            // element at i is now element at randomIndex (via temp vars)
-            orders[i] = tempOrder;
-        }
-
-        /*ansA.setText(ChalkQuestionAnswer.choices[currentQuestionIndex][orders[0]]);
+        ansA.setText(ChalkQuestionAnswer.choices[currentQuestionIndex][orders[0]]);
         ansB.setText(ChalkQuestionAnswer.choices[currentQuestionIndex][orders[1]]);
         ansC.setText(ChalkQuestionAnswer.choices[currentQuestionIndex][orders[2]]);
-        ansD.setText(ChalkQuestionAnswer.choices[currentQuestionIndex][orders[3]]);*/
-        ansA.setText(ChalkQuestionAnswer.choices[currentQuestionIndex][0]);
-        ansB.setText(ChalkQuestionAnswer.choices[currentQuestionIndex][1]);
-        ansC.setText(ChalkQuestionAnswer.choices[currentQuestionIndex][2]);
-        ansD.setText(ChalkQuestionAnswer.choices[currentQuestionIndex][3]);
+        ansD.setText(ChalkQuestionAnswer.choices[currentQuestionIndex][orders[3]]);
     }
 
     /**
@@ -288,6 +269,29 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
     protected void onPause() {
         super.onPause();
         backgroundMusic.stop();
+    }
+
+    public int[] randomizeOrders() {
+        int[] randomized = { 0, 1, 2, 3 };
+
+        // Randomize orders[]
+        Random rand = new Random();
+
+        for (int i = 0; i < randomized.length; i++) {
+            // Switch i and randomIndexToSwap
+            int randomIndexToSwap = rand.nextInt(randomized.length);
+
+            // temp vars to store element at randomIndex
+            int tempOrder = randomized[randomIndexToSwap];
+
+            // element at randomIndex is now element at i (2 i duplicates)
+            randomized[randomIndexToSwap] = randomized[i];
+
+            // element at i is now element at randomIndex (via temp vars)
+            randomized[i] = tempOrder;
+        }
+
+        return randomized;
     }
 
 }
