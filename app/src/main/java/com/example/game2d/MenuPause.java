@@ -39,8 +39,9 @@ public class MenuPause extends AppCompatActivity {
         resButton = findViewById(R.id.menuResumeButton);
         resButton.setOnClickListener(new View.OnClickListener() {
             /**
-             *
-             * @param view
+             * creates/executes the intent to the main menu when the user
+             * clicks on the resume button
+             * @param view the button instance/click from the user on the resume button.
              */
             @Override
             public void onClick(View view) {
@@ -51,6 +52,11 @@ public class MenuPause extends AppCompatActivity {
 
         exitButton = findViewById(R.id.menuExitButton);
         exitButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Creates/executes the intent to <code>StartActivity</code> when the user
+             * clicks on the exit button.
+             * @param view the button instance/click from the user on the exit button.
+             */
             @Override
             public void onClick(View view) {
                 Intent exitIntent = new Intent(MenuPause.this, StartActivity.class);
