@@ -47,7 +47,8 @@ Completion:
 
 Completion:  
 50% - Implement a health system that is calculated/decreased based on time and player performance [5%]  
-        The health system does not decrease based on time but it decreases based on player performance
+             The health system does not decrease based on time but it decreases based on player performance
+
 100% - Provide a hints system that the user can access to get a text prompt on how to proceed. [5%]  
 100% - Allow the user to customize some aspects of their character’s appearance. [5%]  
 100% - Provide a high-score list that persists when the app is closed and then reopened. [10%]  
