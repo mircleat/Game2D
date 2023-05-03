@@ -1,42 +1,3 @@
-# Group7Project
-
-## App User Instruction
-
-Follow [this Google Doc](https://docs.google.com/document/d/1GzOz6lCIO9-j1esVCNZ64J18vl1_PMV1DgRqveJSo84/edit?usp=sharing) for a detailed cloning/downloading instructions!
-
-## !Attention for Testers!
-
-1. After cloning the project, please select ****Pixel 2 + upsideDownCake + landscape**** as your emulator setting! (detailed instructions above)
-2. The game has great audio, so ****turning audio on**** is recommended, 
-Wifi connection is required for the online leaderboard to work properly. All other parts do not. If you go to the leaderboard and nothing shows up, try going back and clicking sync data.
-3. When you play the game for the first time, you receive a ****unique ID**** number that is binded to that device. You can change your username but the score would be updated to the same ID.
-4. If you get sent back to the beginning of a game after finishing it - ****it is a glitch that we are experiencing****. Simply continue to the game and exit by hitting the pause button and “return to main menu.”
-
-
-## Name
-
-Project APEEP
-
-## Description
-
-Our game simulates different aspects of memorable moments from EC327, with an added twist of course!
-
-## Members
-
-Ankita, Ethan, Pippi, Elena, Pranav
-
-## Contributions and Responsibilities
-
-A - Ankita 100%
-P - Pippi 100%
-E - Elena 100%
-E - Ethan 100%
-P - Pranav 100%
-
-Issue #7 - Personalize Gitlab has been completed
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 # EC327 Final Project - Group 7 - Project APEEP
 ---
 ## Summary
@@ -97,12 +58,9 @@ N/A% - Allow the user to choose between light mode and dark mode and customize t
 ---
 ## Execution
 
-### Project source
-[Links to all code needed to compile and run your project _from scratch_ .  If you are using some libraries, provide links to their code.]
+### Project source and Installation
 Follow [this Google Doc](https://docs.google.com/document/d/1GzOz6lCIO9-j1esVCNZ64J18vl1_PMV1DgRqveJSo84/edit?usp=sharing) for a detailed cloning/downloading instructions!
 
-### Installation
-[Clear, terse instructions on how to compile and run your app on lab machines.  Try this out on non-members, friends, etc.]
 1. After cloning the project, please select ****Pixel 2 + upsideDownCake + landscape**** as your emulator setting! (detailed instructions above)
 2. The game has great audio, so ****turning audio on**** is recommended, 
 Wifi connection is required for the online leaderboard to work properly. All other parts do not. If you go to the leaderboard and nothing shows up, try going back and clicking sync data.
@@ -111,6 +69,23 @@ Wifi connection is required for the online leaderboard to work properly. All oth
 
 ### Usage
 [Clear, terse instructions on how to use your app.  What do the different interface elements (buttons, menus, etc.) do?  How does one see the various requirements and features in action.]
+Splash Screen: Contains a start button to start the game, credit page, and leaderboard.
+Character Customization: Create a username, select male/female avatar, confirm button to continue. Assigns new characters a unique ID. 
+MainActivity: Walk around to one of four spots in the room to trigger different activities:
+1. Class Roster (Name Guessing Game)
+- 5 question quiz with randomized names of students and TAs in the class. Guess whether they are real names or not.
+- Pause button: Hint, resume button, return to main menu button
+- Upon finishing, you are shown your score, your best score, and your average score. You can try again or continue to MainActivity. 
+2. Machine Code Quiz:
+- 4 machine code questions.
+- Pause button: View a helpful hint, resume quiz, or return to MainActivity.
+- If you get a question wrong, a minigame will spawn with chalk flying at you. Tap to jump, and dodge all the chalk. You have 3 lives. If you die, you respawn in MainActivity. If you pass, you resume the machine code quiz. 
+- Results page: Shows your score and best score. You can try again or continue to MainActivity.
+3. Profile: View your username, unique ID, average name guessing accuracy, best machine code quiz score, and overall score (average). 
+- Button to sync your data, view online leaderboard, or return to MainActivity.
+4. Art by Pippi
+
+
 
 
 ---
@@ -129,3 +104,5 @@ Wifi connection is required for the online leaderboard to work properly. All oth
 [Are you comfortable with having this project visible to the broader public?  This would allow you, for example, to put it on a resume or showcase to potential employers.  _All_ group members must agree to making the project public, or else it will remain private.]
 
 ###
+
+Issue #7 - Personalize Gitlab has been completed
