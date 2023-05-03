@@ -69,6 +69,8 @@ public class NameActivity extends AppCompatActivity implements View.OnClickListe
         correct = MediaPlayer.create(this, R.raw.correct);
         wrong = MediaPlayer.create(this, R.raw.gasp);
         backgroundMusic = MediaPlayer.create(this, R.raw.kahoot_music);
+        SharedPreferences preferences = getSharedPreferences("MY_PREFS", 0);
+        preferences.edit().putInt("lastScore", 0);
 
         //for pop up intro
         layout = findViewById(R.id.nameActivity); // relative is the id of the layout of the page

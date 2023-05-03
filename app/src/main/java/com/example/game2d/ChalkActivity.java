@@ -73,6 +73,9 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
         backgroundMusic.setLooping(true);
         backgroundMusic.start();
 
+        SharedPreferences preferences = getSharedPreferences("MY_PREFS",0);
+        preferences.edit().putInt("lastChalkScore", 0);
+
         //for pop up intro
         layout = findViewById(R.id.chalkActivity); // relative is the id of the layout of the page
         CreatepopUpwindow();

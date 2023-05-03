@@ -18,10 +18,10 @@ import com.example.game2d.object.Circle;
 import com.example.game2d.object.Detector;
 import com.example.game2d.object.Player;
 
-/*
-Game manages the objects in the MainActivity classroom. It is responsible for player movement and
-animation as well as switching to different mini-game activities when a collision is detected.
- */
+ /**
+  *Game manages the objects in the MainActivity classroom. It is responsible for player movement and
+  *animation as well as switching to different mini-game activities when a collision is detected.
+  */
 public class Game extends SurfaceView implements SurfaceHolder.Callback {
     // Background image
     Bitmap background;
