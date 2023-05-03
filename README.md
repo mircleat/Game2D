@@ -12,8 +12,9 @@ Dive into the world of EC327 and get a taste of what it's like. Customize your c
 
 ## Authors
 ### Group members
+Member name - Wiki Name - bu email:  
 Ankita Tiwari   - AnkitaTiwari      - ankita04@bu.edu  
-Pippi Pi        - PiyuPi            -   
+Pippi Pi        - PiyuPi            - ppp@bu.edu   
 Elena Berrios   - ElenaBerrios      - eberrios@bu.edu  
 Ethan Liang     - EthanLiang        - ethanl66@bu.edu  
 Pranav Shrihari - PranavShrihari    - pranavsh@bu.edu  
@@ -45,7 +46,9 @@ Completion:
 [A list of possible features that were only partially completed, together with a (i) the percentage credit originally assigned to them, (ii) the qualitative percentage of the feature completed, (iii) a brief explanation of what was not completed.  Penalties for partially completed requirements will be halved if the instructor agrees with the self-acknowledged status.]
 
 Completion:  
-100% - Implement a health system that is calculated/decreased based on time and player performance [5%]  
+50% - Implement a health system that is calculated/decreased based on time and player performance [5%]  
+    The health system does not decrease based on time but it decreases based on player performance
+    
 100% - Provide a hints system that the user can access to get a text prompt on how to proceed. [5%]  
 100% - Allow the user to customize some aspects of their character’s appearance. [5%]  
 100% - Provide a high-score list that persists when the app is closed and then reopened. [10%]  
@@ -55,7 +58,7 @@ N/A% - Allow the user to choose between light mode and dark mode and customize t
     Decided we would not include this option in order to maintain consistency with the art.  
 100% - Comprehensive graphical design and fine-grain animation for game components. [15%]  
 100% - Incorporate online leaderboard where user can see their placement against other users. [20%]  
-                                                                    Total: 80%  
+                                                                    Total: 77.5%  
 
 ---
 ## Execution
