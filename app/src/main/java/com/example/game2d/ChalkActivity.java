@@ -97,7 +97,8 @@ public class ChalkActivity extends AppCompatActivity implements View.OnClickList
         pauseBtn.setOnClickListener(new View.OnClickListener() {
             /**
              *Allows the user to pause the activity and read the hints. The user can then either
-             * return to the activity or return to the main menu.
+             * return to the activity or return to the main menu. It reorders the activity
+             * so that it isn't restarted and continues where they left off.
              * @param view button instance/click from the user on the pause button
              */
             @Override

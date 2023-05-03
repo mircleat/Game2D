@@ -12,6 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * This class creates a randomized combination of a first and last name
+ * from the database in the class.
+ */
+
 public class QuestionAnswer {
 
     private static final String TAG = "QuestionAnswer";
@@ -22,6 +27,12 @@ public class QuestionAnswer {
     public static String[] names = new String[5];
     public static boolean[] tfArray = new boolean[5];
 
+    /**
+     * Retrieves a first name from a given list of full names
+     * @param names the list containing strings of full names
+     * @param index index of the full name from which the first name is retrieved
+     * @return a string containing the first name at the index from the list given
+     */
     public String first(List<String> names, int index) {
         //function usage: get firstname from list with index
         String full = names.get(index);
@@ -32,6 +43,12 @@ public class QuestionAnswer {
         return full.substring(0, i);
     }
 
+    /**
+     * Retrieves a last name from a given list of full names
+     * @param names the list containing strings of full names
+     * @param index index of the full name from which the last name is retrieved
+     * @return a string containing the last name at the index from the list given
+     */
     public String last(List<String> names, int index) {
         //function usage: get lastname from list with index
         String full = names.get(index);
@@ -47,6 +64,12 @@ public class QuestionAnswer {
         return full.substring(i + 1, i + 1 + k);
     }
 
+    /**
+     * Generates a random index in the list of names and makes sure
+     * that it is not an index used before.
+     * @param names the list containing the full names to index into
+     * @return a random integer representing the random index used in the above functions
+     */
     public int randomIndex(List<String> names) {
         //produce a random, non-repeating index
         int in;
@@ -57,6 +80,12 @@ public class QuestionAnswer {
         return in;
     }
 
+    /**
+     *This first reads in the txt file with all the names in the class.
+     * It then randomly generates a boolean which determines whether a true
+     * or false combination is fetched from the file. It does this 5 times.
+     * @param context the current context
+     */
     public void run(Context context) {
         fullName = new ArrayList<>();
         BufferedReader reader = null;

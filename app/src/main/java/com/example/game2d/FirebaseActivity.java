@@ -42,6 +42,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * This activity presents the user's ID and scores for
+ * <code>NameActivity</code> and <code>ChalkActivity</code>
+ * as well as their average overall score. It also gives them
+ * the option to sync to the leaderboard and view it.
+ */
 public class FirebaseActivity extends AppCompatActivity {
 //    private static final String USERNAME_KEY = "username";
 //    private static final String SCORE_KEY = "score";
@@ -68,6 +74,13 @@ public class FirebaseActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     //private DocumentReference mDocRef = Fires.getInstance().document("sampleData");
 
+    /**Sets the content to the related XML file and removes the status bar.
+     * It also initializes the buttons and their intents/mechanics. Also retrieves
+     * the scores from shared preferences and displays it on the screen alongside
+     * retrieving data form the online leaderboard.
+     * @param savedInstanceState the bundle of the instance of the game in case the
+     * activity needs to be restored to this instance
+     */
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -121,6 +134,11 @@ public class FirebaseActivity extends AppCompatActivity {
         //setting data button
         Button set_button = (Button) findViewById(R.id.set_btn);
         set_button.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Uploads and retrieves data from the online leaderboard when the user
+             * clicks on the sync button.
+             * @param view the button instance/click from the user on the syn button.
+             */
             @Override
             public void onClick(View view) {
                 UploadData();
@@ -141,6 +159,11 @@ public class FirebaseActivity extends AppCompatActivity {
         //button that leads to the leaderboard
         Button lead_button = (Button) findViewById(R.id.leaderboard_btn);
         lead_button.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Creates/executes the intent to <code>LeaderboardActivity</code> when
+             * the user presses on the leaderboard button.
+             * @param view the button instance/click from the user on the leaderboard button.
+             */
             @Override
             public void onClick(View view) {
                 // switch back to main activity
@@ -154,6 +177,11 @@ public class FirebaseActivity extends AppCompatActivity {
         //button that go back to start activtiy
         Button back_button = (Button) findViewById(R.id.return_btn);
         back_button.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Creates/executes the intent to <code>StartActivity</code> when
+             * the user clicks on the return button.
+             * @param view the button instance/click from the user on the return button
+             */
             @Override
             public void onClick(View view) {
                 // switch back to main activity
