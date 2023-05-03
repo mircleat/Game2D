@@ -58,7 +58,7 @@ N/A% - Allow the user to choose between light mode and dark mode and customize t
     Decided we would not include this option in order to maintain consistency with the art.  
 100% - Comprehensive graphical design and fine-grain animation for game components. [15%]  
 100% - Incorporate online leaderboard where user can see their placement against other users. [20%]  
-                                                                    Total: 80%  
+                                                                    Total: 77.5%  
 
 ---
 ## Execution
