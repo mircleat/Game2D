@@ -40,7 +40,7 @@ public class NameActivity extends AppCompatActivity implements View.OnClickListe
 
     ImageButton pauseBtn;
 
-    int score=0;
+    static int score=0;
     int totalQuestion = QuestionAnswer.names.length;
     int currentQuestionIndex = 0;
     String selectedAnswer = "";
