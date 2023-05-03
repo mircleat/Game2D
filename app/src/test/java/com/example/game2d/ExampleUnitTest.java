@@ -6,6 +6,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 //
 import android.content.Context;
+import android.content.SharedPreferences;
+
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -23,12 +25,15 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 //@ExtendWith(MockitoExtension.class)
 @RunWith(MockitoJUnitRunner.class)
 public class ExampleUnitTest {
     @Mock
     ChalkActivity testObj;
+    CharacterActivity testObj2;
+
 
     @Test
     public void randomizeOrderTest() {
@@ -42,7 +47,6 @@ public class ExampleUnitTest {
         System.out.println();
         assertEquals(original, testObj.randomizeOrders());
     }
-
     // QuestionAnswer.java
     @Test
     public void firstReturnsCorrectString () {
@@ -103,5 +107,44 @@ public class ExampleUnitTest {
         System.out.println();
     }
 
+    @Test
+    public void saveNameTest() {
+        String username = "AriBerg";
+        CharacterActivity testObj = new CharacterActivity();
 
+        String expectedID = UUID.randomUUID().toString();
+        testObj.SaveName(username);
+
+        SharedPreferences user_info = testObj.getSharedPreferences("USER_CREDENTIALS", 0);
+        String actualID = user_info.getString("user_ID", null);
+        Assert.assertNotNull(actualID);
+        if (actualID.equals(expectedID)) {
+            Assert.assertEquals(expectedID, actualID);
+        } else {
+            Assert.assertTrue(actualID.matches("^[a-f0-9]{8}(-[a-f0-9]{4}){4}[a-f0-9]{8}$"));
+        }
+    }
+
+    @Test
+    public void restartQuizTest() {
+        NameActivity testObj = new NameActivity();
+
+        testObj.restartQuiz();
+        Assert.assertTrue(NameActivity.score == 0);
+    }
+
+    @Test
+    public void correctAnswer() {
+        ChalkQuestionAnswer testObj = new ChalkQuestionAnswer();
+        boolean isThere = false;
+
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (testObj.correctAnswers[i] == testObj.choices[i][j]) {
+                    isThere = true;
+                }
+            }
+            assertTrue(isThere);
+        }
+    }
 }

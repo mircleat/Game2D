@@ -183,7 +183,6 @@ public class FirebaseActivity extends AppCompatActivity {
         DocumentReference userRef = db.collection("leaderboard").document(CRE_userid);
         userRef.set(user2, SetOptions.merge());
 
-
     }
 
 
