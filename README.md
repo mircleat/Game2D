@@ -14,7 +14,7 @@ Dive into the world of EC327 and get a taste of what it's like. Customize your c
 ### Group members
 Ankita Tiwari   - AnkitaTiwari      - ankita04@bu.edu
 Pippi Pi        - PiyuPi            - 
-Elena Berrios   - ElenaBerrios      - 
+Elena Berrios   - ElenaBerrios      - eberrios@bu.edu
 Ethan Liang     - EthanLiang        - ethanl66@bu.edu
 Pranav Shrihari - PranavShrihari    - pranavsh@bu.edu
 
