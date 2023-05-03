@@ -92,7 +92,7 @@ public class FirebaseActivity extends AppCompatActivity {
 
         SharedPreferences user_info = getSharedPreferences("USER_CREDENTIALS", 0);
         CRE_username = user_info.getString("username", "unnamed user");
-        CRE_userid = user_info.getString("user_ID", "user_id");
+        CRE_userid = user_info.getString("user_ID", "111111111111111111111111111111111111");
 
 
         //display credentials on screen

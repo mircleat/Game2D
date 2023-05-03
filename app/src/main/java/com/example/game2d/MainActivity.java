@@ -2,7 +2,6 @@ package com.example.game2d;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
@@ -12,13 +11,18 @@ import android.view.WindowManager;
 
 import java.util.Objects;
 
-/*
-MainActivity is the entry point
+/**
+ * MainActivity is the entry point of the actual game. It creates a new Game to update and draw
+ * objects to the screen and manages the background music.
  */
 public class MainActivity extends AppCompatActivity {
-
+    // Background music
     MediaPlayer backgroundMusic;
 
+    /**
+     * Hides the status bar and starts the background music.
+     * @param savedInstanceState the instance state bundle
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -30,27 +34,24 @@ public class MainActivity extends AppCompatActivity {
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         );
-
-        SharedPreferences preferences = getSharedPreferences("MY_PREFS", 0);
-        Game surfaceView = new Game(this);
-
+        // Start background music
         backgroundMusic = MediaPlayer.create( this, R.raw.moog_city_two );
         backgroundMusic.setLooping(true);
-
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.hide();
-        }
-
-        // Set content view to game so that objects in the Game class can be rendered
+        // Set content view to game so that Game objects can be rendered to the screen
         setContentView(new Game(this));
     }
 
+    /**
+     * Starts the background music.
+     */
     protected void onStart() {
         super.onStart();
         backgroundMusic.start();
     }
 
+    /**
+     * Pauses the background music.
+     */
     protected void onPause() {
         super.onPause();
         backgroundMusic.pause();
