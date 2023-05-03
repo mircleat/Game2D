@@ -12,11 +12,11 @@ Dive into the world of EC327 and get a taste of what it's like. Customize your c
 
 ## Authors
 ### Group members
-|Ankita Tiwari   |- AnkitaTiwari      |- ankita04@bu.edu|
-|Pippi Pi        |- PiyuPi            |- |
-|Elena Berrios   |- ElenaBerrios      |- eberrios@bu.edu|
-|Ethan Liang     |- EthanLiang        |- ethanl66@bu.edu|
-|Pranav Shrihari |- PranavShrihari    |- pranavsh@bu.edu|
+Ankita Tiwari   - AnkitaTiwari      - ankita04@bu.edu  
+Pippi Pi        - PiyuPi            -   
+Elena Berrios   - ElenaBerrios      - eberrios@bu.edu  
+Ethan Liang     - EthanLiang        - ethanl66@bu.edu  
+Pranav Shrihari - PranavShrihari    - pranavsh@bu.edu  
 
 ### Roles
 Lead: Pippi (50.0000001%), Ankita(49.9999999%)  
