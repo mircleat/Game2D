@@ -12,18 +12,18 @@ Dive into the world of EC327 and get a taste of what it's like. Customize your c
 
 ## Authors
 ### Group members
-Ankita Tiwari   - AnkitaTiwari      - ankita04@bu.edu
-Pippi Pi        - PiyuPi            - 
-Elena Berrios   - ElenaBerrios      - eberrios@bu.edu
-Ethan Liang     - EthanLiang        - ethanl66@bu.edu
-Pranav Shrihari - PranavShrihari    - pranavsh@bu.edu
+Ankita Tiwari   - AnkitaTiwari      - ankita04@bu.edu  
+Pippi Pi        - PiyuPi            -   
+Elena Berrios   - ElenaBerrios      - eberrios@bu.edu  
+Ethan Liang     - EthanLiang        - ethanl66@bu.edu  
+Pranav Shrihari - PranavShrihari    - pranavsh@bu.edu  
 
 ### Roles
-Lead: Pippi (50.0000001%), Ankita(49.9999999%)
-Front End: Pippi (56.1%), Ethan (18.69%), Pranav (18.69%), Ankita (4.66%), Elena (1.86%)
-Back End: Elena (25%), Pranav (10%), Ankita (22%), Pippi (28%), Ethan(15%)
-Documenter:	Ankita (80%), Elena (20%)
-Tester:	Elena (50%), Ethan (50%), Pranav(%)
+Lead: Pippi (50.0000001%), Ankita(49.9999999%)  
+Front End: Pippi (56.1%), Ethan (18.69%), Pranav (18.69%), Ankita (4.66%), Elena (1.86%)  
+Back End: Elena (25%), Pranav (10%), Ankita (22%), Pippi (28%), Ethan(15%)  
+Documenter:	Ankita (80%), Elena (20%)  
+Tester:	Elena (50%), Ethan (50%), Pranav(%)  
 
 ---
 ## Accomplishments
@@ -31,12 +31,12 @@ Tester:	Elena (50%), Ethan (50%), Pranav(%)
 ### Minimum requirements
 [A list of minimum requirements that were completed entirely, one per line.]
 [A list of any minimum requirements not completed or only partially completed, each with a qualitative fraction of the requirement completed and a brief explanation of what was not completed.  Penalties for partially completed requirements will be halved if the instructor agrees with the self-acknowledged status.]
-Completion:
-100% - Moving graphical pieces.
-100% - The ability of the user to control some of the moving pieces through input.
-100% - Include a score that is changed based on the user satisfying requirements.
-100% - A menu item that allows the user to pause the game that the user can access at any point in the game
-100% - mini-game within the game
+Completion:  
+100% - Moving graphical pieces.  
+100% - The ability of the user to control some of the moving pieces through input.  
+100% - Include a score that is changed based on the user satisfying requirements.  
+100% - A menu item that allows the user to pause the game that the user can access at any point in the game  
+100% - mini-game within the game  
 
 
 
@@ -44,18 +44,18 @@ Completion:
 [A list of possible features that were completed entirely, one per line, together with the percentage credit that was assigned to them.]
 [A list of possible features that were only partially completed, together with a (i) the percentage credit originally assigned to them, (ii) the qualitative percentage of the feature completed, (iii) a brief explanation of what was not completed.  Penalties for partially completed requirements will be halved if the instructor agrees with the self-acknowledged status.]
 
-Completion:
-100% - Implement a health system that is calculated/decreased based on time and player performance [5%]
-100% - Provide a hints system that the user can access to get a text prompt on how to proceed. [5%]
-100% - Allow the user to customize some aspects of their character’s appearance. [5%]
-100% - Provide a high-score list that persists when the app is closed and then reopened. [10%]
-100% - Incorporate audio components and sound effects in the game [10%]
-100% - Gameplay mechanics that involve randomized events and calculations. [10%]
-N/A% - Allow the user to choose between light mode and dark mode and customize the placement of controls. [15%]
-    Decided we would not include this option in order to maintain consistency with the art.
-100% - Comprehensive graphical design and fine-grain animation for game components. [15%]
-100% - Incorporate online leaderboard where user can see their placement against other users. [20%]
-                                                                    Total: 80%
+Completion:  
+100% - Implement a health system that is calculated/decreased based on time and player performance [5%]  
+100% - Provide a hints system that the user can access to get a text prompt on how to proceed. [5%]  
+100% - Allow the user to customize some aspects of their character’s appearance. [5%]  
+100% - Provide a high-score list that persists when the app is closed and then reopened. [10%]  
+100% - Incorporate audio components and sound effects in the game [10%]  
+100% - Gameplay mechanics that involve randomized events and calculations. [10%]  
+N/A% - Allow the user to choose between light mode and dark mode and customize the placement of controls. [15%]  
+    Decided we would not include this option in order to maintain consistency with the art.  
+100% - Comprehensive graphical design and fine-grain animation for game components. [15%]  
+100% - Incorporate online leaderboard where user can see their placement against other users. [20%]  
+                                                                    Total: 80%  
 
 ---
 ## Execution
@@ -63,11 +63,11 @@ N/A% - Allow the user to choose between light mode and dark mode and customize t
 ### Project source and Installation
 Follow [this Google Doc](https://docs.google.com/document/d/1GzOz6lCIO9-j1esVCNZ64J18vl1_PMV1DgRqveJSo84/edit?usp=sharing) for a detailed cloning/downloading instructions!
 
-1. After cloning the project, please select ****Pixel 2 + upsideDownCake + landscape**** as your emulator setting! (detailed instructions above)
+1. After cloning the project, please select ****Pixel 2 + upsideDownCake + landscape**** as your emulator setting! (detailed instructions above)  
 2. The game has great audio, so ****turning audio on**** is recommended, 
-Wifi connection is required for the online leaderboard to work properly. All other parts do not. If you go to the leaderboard and nothing shows up, try going back and clicking sync data.
-3. When you play the game for the first time, you receive a ****unique ID**** number that is binded to that device. You can change your username but the score would be updated to the same ID.
-4. If you get sent back to the beginning of a game after finishing it - ****it is a glitch that we are experiencing****. Simply continue to the game and exit by hitting the pause button and “return to main menu.”
+Wifi connection is required for the online leaderboard to work properly. All other parts do not. If you go to the leaderboard and nothing shows up, try going back and clicking sync data.  
+3. When you play the game for the first time, you receive a ****unique ID**** number that is binded to that device. You can change your username but the score would be updated to the same ID.  
+4. If you get sent back to the beginning of a game after finishing it - ****it is a glitch that we are experiencing****. Simply continue to the game and exit by hitting the pause button and “return to main menu.”  
 
 ### Usage
 [Clear, terse instructions on how to use your app.  What do the different interface elements (buttons, menus, etc.) do?  How does one see the various requirements and features in action.]
