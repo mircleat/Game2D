@@ -23,7 +23,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.os.Handler;
 
-
+/**
+ * This is the Name quiz which uses <code>QuestionAnswer</code> to present a
+ * randomized combination to the user and asks if it is a person in our class.
+ * It checks if the user has answered correctly and plays sound effects accordingly
+ * while updating the score.
+ */
 
 public class NameActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -43,6 +48,12 @@ public class NameActivity extends AppCompatActivity implements View.OnClickListe
     //for pop up intro
     RelativeLayout layout;
 
+    /**Sets the content view to the related XML file and removes the
+     * status bar. Also initializes the buttons and their mechanics and the sound elements.
+     * It also checks if the user answered correctly or not.
+     * @param savedInstanceState the bundle of the instance of the game in case the
+     * activity needs to be restored to this instance
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -84,6 +95,12 @@ public class NameActivity extends AppCompatActivity implements View.OnClickListe
 
         //Pause menu implementation
         pauseBtn.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Creates/executes intent to pause page for <code>NameActivity<code/>
+             * when the user clicks on the pause button. It reorders the activity so
+             * that when the user returns to this activity they resume where they left off.
+             * @param view
+             */
             @Override
             public void onClick(View view)
             {
@@ -107,6 +124,11 @@ public class NameActivity extends AppCompatActivity implements View.OnClickListe
         boolean focusable = true;
         PopupWindow popupWindow = new PopupWindow(popUpView, width,height,focusable);
         layout.post(new Runnable() {
+            /**
+             * Creates a popup window at the start of the activity with
+             * an introduction to the activity, allows users to continue to
+             * <code>NameActivity</code> at their convenience.
+             */
             @Override
             public void run() {
                 popupWindow.showAtLocation(layout, Gravity.BOTTOM,0,0);
@@ -115,6 +137,11 @@ public class NameActivity extends AppCompatActivity implements View.OnClickListe
         TextView Continue;
         Continue = popUpView.findViewById(R.id.Continue);
         Continue.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Dismisses the popup window when the user clicks on continue,
+             * allowing users to continue to <code>NameActivity</code>
+             * @param view the buttton instance/click from the user on the continue button
+             */
             @Override
             public void onClick(View view) {
                 popupWindow.dismiss();
@@ -122,6 +149,13 @@ public class NameActivity extends AppCompatActivity implements View.OnClickListe
         });
 
     }
+
+    /**
+     * Checks if the button the user clicked is associated with the
+     * correct answer or not and changing the background of the button and
+     * sound effects to indicate that to the users.
+     * @param view button instance/click from the user on the button.
+     */
     @Override
     public void onClick(View view) {
         //initial color white
@@ -148,6 +182,10 @@ public class NameActivity extends AppCompatActivity implements View.OnClickListe
         currentQuestionIndex++; //if this is more than the question we have, app would crash
 
         new Handler().postDelayed(new Runnable() {
+            /**
+             * Loads the next question 1500 ms after the choice has been checked and
+             * the effects have been played.
+             */
             @Override
             public void run() {
                 // code to be executed after delay
@@ -157,6 +195,11 @@ public class NameActivity extends AppCompatActivity implements View.OnClickListe
         //if condition check answer + add score
     }
 
+    /**
+     * Loads the next question unless it is the last question in
+     * which case it loads the final page. It also sets the background colour
+     * for the buttons.
+     */
     void loadNewQuestion() {
         if(currentQuestionIndex == totalQuestion){
             finishQuiz();
@@ -169,6 +212,11 @@ public class NameActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    /**
+     * Stores the score in sharedPreferences so that it persists when the app
+     * is closed and reopened. It then creates/executes the intent to the
+     * score page for <code>NameActivity</code>
+     */
     void finishQuiz(){
         String passStatus = "";
         if(score >totalQuestion*0.6){
@@ -194,6 +242,9 @@ public class NameActivity extends AppCompatActivity implements View.OnClickListe
 //                .show();
     }
 
+    /**
+     * Resets the variables and the questions.
+     */
     void restartQuiz() {
         score = 0;
         currentQuestionIndex = 0;
@@ -202,11 +253,17 @@ public class NameActivity extends AppCompatActivity implements View.OnClickListe
         loadNewQuestion();
     }
 
+    /**
+     * Starts the music when the activity starts.
+     */
     protected void onStart() {
         super.onStart();
         backgroundMusic.start();
     }
 
+    /**
+     * Pauses the music when the activity is paused.
+     */
     protected void onPause() {
         super.onPause();
         backgroundMusic.pause();

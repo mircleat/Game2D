@@ -23,11 +23,15 @@ import java.util.List;
 import java.util.Set;
 import java.util.Vector;
 
+/**
+ * This is the results page/activity for the <code>NameActivity</code> that
+ * displays the current score out of 5 and a corresponding comment.
+ * It also displays the average and highest score as a percentage that
+ * persists when the app is closed and reopened.
+ */
 public class NameResultActivity extends AppCompatActivity { //
 
     TextView newscore;
-
-
 
     TextView comment;
 
@@ -48,6 +52,11 @@ public class NameResultActivity extends AppCompatActivity { //
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        /**
+         * Sets the contentView to the related XML file and gets rid of the
+         * status bar. It also initializes the files (textviews and buttons)
+         * and their mechanics.
+         */
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_name_result);
 
@@ -66,6 +75,12 @@ public class NameResultActivity extends AppCompatActivity { //
         // Continue button
         Button back_button = (Button) findViewById(R.id.back_button);
         back_button.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Creates/executes the intent back to <code>MainActivity</code> when the
+             * user clicks on the continue button.
+             * @param view the button instance/click from the user when they click
+             * on the continue button.
+             */
             @Override
             public void onClick(View view) {
                 // switch back to main activity
@@ -76,6 +91,12 @@ public class NameResultActivity extends AppCompatActivity { //
         // Try again button
         Button again_button = (Button) findViewById(R.id.again_button);
         again_button.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Creates/executes the intent to the <code>NameActivity</code> which restarts it
+             * so the user can play again when they click on the play again button
+             * @param view the button instance/click from the user when they click on
+             * on the play again button.
+             */
             @Override
             public void onClick(View view) {
                 // switch back to main activity
@@ -186,16 +207,6 @@ public class NameResultActivity extends AppCompatActivity { //
 
     }
 
-    //This part does not work it is supposed to go back to the main Activity
-    public void onClick(View view) {
-        Button clickedButton = (Button) view;
-        if (clickedButton.getId() == R.id.back_button) {
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
-
-    }
 
 
 }

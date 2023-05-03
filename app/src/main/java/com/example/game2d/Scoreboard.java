@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class Scoreboard implements Serializable {
     public Map<String, Double> scoreboard;
 

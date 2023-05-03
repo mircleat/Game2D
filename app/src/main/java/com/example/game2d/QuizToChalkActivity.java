@@ -11,9 +11,10 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 /**
- * This is the transition page/activity between the chalkQuiz and the chalkGame/
- * chalk dodging activity. It is called when a user gets the question wrong in
- * chalkQuiz. It allows users to continue to the chalkGame activity when they
+ * This is the transition page/activity between <code>ChalkActivity</code>  (chalk Quiz)
+ * and <code>ChalkGameActivity</code> (chalk dodging activity)
+ * It is called when a user gets the question wrong in <code>ChalkActivity</code>
+ * It allows users to continue to <code>ChalkGameActivity</code> when they
  * are ready.
  */
 public class QuizToChalkActivity extends AppCompatActivity {
@@ -38,8 +39,8 @@ public class QuizToChalkActivity extends AppCompatActivity {
 
         resButton.setOnClickListener(new View.OnClickListener() {
             /**
-             * Creates/executes the intent to the chalkGame/ chalk
-             * dodging when the user hits continue.
+             * Creates/executes the intent to <code>ChalkGameActivity</code>
+             * when the user hits continue.
              * @param view the button instance/click from the user on the continue button.
              */
             @Override
