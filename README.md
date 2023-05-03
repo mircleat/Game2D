@@ -99,12 +99,19 @@ N/A% - Allow the user to choose between light mode and dark mode and customize t
 
 ### Project source
 [Links to all code needed to compile and run your project _from scratch_ .  If you are using some libraries, provide links to their code.]
+Follow [this Google Doc](https://docs.google.com/document/d/1GzOz6lCIO9-j1esVCNZ64J18vl1_PMV1DgRqveJSo84/edit?usp=sharing) for a detailed cloning/downloading instructions!
 
 ### Installation
 [Clear, terse instructions on how to compile and run your app on lab machines.  Try this out on non-members, friends, etc.]
+1. After cloning the project, please select ****Pixel 2 + upsideDownCake + landscape**** as your emulator setting! (detailed instructions above)
+2. The game has great audio, so ****turning audio on**** is recommended, 
+Wifi connection is required for the online leaderboard to work properly. All other parts do not. If you go to the leaderboard and nothing shows up, try going back and clicking sync data.
+3. When you play the game for the first time, you receive a ****unique ID**** number that is binded to that device. You can change your username but the score would be updated to the same ID.
+4. If you get sent back to the beginning of a game after finishing it - ****it is a glitch that we are experiencing****. Simply continue to the game and exit by hitting the pause button and “return to main menu.”
 
 ### Usage
 [Clear, terse instructions on how to use your app.  What do the different interface elements (buttons, menus, etc.) do?  How does one see the various requirements and features in action.]
+
 
 ---
 ## Miscellaneous
