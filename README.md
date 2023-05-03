@@ -108,6 +108,12 @@ MainActivity: Walk around to one of four spots in the room to trigger different 
 ### Release
 [Are you comfortable with having this project visible to the broader public?  This would allow you, for example, to put it on a resume or showcase to potential employers.  _All_ group members must agree to making the project public, or else it will remain private.]
 
+
+### High Level Documentation for Testing
+Unit tests were implemented for all applicable functions, especially those that format data to be displayed onto the screen, and those accessing and processing data through APIs. These were done through methods such as mocking. 
+
+Interface and system tests were implemented manually through user input and demos. For example, we know that a function works when its intended result shows up on the screen.
+
 ###
 
 Issue #7 - Personalize Gitlab has been completed
