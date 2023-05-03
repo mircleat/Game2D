@@ -14,43 +14,50 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class ChalkResultActivity extends AppCompatActivity { //
-
+/**
+ * ChalkResultActivity is triggered when the user reaches the end of the chalk quiz.
+ * It displays the current and highest score out of four and creates buttons to try again or
+ * continue back to the classroom.
+ */
+public class ChalkResultActivity extends AppCompatActivity {
+    // TextViews for current and highest scores
     TextView newscore;
-
     TextView bestscore;
-
+    // Comment about the score
     TextView comment;
-
+    // Current and highest scores
     int lastChalkScore;
     int bestChalk;
-
+    // Win sound effect
     MediaPlayer winSound;
 
-    Button submitBtn;
-
+    /**
+     * Sets content view to the associated XML file, hides the status bar, initializes TextViews
+     * for the scores and comment, retrieves or saves the highest score, and creates buttons to try
+     * again or continue.
+     * @param savedInstanceState the instance state bundle
+     */
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chalk_result);
+        // Win sound
         winSound = MediaPlayer.create(this, R.raw.eerie_win);
         winSound.start();
-        Log.d("CHALKRESULT", "onCreate after sound start");
+        // Hide status bar
         Window window = getWindow();
         window.setFlags(
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
         );
-
+        // Create TextViews
         newscore = (TextView) findViewById(R.id.score);
         bestscore = (TextView) findViewById(R.id.highestscore);
         comment = (TextView) findViewById(R.id.comment);
-
-
         // Continue button
-        Button back_button = (Button) findViewById(R.id.back_button);
-        back_button.setOnClickListener(new View.OnClickListener() {
+        Button continue_button = (Button) findViewById(R.id.back_button);
+        continue_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 winSound.stop();
@@ -59,53 +66,31 @@ public class ChalkResultActivity extends AppCompatActivity { //
                 startActivity(intent);
             }
         });
-
-
         // Try again button
         Button again_button = (Button) findViewById(R.id.again_button);
         again_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 winSound.stop();
-                // switch back to main activity
+                // switch back to chalk activity
                 Intent intent = new Intent(ChalkResultActivity.this, ChalkActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
             }
         });
-
-
+        // Get scores from SharedPreferences
         SharedPreferences preferences = getSharedPreferences("MY_PREFS", 0);
         lastChalkScore = preferences.getInt("lastChalkScore", 0);
         bestChalk = preferences.getInt("bestChalk", 0);
-
+        // Update highest score if current score is greater
         if (lastChalkScore > bestChalk) {
             bestChalk = lastChalkScore;
             SharedPreferences.Editor editor = preferences.edit();
             editor.putInt("bestChalk", bestChalk);
             editor.apply();
         }
+        // Set score text
         newscore.setText(lastChalkScore + " out of 4");
         bestscore.setText(bestChalk + " out of 4");
-
-//        if (lastScore < 3) {
-//            comment.setText("You must be a terrible person.");
-//        } else if (lastScore == 3) {
-//            comment.setText("Not bad, not good either");
-//        } else if (lastScore == 4) {
-//            comment.setText("Okay... don't be cocky.");
-//        } else if (lastScore == 5) {
-//            comment.setText("You cheated.");
-//        }
-    }
-
-
-    public void onClick(View view) {
-        Button clickedButton = (Button) view;
-        if (clickedButton.getId() == R.id.back_button) {
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
     }
 }
