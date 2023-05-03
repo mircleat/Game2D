@@ -31,10 +31,11 @@ Tester:	Elena (50%), Ethan (50%), Pranav(%)
 ### Minimum requirements
 [A list of minimum requirements that were completed entirely, one per line.]
 [A list of any minimum requirements not completed or only partially completed, each with a qualitative fraction of the requirement completed and a brief explanation of what was not completed.  Penalties for partially completed requirements will be halved if the instructor agrees with the self-acknowledged status.]
+Completion:
 100% - Moving graphical pieces.
 100% - The ability of the user to control some of the moving pieces through input.
 100% - Include a score that is changed based on the user satisfying requirements.
-xx% - A menu item that allows the user to pause the game that the user can access at any point in the game
+100% - A menu item that allows the user to pause the game that the user can access at any point in the game
 100% - mini-game within the game
 
 
@@ -43,6 +44,7 @@ xx% - A menu item that allows the user to pause the game that the user can acces
 [A list of possible features that were completed entirely, one per line, together with the percentage credit that was assigned to them.]
 [A list of possible features that were only partially completed, together with a (i) the percentage credit originally assigned to them, (ii) the qualitative percentage of the feature completed, (iii) a brief explanation of what was not completed.  Penalties for partially completed requirements will be halved if the instructor agrees with the self-acknowledged status.]
 
+Completion:
 100% - Implement a health system that is calculated/decreased based on time and player performance [5%]
 100% - Provide a hints system that the user can access to get a text prompt on how to proceed. [5%]
 100% - Allow the user to customize some aspects of their character’s appearance. [5%]
@@ -50,7 +52,7 @@ xx% - A menu item that allows the user to pause the game that the user can acces
 100% - Incorporate audio components and sound effects in the game [10%]
 100% - Gameplay mechanics that involve randomized events and calculations. [10%]
 N/A% - Allow the user to choose between light mode and dark mode and customize the placement of controls. [15%]
-    Decided we would not have this option to maintain consistency with the art.
+    Decided we would not include this option in order to maintain consistency with the art.
 100% - Comprehensive graphical design and fine-grain animation for game components. [15%]
 100% - Incorporate online leaderboard where user can see their placement against other users. [20%]
                                                                     Total: 80%
